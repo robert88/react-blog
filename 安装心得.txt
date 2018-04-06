@@ -1,0 +1,25 @@
+该实例采用的是yarn来管理依赖
+npm和yarn有什么区别请访问
+https://github.com/neal1991/articles-translator/blob/master/Npm%2C%20yarn%E4%BB%A5%E5%8F%8Apnpm%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84.md
+
+添加依赖
+yarn add --dev redux-devtools
+发生一个错误
+error An unexpected error occurred: "http://npm.byted.org/is-buffer/-/is-buffer-1.1.6.tgz: getaddrinfo ENOTFOUND npm.byted.org npm.byted.org:80".
+info If you think this is a bug, please open a bug report with the information provided in "D:\\react-blog\\yarn-error.log".
+info Visit https://yarnpkg.com/en/docs/cli/add for documentation about this command.
+
+npm config get proxy
+ npm config get https-proxy
+得到null
+试了这个
+1 npm config set registry http://registry.cnpmjs.org/
+ 没有用
+ 再试了
+2、直接编辑c盘下nodejs安装路径的.npmrc文件，将registry的值修改为：
+ registry = http://registry.cnpmjs.org
+也没有用
+
+最终使用
+npm install redux-devtools
+安装了这个包
