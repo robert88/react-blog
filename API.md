@@ -2,46 +2,49 @@
 
 ### Table of Contents
 
--   [app.js](#appjs)
--   [App](#app)
--   [store/index.js](#storeindexjs)
--   [makeRootSaga](#makerootsaga)
--   [injectSagas](#injectsagas)
--   [location.js](#locationjs)
--   [pushRoute](#pushroute)
--   [replaceRoute](#replaceroute)
--   [CreateStotre.js](#createstotrejs)
--   [OperateReducer.js](#operatereducerjs)
--   [makeRootReducer](#makerootreducer)
--   [injectReducer](#injectreducer)
--   [路由入口文件](#路由入口文件)
--   [Routes](#routes)
--   [首页主体路由文件](#首页主体路由文件)
--   [Home](#home)
--   [React](#react)
--   [Article/index.js](#articleindexjs)
--   [ArticleContainer](#articlecontainer)
--   [Component](#component)
--   [AppFlux.js](#appfluxjs)
--   [toggleMobileSideBar](#togglemobilesidebar)
--   [requestPostList](#requestpostlist)
--   [receivePostList](#receivepostlist)
--   [appReducer](#appreducer)
--   [getPostList](#getpostlist)
--   [getPostList](#getpostlist-1)
--   [getPostListSaga](#getpostlistsaga)
--   [getPostListSaga](#getpostlistsaga-1)
--   [AppSaga](#appsaga)
--   [dataAdapter.js](#dataadapterjs)
--   [formatPostListData](#formatpostlistdata)
--   [flux.js](#fluxjs)
--   [articleReducer](#articlereducer)
--   [formatPostData](#formatpostdata)
--   [getPostSaga](#getpostsaga)
--   [ArticleSaga](#articlesaga)
--   [SET_WILL_AUTO_FETCH_POSTS](#set_will_auto_fetch_posts)
--   [takeLatest](#takelatest)
--   [CategoryListSaga](#categorylistsaga)
+-   [app.js][1]
+-   [App][2]
+-   [store/index.js][3]
+-   [makeRootSaga][4]
+-   [injectSagas][5]
+-   [location.js][6]
+-   [pushRoute][7]
+-   [replaceRoute][8]
+-   [CreateStotre.js][9]
+-   [OperateReducer.js][10]
+-   [makeRootReducer][11]
+-   [injectReducer][12]
+-   [路由入口文件][13]
+-   [Routes][14]
+-   [首页主体路由文件][15]
+-   [Home][16]
+-   [React][17]
+-   [Article/index.js][18]
+-   [ArticleContainer][19]
+-   [Component][20]
+-   [AppFlux.js][21]
+-   [toggleMobileSideBar][22]
+-   [requestPostList][23]
+-   [fetchingPostList][24]
+-   [receivePostList][25]
+-   [appReducer][26]
+-   [getPostList][27]
+-   [getPostList][28]
+-   [getPostListSaga][29]
+-   [getPostListSaga][30]
+-   [AppSaga][31]
+-   [dataAdapter.js][32]
+-   [formatPostListData][33]
+-   [flux.js][34]
+-   [articleReducer][35]
+-   [getPost][36]
+-   [getPostSaga][37]
+-   [ArticleSaga][38]
+-   [moment][39]
+-   [formatPostData][40]
+-   [SET_WILL_AUTO_FETCH_POSTS][41]
+-   [takeLatest][42]
+-   [CategoryListSaga][43]
 
 ## app.js
 
@@ -79,7 +82,7 @@ fork所有saga分支
 
 **Parameters**
 
--   `sagas` **[array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** saga数组
+-   `sagas` **[array][44]** saga数组
 
 ## injectSagas
 
@@ -90,7 +93,7 @@ fork所有saga分支
 **Parameters**
 
 -   `store` **any** 
--   `param` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `param` **[object][45]** 
     -   `param.key`  
     -   `param.sagas`  
 
@@ -112,7 +115,7 @@ fork所有saga分支
 
 **Parameters**
 
--   `payload` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** route pathname
+-   `payload` **[string][46]** route pathname
 
 ## replaceRoute
 
@@ -122,7 +125,7 @@ fork所有saga分支
 
 **Parameters**
 
--   `payload` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** route pathname
+-   `payload` **[string][46]** route pathname
 
 ## CreateStotre.js
 
@@ -153,7 +156,7 @@ fork所有saga分支
 **Parameters**
 
 -   `reducers`  
--   `asyncReducers` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** reducers
+-   `asyncReducers` **[object][45]** reducers
 
 ## injectReducer
 
@@ -164,7 +167,7 @@ fork所有saga分支
 **Parameters**
 
 -   `store` **any** redux store
--   `$1` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `$1` **[Object][45]** 
     -   `$1.key`  
     -   `$1.reducer`  
 
@@ -258,9 +261,9 @@ fork所有saga分支
 
 **Parameters**
 
--   `payload` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 负载参数 (optional, default `{}`)
+-   `payload` **[object][45]?** 负载参数 (optional, default `{}`)
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** [action] action object
+Returns **[object][45]** [action] action object
 
 ## requestPostList
 
@@ -270,9 +273,21 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 **Parameters**
 
--   `payload` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 请求文章列表参数负载
+-   `payload` **[object][45]** 请求文章列表参数负载
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** [action] action object
+Returns **[object][45]** [action] action object
+
+## fetchingPostList
+
+-   **See: src/store/AppFlux.js**
+
+请求文章列表状态中ActionCreator
+
+**Parameters**
+
+-   `payload` **[object][45]** 请求状态
+
+Returns **[object][45]** [action] action object
 
 ## receivePostList
 
@@ -284,7 +299,7 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 -   `payload` **any** 接收文章列表数据负载
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** [action] action object
+Returns **[object][45]** [action] action object
 
 ## appReducer
 
@@ -294,10 +309,10 @@ Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 **Parameters**
 
--   `state` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 应用状态树节点状态对象 (optional, default `initialState`)
--   `action` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** action object
+-   `state` **[object][45]** 应用状态树节点状态对象 (optional, default `initialState`)
+-   `action` **[object][45]** action object
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** state 应用新状态对象
+Returns **[object][45]** state 应用新状态对象
 
 ## getPostList
 
@@ -372,9 +387,9 @@ fetch请求分类文章列表
 
 **Parameters**
 
--   `data` **[array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** postList
+-   `data` **[array][44]** postList
 
-Returns **[array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** new list of post
+Returns **[array][44]** new list of post
 
 ## flux.js
 
@@ -395,17 +410,15 @@ Article Reducer
 **Parameters**
 
 -   `state` **any** store状态节点 (optional, default `initialState`)
--   `action` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** action对象 (optional, default `{}`)
+-   `action` **[object][45]** action对象 (optional, default `{}`)
 
-## formatPostData
+## getPost
 
--   **See: see src/routes/Article/flux.js**
-
-格式化文章信息DataAdapter
+请求文章内容
 
 **Parameters**
 
--   `post` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** post文章信息对象 (optional, default `{}`)
+-   `params` **[object][45]**  (optional, default `{}`)
 
 ## getPostSaga
 
@@ -415,7 +428,7 @@ Article Reducer
 
 **Parameters**
 
--   `$0` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `$0` **[Object][45]** 
     -   `$0.payload`  
 
 ## ArticleSaga
@@ -428,11 +441,29 @@ Article Reducer
 
 -   `action`  
 
+## moment
+
+-   **See: see src/routes/Article/dataAdapter.js**
+
+格式化文章信息DataAdapter
+
+**Meta**
+
+-   **author**: codingplayboy
+
+## formatPostData
+
+格式化文章信息
+
+**Parameters**
+
+-   `post` **[object][45]**  (optional, default `{}`)
+
 ## SET_WILL_AUTO_FETCH_POSTS
 
 首页组件相关action, reducer, saga
 
-Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
+Type: [string][46]
 
 **Meta**
 
@@ -457,3 +488,95 @@ Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 **Parameters**
 
 -   `action`  
+
+[1]: #appjs
+
+[2]: #app
+
+[3]: #storeindexjs
+
+[4]: #makerootsaga
+
+[5]: #injectsagas
+
+[6]: #locationjs
+
+[7]: #pushroute
+
+[8]: #replaceroute
+
+[9]: #createstotrejs
+
+[10]: #operatereducerjs
+
+[11]: #makerootreducer
+
+[12]: #injectreducer
+
+[13]: #路由入口文件
+
+[14]: #routes
+
+[15]: #首页主体路由文件
+
+[16]: #home
+
+[17]: #react
+
+[18]: #articleindexjs
+
+[19]: #articlecontainer
+
+[20]: #component
+
+[21]: #appfluxjs
+
+[22]: #togglemobilesidebar
+
+[23]: #requestpostlist
+
+[24]: #fetchingpostlist
+
+[25]: #receivepostlist
+
+[26]: #appreducer
+
+[27]: #getpostlist
+
+[28]: #getpostlist-1
+
+[29]: #getpostlistsaga
+
+[30]: #getpostlistsaga-1
+
+[31]: #appsaga
+
+[32]: #dataadapterjs
+
+[33]: #formatpostlistdata
+
+[34]: #fluxjs
+
+[35]: #articlereducer
+
+[36]: #getpost
+
+[37]: #getpostsaga
+
+[38]: #articlesaga
+
+[39]: #moment
+
+[40]: #formatpostdata
+
+[41]: #set_will_auto_fetch_posts
+
+[42]: #takelatest
+
+[43]: #categorylistsaga
+
+[44]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[45]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[46]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String

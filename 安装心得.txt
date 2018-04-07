@@ -23,3 +23,48 @@ npm config get proxy
 最终使用
 npm install redux-devtools
 安装了这个包
+
+找到readme
+按照readme里面的步骤执行可以得到一个app界面，即环境ok
+
+
+在页面中右键可以得到一个界面的源码，可以看到基本和index.html的内容是一致，只是增加了几个js，现在我们来看一下如何通过这样的环境生成我们看到的页面
+用的是猎豹浏览器，一开始老是F12是ie的调试器，加了下面代码还是没有用，那就直接右键有个转为急速模式，ok可以看到chrome的调试器了
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    webpack/hot/dev-server有个热更新的东西，在cmd里面出现，我们看一下
+html-webpack-plugin这个模块在做built
+我们来了解一下这个模块，百度一下
+https://segmentfault.com/a/1190000007294861，然后本地备份一份《webpack-html-plugin.docx》
+https://www.cnblogs.com/wonyun/p/6030090.html ，然后本地备份一份《webpack-html-plugin2.docx》
+这两篇文章相互有补充
+
+看看webpack.config.js
+
+根据命令行来判断是开发环境还是测试环境，那么回到命令行
+yarn start` for develop
+这个命令得看package.json中的scripts
+    "start": "cross-env NODE_ENV=dev yarn lint && yarn doc && webpack-dev-server --open --env dev",
+    那么执行的命令应该是这样
+
+cross-env NODE_ENV=dev yarn lint && yarn doc && webpack-dev-server --open --env dev for develop
+这个命令需要分开来kan
+cross-env NODE_ENV=dev yarn lint
+yarn doc
+webpack-dev-server --open --env dev for develop
+cmd中的&&操作表示上一个命令执行成功
+https://zhidao.baidu.com/question/918430276432946939.html 《cmd中的&&.docx》
+cross-env这个命令一看就是跨平台的一个命令，用来统一window和POSIX系统的命令《cross-env.docx》
+
+明白上面的知识之后，就可以理解设置了NODE_ENV=dev这个环境变量
+yarn lint
+回到package.json找到scripts
+    "lint": "eslint --cache --fix src",
+
+    eslint命令
+    http://cnodejs.org/topic/57c68052b4a3bca66bbddbdd
+    https://eslint.org/docs/developer-guide/nodejs-api
+    --fix会自动修复不规范的js代码
+    --cache只会校验修改的文件
+
+
