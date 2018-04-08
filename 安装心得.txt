@@ -67,4 +67,19 @@ yarn lint
     --fix会自动修复不规范的js代码
     --cache只会校验修改的文件
 
+    yarn doc
+    ./node_modules/.bin/documentation build src/app.js -f md > API.md
 
+
+documentation是可执行文件，或者批处理文件
+找到documentation.cmd，代码如下
+@IF EXIST "%~dp0\node.exe" (
+  "%~dp0\node.exe"  "%~dp0\..\documentation\bin\documentation.js" %*
+) ELSE (
+  @SETLOCAL
+  @SET PATHEXT=%PATHEXT:;.JS;=;%
+  node  "%~dp0\..\documentation\bin\documentation.js" %*
+)
+@表示不会显示执行过程的输出信息可以参考《cmd中的ifelse.docx》
+%~d0表示当前执行文件的路径《cmd中%~dp0.docx》
+ @SETLOCAL 《cmd中local.docx》
