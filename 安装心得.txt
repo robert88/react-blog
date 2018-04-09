@@ -83,3 +83,8 @@ documentation是可执行文件，或者批处理文件
 @表示不会显示执行过程的输出信息可以参考《cmd中的ifelse.docx》
 %~d0表示当前执行文件的路径《cmd中%~dp0.docx》
  @SETLOCAL 《cmd中local.docx》
+
+ 接下来看看第三个命令
+ webpack-dev-server --open --env dev for develop
+
+ https://segmentfault.com/a/1190000006964335《webpack_dev_server.docx》
