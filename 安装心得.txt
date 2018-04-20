@@ -88,3 +88,11 @@ documentation是可执行文件，或者批处理文件
  webpack-dev-server --open --env dev for develop
 
  https://segmentfault.com/a/1190000006964335《webpack_dev_server.docx》
+ 
+ 在公司因为没有对外的网络，但是又要自己学习git，下面就自己按教程搭建一个自己的git仓库
+ https://blog.csdn.net/lilinoscar/article/details/72626577
+ 
+ 安装git，新建一个文件夹react，右键git init ，git remote add react file:///d:/svn/react
+ 在新建文件夹，查考git remote -v ，git clone file:///d:/svn/react
+ 
+ 这样就搭建了自己本地的git仓库
