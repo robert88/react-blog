@@ -97,3 +97,24 @@ documentation是可执行文件，或者批处理文件
  
  这样就搭建了自己本地的git仓库,
  -------貌似没用------------/
+
+
+ 看看webpack的配置文件https://www.jianshu.com/p/42e11515c10f
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+
+引用了这两个
+
+
+webpackMerge
+实在是没看到好的教程，看看源码吧，代码注释到源码上node_modules
+
+总结：
+该模块提供一下api
+module.exports = merge;
+module.exports.multiple = mergeMultiple;
+module.exports.smart = mergeSmart;
+module.exports.strategy = mergeStrategy;
+module.exports.smartStrategy = mergeSmartStrategy;
+module.exports.unique = _unique2.default;
+
