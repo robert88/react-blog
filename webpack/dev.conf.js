@@ -36,6 +36,7 @@ const options = {
   ]
 };
 //代码到这里我完全蒙b了，代码是如何跑的就return个什么鬼，写个debugger来调试吧，怎么启动这个debugger呢？
+//从yarn一般按照并且有批处理能力的会在环境路径里面可以看到path里面有两个路径一个node的路径一个是npm全局按照的路径
 module.exports = function (args) {
   debugger
   options.ROOTPATH = args.ROOTPATH;
