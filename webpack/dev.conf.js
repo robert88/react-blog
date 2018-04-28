@@ -35,8 +35,9 @@ const options = {
     new webpack.HotModuleReplacementPlugin()
   ]
 };
-
+//代码到这里我完全蒙b了，代码是如何跑的就return个什么鬼，写个debugger来调试吧，怎么启动这个debugger呢？
 module.exports = function (args) {
+  debugger
   options.ROOTPATH = args.ROOTPATH;
   options.env = args.env;
   return webpackMerge(require('./base.conf')(options), {
@@ -47,7 +48,7 @@ module.exports = function (args) {
       inline: true,
       hot: true,
       port: PORT,
-      host: '0.0.0.0',
+      host: '127.0.0.1',
       proxy: {
         '/': {
           bypass: function (req, res, proxyOptions) {
