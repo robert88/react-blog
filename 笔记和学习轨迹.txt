@@ -1,0 +1,7 @@
+rap99.cn成功备案
+接下来就是如果搭建它，之前放了做过我网站。发现速度不如人意
+先了解一下http
+https://www.cnblogs.com/wangning528/p/6388464.html
+
+辅助网络基础
+https://www.cnblogs.com/maybe2030/p/4781555.html#_label0
