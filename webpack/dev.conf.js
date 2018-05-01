@@ -37,10 +37,27 @@ const options = {
 };
 //代码到这里我完全蒙b了，代码是如何跑的就return个什么鬼，写个debugger来调试吧，怎么启动这个debugger呢？
 //从yarn一般按照并且有批处理能力的会在环境路径里面可以看到path里面有两个路径一个node的路径一个是npm全局按照的路径
+//找到yarn.bat 经典的写法之后我可以知道以后的批处理也可以这样写可以从命令行里面看出执行node node_moudle/yarn/yarn.js
+
+//打开yarn.js
+//https://www.cnblogs.com/qinmengjiao123-123/p/8503163.html
+//fs.existsSync(v8CompileCachePath)v8CompileCachePath并没有带文件后缀名，也是可以的
+//process.env.DISABLE_V8_COMPILE_CACHE这个网上也找不到资料
+// 只能从字面上理解
+//我们来认识一下箭头函数《es6 箭头函数》
+
+//process.getuid
+//https://www.cnblogs.com/Joans/p/4462993.html
+//获取缓存路径
+//os.tmpdir()方法返回一个字符串, 表明操作系统的默认临时文件目录
+//https://zhidao.baidu.com/question/538124386.html《win7临时目录.docx》
+//代码没有执行cache
+//原来#!/usr/bin/env node会将console.log信息屏蔽掉
 module.exports = function (args) {
   debugger
   options.ROOTPATH = args.ROOTPATH;
   options.env = args.env;
+
   return webpackMerge(require('./base.conf')(options), {
     devtool: 'source-map',
     devServer: {
