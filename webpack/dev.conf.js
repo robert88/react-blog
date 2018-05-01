@@ -54,19 +54,20 @@ const options = {
 //代码没有执行cache
 //原来#!/usr/bin/env node会将console.log信息屏蔽掉
 module.exports = function (args) {
-  debugger
+console.log(args.ROOTPATH)
   options.ROOTPATH = args.ROOTPATH;
   options.env = args.env;
-
+//base.conf这个才是重点
   return webpackMerge(require('./base.conf')(options), {
     devtool: 'source-map',
     devServer: {
-      contentBase: path.join(args.ROOTPATH, './src'),
-      historyApiFallback: true,
+      contentBase: path.join(args.ROOTPATH, './src'),//它指定了服务器资源的根目录，如果不写入contentBase的值，那么contentBase默认是项目的目录。
+      historyApiFallback: true,//，这个配置属性是用来应对返回404页面时定向到特定页面用的
       inline: true,
       hot: true,
-      port: PORT,
-      host: '127.0.0.1',
+        //quiet当它被设置为true的时候，控制台只输出第一次编译的信息，当你保存后再次编译的时候不会输出任何内容，包括错误和警告
+      port: PORT,//port配置属性指定了开启服务的端口号
+      host: '127.0.0.1',//host设置的是服务器的主机号：
       proxy: {
         '/': {
           bypass: function (req, res, proxyOptions) {
