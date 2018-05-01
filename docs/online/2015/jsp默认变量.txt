@@ -1,0 +1,26 @@
+默认变量 initParam
+默认变量 cookie
+默认变量 param 、 paramValues
+默认变量 pageScope 、 requestScope 、 sessionScope 、 applicationScope
+
+
+    ;(function(){
+       var cookie = {JSESSIONID=javax.servlet.http.Cookie@3ef353ea, bbdCookie=javax.servlet.http.Cookie@590a47ef};
+        console.log(cookie)
+    })();
+遍历map
+固定格式
+    <s:set var="map" value="#{'1':'laowang','2':'xiaow','3':'猩猩'}"></s:set>
+
+可以理解为#map = {'1':'laowang','2':'xiaow','3':'猩猩'}
+
+    遍历Map：
+    <br />
+    <s:iterator value="#map">
+        <s:property value="key" />:::<s:property value="value" />
+        <Br />
+    </s:iterator>
+
+value必须以#开头
+set中var必须对应与iterator中value
+Page、Request、Session、Application范围查找。

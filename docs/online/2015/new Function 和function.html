@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>new Function 和 eval</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>详解new function(){}和function(){}()</h2>
+
+<p style="padding:20px">
+<pre>
+var myFunction = new Function(arg1,…,agrN, "return expr");
+该函数对象的N个参数放在 函数主体参数body的前面，即函数主体参数必须放在参数列表的最后，也可以无参数new Function("return expr")
+</pre>
+</p>
+<p style="padding:20px">
+<pre>
+情景一：
+var yx01 = new function() {return "圆心"};
+alert(yx01);
+我们运行情景一代码，将返回显示“[object object] ”，此时该代码等价于：
+function 匿名类(){
+        return "圆心";
+}
+var yx01 = new 匿名类();
+alert(yx01);
+我们对情景一的代码进行下面改造：
+var yx01 = new function() {return new String("圆心")};
+alert(yx01);
+我们运行，将会发现返回的是“圆心”，这是为什么呢？
+ <span style="color:red;font-size:18px;font-weight:bold">只要 new 表达式之后的 constructor 返回（return）一个引用对象（数组，对象，函数等），都将覆盖new创建的匿名对
+ 象，如果返回（return）一个原始类型（无 return 时其实为 return 原始类型 undefined），那么就返回 new 创建的匿
+ 名对象。</span>
+由于 new String 会构造一个对象，而不是一个 string 直接量，且new String(x) 如果带参数，那么alert它的时候就会返回 x。
+所以 yx01 将返回 new String(“圆心”) 这个对象，而 alert yx01 则显示 “圆心”。
+情景二：
+var yx02 = function() {return "圆心"}();
+alert(yx02);
+我们运行情景二代码，将返回显示“圆心”，此时该代码等价于：
+var 匿名函数 = function() {return "圆心"};
+yx02 = 匿名函数();
+alert(yx02);
+很明显，yx02 返回的是匿名函数的执行结果值，即 yx02 为：“圆心”。
+
+</pre>
+</p>
+
+</div>
+</body>
+</html>

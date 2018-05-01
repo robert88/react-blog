@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>querySelector说明</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>querySelector</h2>
+<ul>
+<li><h4>返回指定元素节点的子树中匹配selector的集合中的第一个，如果没有匹配，返回null</h4></li>
+</ul>
+<h2>querySelectorAll</h2>
+<ul>
+<li>返回指定元素节点的子树中匹配selector的节点集合，采用的是深度优先预查找；如果没有匹配的，这个方法返回空集合</li>
+</ul>
+var element = baseElement.querySelector(selectors);
+var elementList = baseElement.querySelectorAll(selectors); 
+这在BaseElement 为document的时候，没有什么问题，各浏览器的实现基本一致；但是，当BaseElement 为一个普通的dom Node的时候（支持这两个方法的dom Node），浏览器的实现就有点奇怪了
+</div>
+</body>
+</html>

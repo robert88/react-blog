@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>dcumentElement 和body</title>
+<style rel="styleSheet" type="text/css">
+*{margin:0;padding:0;}
+</style>
+</head>
+<body>
+<div style="width:1024px;height:auto;border:1px solid #eee;padding-left:20px;">
+ <h2>document.dcumentElement 和 document.body</h2>
+<p style="padding:20px;">
+	<pre>
+	页面具有 DTD，或者说指定了 DOCTYPE 时，使用 document.documentElement。
+
+	页面不具有 DTD，或者说没有指定了 DOCTYPE，时，使用 document.body。
+	
+网页中获取滚动条卷去部分的高度，可以通过 document.body.scrollTop 来获取，比如使div跟着滚动条滚动：
+
+
+window.onscroll = function ()
+{
+    var div = document.getElementById("div");
+    div.style.top = document.body.scrollTop + "px";
+}
+
+
+运行后没有达到预期效果，输出 document.body.scrollTop 的值一看，一直都是 0。一翻折腾，原来是 DTD 的问题，要是页面直接用 &lt;html> 开头的话就没有问题了。但是要符合 web 标准，DTD 当然是不能少的。
+
+如果有 DTD 时用，那就用 document.documentElement.scrollTop 代替 document.body.scrollTop 就可以了。
+
+
+window.onscroll = function ()
+{
+    var oFix = document.getElementById("divfix");
+    oFix.style.top = document.documentElement.scrollTop + "px";
+}
+
+	</pre>
+</p>
+</div>
+</body>
+<script type="text/javascript"></script>
+</html>

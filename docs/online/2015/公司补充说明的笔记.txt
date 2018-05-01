@@ -1,0 +1,9 @@
+兼容性
+inline之间word-spacing
+ff/ie 4px
+chorme 8px
+导致这个原因是因为默认字体不一样
+ff：Arial
+chrome：Simsun,
+ff自带页中,Microsoft YaHei,Simsum,serif
+ chorme自带页中,'Microsoft Yahei', , sans-serif

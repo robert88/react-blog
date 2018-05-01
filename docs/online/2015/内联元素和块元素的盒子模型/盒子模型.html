@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>padding margin</title>
+</head>
+<style>
+	body>div{width:80%;min-width:480px;max-width:1440px;margin:0 auto;border-radius: 5px; border: 1px solid #eee;}
+	body>h1{
+		color:#999;
+	}
+	body>div>dl{margin:20px;}
+	body>div>dl>dt{color:#0080C0;}
+</style>
+<body>
+	<h1>内联元素</h1>
+	<hr>
+	<div>
+		<h2>标准</h2>
+		<dl>
+			<dt><b>高度</b></dt>
+			<dd>内联元素换行不会占据整个行。即使在元素内有换行，</dd>
+			<dd>内联元素不会再内部换行出画边框。而是转到下一行</dd>
+			<dd>行高line-height不会改变内部高度。行高相对于增加了margin.但是这个空白不是margin</dd>
+			<dd>内联元素的宽是内联元素是所有行的最宽为宽，高度是包括了padding内高度离最低端行的高度</dd>
+			<dd>内部换行可以和padding重叠，即padding是不会占据空间。只会影响元素的高,和内部第一行的宽。</dd>
+			<dt><b>margin</b></dt>
+			<dt><b>float</b></dt>
+			<dd>如果内联元素加了float,这个会把元素变成inline-block</dd>
+			<dt><b>position absolute</b></dt>
+			<dd>如果内联元素加position  absolute 。这个会把元素变成inline-block</dd>
+			<dd>外边距</dd>
+			<dd>默认情况下body p</dd>   
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>兼容性</h2>
+		<dl>
+			<dt>内容</dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>影响</h2>
+		<dl>
+			<dt>内容</dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+</body>
+</html>

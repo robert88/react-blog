@@ -1,0 +1,19 @@
+﻿#每个笔记必须以以下格式组合起来
+#doc文件、html文件,txt文件
+#doc和html文件是富文本说明
+#txt文件是程序认定的格式信息
+#格式如下
+ie5_5 = {
+	mac :
+	win7 :
+	xp :
+	win8 :
+	mobile{
+		ipad : 
+		apple :
+	}
+}
+
+#浏览器版本 = {
+#	平台 ： value/text
+#}

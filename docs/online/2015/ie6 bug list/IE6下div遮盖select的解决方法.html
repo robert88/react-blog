@@ -1,0 +1,36 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>IE6下div遮盖select的解决方</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+body { margin: 0; padding: 0; text-align: center; background-color: #eee; }
+#bd { margin: 20px auto; padding: 5px 20px 20px; border: 1px solid #bbb; width: 760px; background-color:#9CCE2E;  }
+#popup {width: 300px;height: 100px;padding: 10px;position: absolute;left: 443px;top: 57px;border: 1px solid blue;background-color: #fff;filter:alpha(opacity=60);opacity:0.4;}
+#popup iframe{display:none;/*sorry for IE5*/
+	display/**/:block;/*sorry for IE5*/
+	position:absolute;/*must have*/
+	top:0;/*must have*/
+	left:0;/*must have*/
+	z-index:-1;/*must have*/
+	filter:mask();/*must have*/
+	width:3000px;/*must have for any big value*/
+	height:3000px/*must have for any big value*/;}
+</style>
+</head>
+<body>
+<div style=" height:50px; line-height:50px; color:#FFFFFF; background:#333333; margin-bottom:20px; padding-left:30px; font-size:16px"> 
+IE6下div遮盖select的解决方案?WEB前端开发DOME--</div>
+<div id="bd">
+	<h1>IE6下div遮盖select的解决方案?</h1>
+	<div class="parameter">
+		<label for="ddTest">Test</label>
+		<select id="ddTest">
+		<option>…</option>
+		<option>pick me</option>
+		</select>
+	</div>
+</div>
+<div id="popup">
+Is the select element poking through?
+<!--[if lte IE 6]><iframe></iframe><![endif]-->
+</div>
+</body></html>

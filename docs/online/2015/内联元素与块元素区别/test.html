@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+
+*{padding:0;width:100%;height:100%;}
+	.span{position:absolute;border:1px solid red;width:100px;height: 100px;-webkit-text-size-adjust:none;}
+	.span{position:relative;left:20px; width:80px;height: 80px;border:1px solid green;}
+#draw{position:absolute;left:0px;top:0px;}
+</style>
+<body>
+<a style="margin-right:-8px;">111111111111111111</a><a>
+<span><span style="z-index:-1;background:red">1</span></span><span>2</span></a>
+
+	<canvas id="draw" width="900" height="1000"></canvas>
+</body>
+</html>
+<script>
+
+
+	var d = document.getElementById("draw");
+	var span = document.getElementsByTagName("span")[0];
+
+console.log("-------------start dom-------------------")
+for(var i in span){
+	console.log(i,span[i])
+}
+console.log("-------------end dom-------------------")
+
+	var c = d.getContext("2d");
+	var down = false;
+	var downx = 0;
+	var downY = 0;
+	var movex = 0;
+	var movey = 0;
+	document.addEventListener("mousedown",function(e){
+		down = true;
+		downx = e.pageX;
+		 downY=  e.pageY;
+
+	},false)
+	document.addEventListener("mousemove",function(e){
+		if(down == true){
+			movex = e.pageX;
+			movey=  e.pageY;
+			drawLine(downx,downY,movex,movey);			
+		}
+
+	},false)
+	document.addEventListener("mouseup",function(e){
+		down = false;
+
+	},false)
+	function drawLine(x0,y0,x1,y1){
+		d.width = d.width;
+		c.beginPath();
+		c.moveTo(x0,y0);
+		c.lineTo(x1,y1);
+		c.strokeStyle = "rgba(112,122,210,0.6)";
+		c.font="12px arail";
+		c.fillText((x1-x0)+" "+(y1-y0),x1,y1-12);
+		c.stroke();
+	}
+</script>

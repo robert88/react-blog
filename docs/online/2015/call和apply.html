@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>call和apply</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>apply</h2>
+
+<p style="padding:20px;">
+fun.apply(thisObj,[args])<br>
+为fun添加thisObj上下文，并且传递数组作为参数		
+主要应用在回调函数上。既可以用在函数做问参数传递。间接给对象添加方法
+fun.apply（obj）
+</p>
+<h2>call</h2>
+<p style="padding:20px;">	
+fun.call(thisObj,args0,args1,...)<br>	
+用法参不多。但是对于第一个参数意义都一样，但对第二个参数：
+apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而call则作为call的参数传入（从第二个参数开始）。
+</p>
+</body>
+</html>

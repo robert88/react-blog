@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>正则表达式的方法</title>
+<style rel="styleSheet" type="text/css">
+*{margin:0;padding:0;}
+</style>
+</head>
+<body>
+<div style="width:1024px;height:auto;border:1px solid #eee;padding-left:20px;">
+ <h2>正则表达式的方法</h2>
+<ul>
+<li>test,返回一个boolean值，它被查找的字符串中是否存在，存在返回true，否则返回flase</li>
+<li>exec,返回查找结果的一个数组</li>
+<li>compile,把正则表达式编译为内部格式，执行更快</li>
+</ul>
+<h2>正则表达式的属性</h2>
+<ol>
+<li>source，返回正则表示式的文本的副本。只读</li>
+<li>lastIndex，返回字符位置，它是被查找字符串下一次成功匹配的开始位置</li>
+<li>$1...$9，返回九个在模式匹配期间找到的，最近保存的部分。只读</li>
+<li>input($_)，返回执行规范表述查找的字符串，只读</li>
+<li>lastMatch($&)，返回任何正则表达式搜索过程中的最后匹配的字符，只读</li>
+<li>lastParen($+)，返回如果有的话，返回任何正则表示式查找过程中最后括的子匹配，只读</li>
+<li>leftContext($‘)，返回被查找的字符串中从字符串开始位置到最后匹配之前的位置之前的字符，只读</li>
+<li>leftContext($')，返回被搜索的字符串中从最后一个匹配位置开始到字符串结尾之间的字符，只读</li>
+</ol>
+<h2>string正则表达式的方法</h2>
+<ul>
+<li>match,找到一个或多个正则表达式的匹配﹝</li>
+<li>replace,替换与正则表达式相匹配的字符串</li>
+<li>replace,替换与正则表达式相匹配的字符串</li>
+<li>search,检索与正则表达式相匹配的值</li>
+<li>split,把字符串分割为字符串数组</li>
+</ul>
+<h3>特殊字符</h3>
+<ol>
+<li>^ 表示匹配开始位置</li>
+<li>$ 表示匹配结束位置</li>
+<li>？ 表示匹配前面的子表达是零次或一次</li>
+<li>\s 表示空白字符包括空格、制表符[?\f\n\r\t\v]</li>
+<li>+ 匹配一次或者多次</li>
+<li>* 匹配0次或者多次</li>
+<li>. 匹配除“\n”之外的任何单个字符。</li>
+<li>[^a-z]匹配任何不在”a-z“中的任意字符</li>
+<li>\b匹配一个单词边界 可以匹配never，不能匹配verb</li>
+<li>\B匹配一个非单词边界 可以匹配verb，不能匹配never（大写与小写相反）</li>
+<li>\cx 匹配由x指明的控制字符。\cM表示匹配control-M或者回车符</li>
+<li>\d 等价于[0-9]</li>
+<li>\f 匹配一个换页符 等价于\x0c和\cL</li>
+<li>\n 匹配一个换行符 等价于\x0a和\cJ</li>
+<li>\r 匹配一个回车符 等价于\x0d和\cM</li>
+<li>\t 匹配一个制表符 等价于\x09 \cI \u0009</li>
+<li>\v 匹配一个垂直制表符 等价于\x0b \cK \u000b</li>
+<li>\w 等价于[A-Za-z0-9]</li>
+<li>\xn n为两个十六进制转义值，\x41匹配”A“</li>
+<li>\un n为四个十六进制转义值，表示unicode字符，\u0041匹配”A“</li>
+<li>x|y 匹配x或y</li>
+<li>{n,} 匹配至少匹配n次，{1,}相当于+，{0,}相当于*</li>
+<li>{n,m} 匹配至少匹配n次，最多m次</li>
+<li>i 忽略大小写</li>
+<li>g 全文查找</li>
+<li>m 多行查找</li>
+<li>.*连在一起就意味着任意数量的不包含换行的字符</li>
+</ol>
+<h2>后向引用</h2>
+<p style="padding:20px;">
+使用小括号指定一个子表达式后，匹配这个子表达式的文本(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理。默认情况下，每个分组会自动拥有一个组号，规则是：
+从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2
+\b(\w+)\b\s+\1\b可以用来匹配重复的单词，像go go, 或者kitty kitty。\1代表分组1匹配的文本
+</p>
+<h2> 以下字符要转义：</h2>
+<p style="padding:20px;">
+. $ ^ { [ ( | ) * + ?\ 
+</p>
+<h2>分组</h2>
+<p style="padding:20px;">
+<pre>
+分类		代码/语法			说明
+捕获		(exp)				匹配exp,并捕获文本到自动命名的组里
+		(?&lt;name>exp)			匹配exp,并捕获文本到名称为name的组里，也可以写成(?'name'exp)
+		(?:exp)				匹配exp,不捕获匹配的文本，也不给此分组分配组号
+零宽断言	(?=exp)				匹配exp前面的位置
+		(?&lt;=exp)			匹配exp后面的位置
+		(?!exp)				匹配后面跟的不是exp的位置
+		(?&lt;!exp)			匹配前面不是exp的位置
+注释		(?#comment)			这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读
+</pre>
+<pre>
+	表5.懒惰限定符
+代码/语法		说明
+*?		重复任意次，但尽可能少重复
++?		重复1次或更多次，但尽可能少重复
+??		重复0次或1次，但尽可能少重复
+{n,m}?		重复n到m次，但尽可能少重复
+{n,}?		重复n次以上，但尽可能少重复
+</pre>
+<pre>
+	表7.尚未详细讨论的语法
+代码/语法		说明
+\a			报警字符(打印它的效果是电脑嘀一声)
+<hr>
+\b			通常是单词分界位置，但如果在字符类里使用代表退格
+<hr>
+\t			制表符，Tab
+<hr>
+\r			回车
+<hr>
+\v			竖向制表符
+<hr>
+\f			换页符
+<hr>
+\n			换行符
+<hr>
+\e			Escape
+<hr>
+\0nn			ASCII代码中八进制代码为nn的字符
+<hr>
+\xnn			ASCII代码中十六进制代码为nn的字符
+<hr>
+\unnnn			Unicode代码中十六进制代码为nnnn的字符
+<hr>
+\cN			ASCII控制字符。比如\cC代表Ctrl+C
+<hr>
+\A			字符串开头(类似^，但不受处理多行选项的影响)
+<hr>
+\Z			字符串结尾或行尾(不受处理多行选项的影响)
+<hr>
+\z			字符串结尾(类似$，但不受处理多行选项的影响)
+<hr>
+\G			当前搜索的开头
+<hr>
+\p{name}		Unicode中命名为name的字符类，例如\p{IsGreek}
+<hr>
+(?>exp)			贪婪子表达式
+<hr>
+(?<x>-<y>exp)			平衡组
+<hr>
+(?im-nsx:exp)		在子表达式exp中改变处理选项
+<hr>
+(?im-nsx)		为表达式后面的部分改变处理选项
+<hr>
+(?(exp)yes|no)		把exp当作零宽正向先行断言，如果在这个位置能匹配，使用yes作为此组的表达式；否则使用no
+<hr>
+(?(exp)yes)		同上，只是使用空表达式作为no
+<hr>
+(?(name)yes|no)		如果命名为name的组捕获到了内容，使用yes作为表达式；否则使用no
+<hr>
+(?(name)yes)		同上，只是使用空表达式作为no
+<hr>
+</pre>
+<h2>经典实例</h2>
+<p style="padding:20px;">
+\( *'?"?([^'"]*?)'?"? *\)		匹配("dsf")或者('df')
+</p>
+</p>
+</div>
+</body>
+<script type="text/javascript"></script>
+</html>

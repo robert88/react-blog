@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dom Event Handlers/Dom 事件处理函数</title>
+<style type="text/css">
+
+</style>
+
+<script type="text/javascript">
+THREE ={};
+THREE.PerspectiveCamera =function(){
+THREE.Camera.call( this )
+this.name="reboer";
+}
+THREE.Camera = function(){
+this.org = "reboert"
+}
+THREE.Camera.prototype = {
+dfdsf:"fsdfsjdfksd"
+}
+//这个就是合并原型链
+THREE.PerspectiveCamera.prototype = Object.create( THREE.Camera.prototype );
+//然后再构造函数中调用call继承构造函数初始化的对象
+	//THREE.Camera.call( this );
+	
+var re =new THREE.PerspectiveCamera()
+for(var i in re){
+alert(i+" "+re[i])
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

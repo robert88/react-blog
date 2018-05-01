@@ -1,0 +1,38 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>ceshi</title>
+<style rel="styleSheet" type="text/css">
+.border{1px solid black;}
+.center{text-align:center;margin:0 auto;}
+#scroll_img li{display:none;}
+</style>
+</head>
+<body>
+<ul id="scroll_number"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>
+<ul id="scroll_img"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>
+</body>
+<script src="jquery-1.0.1.js"></script>
+<script>
+var index = 0;
+var time = window.setTimeout("qiehuan()",1000);
+	function qiehuan(){
+		$("#scroll_number>li,#scroll_img>li").hover(function(){
+			window.clearTimeout(time);
+				var s = parseInt($(this).text());
+				$(this).addClass('as').siblings(true).removeClass('as');
+				//console.log(s)
+				index = s-1;
+				//console.log($("#scroll_img>li:eq(2)").show().not().length);
+				//$($.sibling($("#scroll_img>li").eq(index).show().get(index),0,true)).hide();
+				console.log($("#scroll_img>li:eq(2)").show().siblings().filter(function(val,i){if(i===2)return false;}).length)	
+		},
+		function(){
+		time = window.setTimeout("qiehuan()",1000);
+		}
+	);
+}
+index++;
+</script>
+</html>

@@ -1,0 +1,43 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>小數_2上A_單元4_第8課_直角</title>
+<style rel="styleSheet" type="text/css">
+.border{1px solid black;}
+.center{text-align:center;margin:0 auto;}
+</style>
+<script src="jquery-1.0.1.js"></script>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px doted #eee" class="center">
+<h2></h2>
+</div>
+<div id="ss" style="width:1024px;padding:20px;border:1px doted #eee" class="center">
+<h2></h2>
+</div>
+<p></p>
+</body>
+<script>
+//不传参
+
+var $div = $("div");
+
+
+$.ajax(
+	{
+		url:"http://www.mers.hk/external/mobile/app_login.php?UserName=mp1a001&Password=sdasda",
+		type:"GET",
+		success:function(res){
+				console.log(res)
+		},
+		error:function(e){
+			console.log(e)
+		},
+		complete:function(res){
+			console.log(res)
+		},
+		data:"ajax"
+	}
+)
+</html>

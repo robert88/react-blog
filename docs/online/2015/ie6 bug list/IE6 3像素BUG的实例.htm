@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href=”http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd” target=”_blank” rel=”external”>http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd</a>”>
+<!– saved from url=(0027)<a href=”http://www.chen-jing.cn/12/” target=”_blank” rel=”external”>http://www.chen-jing.cn/12/</a> –>
+<HTML xmlns=”<a href=”http://www.w3.org/1999/xhtml” target=”_blank” rel=”external”>http://www.w3.org/1999/xhtml</a>”><HEAD><TITLE>关于3像素bug的延生</TITLE>
+<META http-equiv=Content-Type content=”text/html; charset=gb2312″>
+<STYLE type=text/css>BODY {
+ FONT-SIZE: 12px
+}
+.a1 {
+ BACKGROUND: #333; FLOAT: left; WIDTH: 100px; COLOR: #ffffff; HEIGHT: 240px
+}
+.a2 {
+ BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; MARGIN-LEFT: 100px; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+.a2 #jing {
+ BACKGROUND: #00ccff; MARGIN-LEFT: -3px; HEIGHT: 100px
+}
+.a2 #jing2 {
+ BACKGROUND: #ff9900; HEIGHT: 100px
+}
+</STYLE>
+<META content=”MSHTML 6.00.6000.16587″ name=GENERATOR></HEAD>
+<BODY>
+<DIV class=a1>我是class=a1 <BR><A style=”COLOR: #ffff00″
+onclick=”this.parentNode.style.height=’100px’”
+href=”<a href=”http://www.chen-jing.cn/12/” target=”_blank” rel=”external”>http://www.chen-jing.cn/12/</a>#”>点击设置a1的高度为100</A><BR><A
+style=”COLOR: #ffff00″ onClick=”this.parentNode.style.height=’150px’”
+href=”<a href=”http://www.chen-jing.cn/12/” target=”_blank” rel=”external”>http://www.chen-jing.cn/12/</a>#”>点击设置a1的高度为150</A></DIV>
+<DIV class=a2>
+<DIV
+id=jing>我是id=jing<BR>这个问题存在于IE6里面。ie7，opera，ff都没问题。观察class=a2的div所设置的边框会发现，a2和a1之间是没有距离的。但是a2
+里面元素（文本）会和a2之间产生类似padding-left:3px;的效果。利用以往的设置负值，也没办法消除第一个元素id=jing和a2的距离。更有意思的是当我设置了_margin-left:-3px;原本id=jing和a2
+之间的3像素距离变成了2像素。但是及时我_margin-left 的负值设置得再大，不能完全消除</DIV>
+<DIV id=jing2>我是id=jing2<BR>当a1的高度大于id=jing这个元素的高度的时候，di=jing2
+也会产生和a2之间类似padding-left：3px的间距。 当a1 小于或者等于id=jing的时候，id=jing2
+就不会和a2之间有间距。<BR>本来我只是想做一个左列固定，右列自动适应剩余宽度的布局。但是没想到发现了这个问题。求某位高手告诉我怎么解决。
+</DIV></DIV></BODY></HTML>

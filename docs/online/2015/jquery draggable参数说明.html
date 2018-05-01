@@ -1,0 +1,341 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>jquery ajax 参数说明</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>$.ajax()方法</h2>
+
+<p style="padding:20px;">		
+url: 要求为String类型的参数，（默认为当前页地址）发送请求的地址。
+</p>
+<p style="padding:20px;">		
+type: 要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和
+		  delete也可以使用，但仅部分浏览器支持。
+</p>
+<p style="padding:20px;">		
+timeout: 要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSetup()方法的全局设
+		置。
+</p>
+<p style="padding:20px;">		
+async:要求为Boolean类型的参数，默认设置为true，所有请求均为异步请求。
+       如果需要发送同步请求，请将此选项设置为false。注意，同步请求将锁住浏览器，用户其他操作必须等
+       待请求完成才可以执行。
+</p>
+
+<p style="padding:20px">cache:要求为Boolean类型的参数，默认为true（当dataType为script时，默认为false）。
+       设置为false将不会从浏览器缓存中加载请求信息。
+</p>
+<p style="padding:20px">data: 要求为Object或String类型的参数，发送到服务器的数据。如果已经不是字符串，将自动转换为字符串格
+      式。get请求中将附加在url后。防止这种自动转换，可以查看processData选项。对象必须为key/value格
+      式，例如{foo1:"bar1",foo2:"bar2"}转换为&foo1=bar1&foo2=bar2。如果是数组，JQuery将自动为不同
+      值对应同一个名称。例如{foo:["bar1","bar2"]}转换为&foo=bar1&foo=bar2。</p>
+<p style="padding:20px">dataType: 要求为String类型的参数，预期服务器返回的数据类型。如果不指定，JQuery将自动根据http包mime
+          信息返回responseXML或responseText，并作为回调函数参数传递。
+          可用的类型如下:
+          xml:返回XML文档，可用JQuery处理。
+          html:返回纯文本HTML信息；包含的script标签会在插入DOM时执行。
+          script:返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求
+                  时（不在同一个域下），所有post请求都将转为get请求。
+          json:返回JSON数据。
+          jsonp:JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个
+                “?”为正确的函数名，以执行回调函数。
+          text:返回纯文本字符串。</p>
+<p style="padding:20px">beforeSend:要求为Function类型的参数，发送请求前可以修改XMLHttpRequest对象的函数，例如添加自定义
+            HTTP头。在beforeSend中如果返回false可以取消本次ajax请求。XMLHttpRequest对象是惟一的参
+            数。
+            function(XMLHttpRequest){
+               this;   //调用本次ajax请求时传递的options参数
+            }</p>
+<p style="padding:20px">complete:要求为Function类型的参数，请求完成后调用的回调函数（请求成功或失败时均调用）。
+          参数:XMLHttpRequest对象和一个描述成功请求类型的字符串。
+          function(XMLHttpRequest, textStatus){
+             this;    //调用本次ajax请求时传递的options参数
+          }</p>
+<p style="padding:20px">success:要求为Function类型的参数，请求成功后调用的回调函数，有两个参数。
+         (1)由服务器返回，并根据dataType参数进行处理后的数据。
+         (2)描述状态的字符串。
+         function(data, textStatus){
+            //data可能是xmlDoc、jsonObj、html、text等等
+            this;  //调用本次ajax请求时传递的options参数</p>
+<p style="padding:20px">error:要求为Function类型的参数，请求失败时被调用的函数。该函数有3个参数，即XMLHttpRequest对象、错
+       误信息、捕获的错误对象(可选)。
+       ajax事件函数如下:
+       function(XMLHttpRequest, textStatus, errorThrown){
+          //通常情况下textStatus和errorThrown只有其中一个包含信息
+          this;   //调用本次ajax请求时传递的options参数
+       }</p>
+<p style="padding:20px">dataFilter:要求为Function类型的参数，给Ajax返回的原始数据进行预处理的函数。
+            提供data和type两个参数。data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的
+            dataType参数。函数返回的值将由jQuery进一步处理。
+            function(data, type){
+                //返回处理后的数据
+                return data;
+            }</p>
+<p style="padding:20px">global:要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局
+        ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。</p>
+<p style="padding:20px">ifModified:要求为Boolean类型的参数，默认为false。仅在服务器数据改变时获取新数据。
+            服务器数据改变判断的依据是Last-Modified头信息。默认值是false，即忽略头信息。</p>
+<p style="padding:20px">jsonp:要求为String类型的参数，在一个jsonp请求中重写回调函数的名字。
+       该值用来替代在"callback=?"这种GET或POST请求中URL参数里的"callback"部分，例如
+       {jsonp:'onJsonPLoad'}会导致将"onJsonPLoad=?"传给服务器。</p>
+<p style="padding:20px">username:要求为String类型的参数，用于响应HTTP访问认证请求的用户名。</p>
+<p style="padding:20px">password:要求为String类型的参数，用于响应HTTP访问认证请求的密码。</p>
+<p style="padding:20px">processData:要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度
+             来讲并非字符串）以配合默认内容类型"application/x-www-form-urlencoded"。如果要发送DOM
+             树信息或者其他不希望转换的信息，请设置为false。</p>
+<p style="padding:20px">scriptCharset:要求为String类型的参数，只有当请求时dataType为"jsonp"或者"script"，并且type是GET时
+               才会用于强制修改字符集(charset)。通常在本地和远程的内容编码不同时使用。</p>
+   <script>
+   (function(){
+		var str="";
+		var firstLetter="";
+		var firstName=/^(\d+)|[a-zA-Z]+(?=:)/;
+		var pObjs=document.getElementsByTagName("p");
+		for(var i=0;i<pObjs.length;i++){
+			str=pObjs[i].innerHTML;
+			firstLetter=firstName.exec(str);
+			console.log(i+"what is"+firstLetter)
+			if(firstLetter!==null){
+				pObjs[i].innerHTML=str.replace(firstName,"<span style='color:red;font-size:16px;font-weight:bold;'>"+firstLetter[0]+"</span>");
+			}
+		}
+   })();
+   </script>
+<h2>例子</h2>
+<code>
+<pre>
+$(function(){
+    $('#send').click(function(){
+         $.ajax({
+             type: "GET",
+             url: "test.json",
+             data: {username:$("#username").val(), content:$("#content").val()},
+             dataType: "json",
+             success: function(data){
+                         $('#resText').empty();   //清空resText里面的所有内容
+                         var html = ''; 
+                         $.each(data, function(commentIndex, comment){
+                               html += '&ltdiv class="comment"&gt&lth6&gt' + comment['username']
+                                         + ':&lt/h6&gt&ltp class="para"' + comment['content']
+                                         + '&lt/p&gt&lt/div&gt';
+                         });
+                         $('#resText').html(html);
+                      }
+         });
+    });
+});
+</pre>
+</code>
+·概述   
+在任何DOM元素启用拖动功能。通过单击鼠标并拖动对象在窗口内的任何地方移动。   
+官方示例地址：http://jqueryui.com/demos/draggable/  
+  
+所有的事件回调函数都有两个参数：event和ui，浏览器自有event对象，和经过封装的ui对象   
+ui.helper - 表示被拖拽的元素的JQuery对象   
+ui.position - 表示相对当前对象，鼠标的坐标值对象{top,left}   
+ui.offset - 表示相对于当前页面，鼠标的坐标值对象{top,left}   
+  
+·参数（参数名 : 参数类型 : 默认值）   
+addClasses : Boolean : true  
+  如果设置成false，将在加载时阻止ui-draggable样式的加载。   
+  当有很多对象要加载draggable()插件的情况下，这将对性能有极大的优化。   
+  初始: $('.selector').draggable({ addClasses: false });   
+  获取: var addClasses = $('.selector').draggable('option', 'addClasses');   
+  设置: $('.selector').draggable('option', 'addClasses', false);   
+  
+appendTo : Element,Selector : 'parent'  
+  The element passed to or selected by the appendTo option will be used as the draggable helper's container during dragging. By default, the helper is appended to the same container as the draggable.   
+  初始：$('.selector').draggable({ appendTo: 'body' });   
+  获取：var appendTo = $('.selector').draggable('option', 'appendTo');   
+  设置：$('.selector').draggable('option', 'appendTo', 'body');   
+  
+axis : String : false  
+  约束拖动的动作只能在X轴或Y轴上执行，可选值：'x', 'y'。   
+  初始：$('.selector').draggable({ axis: 'x' });   
+  获取：var axis = $('.selector').draggable('option', 'axis');   
+  设置：$('.selector').draggable('option', 'axis', 'x');   
+  
+cancel : Selector : ':input,option'  
+  防止在指定的对象上开始拖动。   
+  初始：$('.selector').draggable({ cancel: 'button' });   
+  获取：var cancel = $('.selector').draggable('option', 'cancel');   
+  设置：$('.selector').draggable('option', 'cancel', 'button');   
+  
+connectToSortable : Selector : false  
+  允许draggable被拖拽到指定的sortables中，如果使用此选项helper属性必须设置成clone才能正常工作。   
+  初始：$('.selector').draggable({ connectToSortable: 'ul#myList' });   
+  获取：var connectToSortable = $('.selector').draggable('option', 'connectToSortable');   
+  设置：$('.selector').draggable('option', 'connectToSortable', 'ul#myList');   
+  
+containment : Selector,Element,String, Array : false    
+  强制draggable只允许在指定元素或区域的范围内移动，可选值：'parent', 'document', 'window', [x1, y1, x2, y2].   
+  初始：$('.selector').draggable({ containment: 'parent' });   
+  获取：var containment = $('.selector').draggable('option', 'containment');   
+  设置：$('.selector').draggable('option', 'containment', 'parent');   
+  
+cursor : String : 'auto'  
+  指定在做拖拽动作时，鼠标的CSS样式。   
+  初始：$('.selector').draggable({ cursor: 'crosshair' });   
+  获取：var cursor = $('.selector').draggable('option', 'cursor');   
+  设置：$('.selector').draggable('option', 'cursor', 'crosshair');   
+  
+cursorAt : Object : false  
+  当开始移动时，鼠标定位在的某个位置上（最多两个方向）。可选值：{ top, left, right, bottom }.   
+  初始：$('.selector').draggable({ cursorAt: { left: 5 } });   
+  获取：var cursorAt = $('.selector').draggable('option', 'cursorAt');   
+  设置：$('.selector').draggable('option', 'cursorAt', { left: 5 });   
+  
+delay : Integer : 0   
+  当鼠标点下后，延迟指定时间后才开始激活拖拽动作（单位：毫秒）。此选项可以用来防止不想要的拖累元素时的误点击。   
+  初始：$('.selector').draggable({ delay: 500 });   
+  获取：var delay = $('.selector').draggable('option', 'delay');   
+  设置：$('.selector').draggable('option', 'delay', 500);   
+  
+distance : Integer : 1   
+  当鼠标点下后，只有移动指定像素后才开始激活拖拽动作。   
+  初始：$('.selector').draggable({ distance: 30 });   
+  获取：var distance = $('.selector').draggable('option', 'distance');   
+  设置：$('.selector').draggable('option', 'distance', 30);   
+  
+grid : Array : false    
+  拖拽元素时，只能以指定大小的方格进行拖动。可选值：[x,y]   
+  初始：$('.selector').draggable({ grid: [50, 20] });   
+  获取：var grid = $('.selector').draggable('option', 'grid');   
+  设置：$('.selector').draggable('option', 'grid', [50, 20]);   
+  
+handle : Element, Selector : false    
+  限制只能在拖拽元素内的指定元素开始拖拽。   
+  初始：$('.selector').draggable({ handle: 'h2' });   
+  获取：var handle = $('.selector').draggable('option', 'handle');   
+  设置：$('.selector').draggable('option', 'handle', 'h2');   
+  
+helper : String, Function : 'original'  
+  拖拽元素时的显示方式。（如果是函数，必须返回值是一个DOM元素）可选值：'original', 'clone', Function    
+  初始：$('.selector').draggable({ helper: 'clone' });   
+  获取：var helper = $('.selector').draggable('option', 'helper');   
+  设置：$('.selector').draggable('option', 'helper', 'clone');   
+  
+iframeFix : Boolean, Selector : false  
+  可防止当mouseover事件触发拖拽动作时，移动过iframes并捕获到它（内部内容），如果设置成true，则屏蔽层会覆盖页面的iframe。如果设置成对应的选择器，则屏蔽层会覆盖相匹配的iframe。   
+  初始：$('.selector').draggable({ iframeFix: true });   
+  获取：var iframeFix = $('.selector').draggable('option', 'iframeFix');   
+  设置：$('.selector').draggable('option', 'iframeFix', true);   
+  
+opacity : Float : false  
+  当元素开始拖拽时，改变元素的透明度。   
+  初始：$('.selector').draggable({ opacity: 0.35 });   
+  获取：var opacity = $('.selector').draggable('option', 'opacity');   
+  设置：$('.selector').draggable('option', 'opacity', 0.35);   
+  
+refreshPositions : Boolean : false  
+  如果设置成true，所有移动过程中的坐标都会被记录。（注意：此功能将影响性能）   
+  初始：$('.selector').draggable({ refreshPositions: true });   
+  获取：var refreshPositions = $('.selector').draggable('option', 'refreshPositions');   
+  设置：$('.selector').draggable('option', 'refreshPositions', true);   
+  
+revert : Boolean, String : false  
+  当元素拖拽结束后，元素回到原来的位置。   
+  初始：$('.selector').draggable({ revert: true });   
+  获取：var revert = $('.selector').draggable('option', 'revert');   
+  设置：$('.selector').draggable('option', 'revert', true);   
+  
+revertDuration : Integer : 500   
+  当元素拖拽结束后，元素回到原来的位置的时间。（单位：毫秒）   
+  初始：$('.selector').draggable({ revertDuration: 1000 });   
+  获取：var revertDuration = $('.selector').draggable('option', 'revertDuration');   
+  设置：$('.selector').draggable('option', 'revertDuration', 1000);   
+  
+scope : String : 'default'  
+  设置元素只允许拖拽到具有相同scope值的元素。   
+  初始：$('.selector').draggable({ scope: 'tasks' });   
+  获取：var scope = $('.selector').draggable('option', 'scope');   
+  设置：$('.selector').draggable('option', 'scope', 'tasks');   
+  
+scroll : Boolean : true  
+  如果设置为true，元素拖拽至边缘时，父容器将自动滚动。   
+  初始：$('.selector').draggable({ scroll: false });   
+  获取：var scroll = $('.selector').draggable('option', 'scroll');   
+  设置：$('.selector').draggable('option', 'scroll', false);   
+  
+scrollSensitivity : Integer : 20   
+  当元素拖拽至边缘时，父窗口一次滚动的像素。   
+  初始：$('.selector').draggable({ scrollSensitivity: 40 });   
+  获取：var scrollSensitivity = $('.selector').draggable('option', 'scrollSensitivity');   
+  设置：$('.selector').draggable('option', 'scrollSensitivity', 40);   
+  
+scrollSpeed : Integer : 20   
+  当元素拖拽至边缘时，父窗口滚动的速度。   
+  初始：$('.selector').draggable({ scrollSpeed: 40 });   
+  获取：var scrollSpeed = $('.selector').draggable('option', 'scrollSpeed');   
+  设置：$('.selector').draggable('option', 'scrollSpeed', 40);   
+  
+snap : Boolean, Selector : false  
+  当设置为true或元素标签时，元素拖动到其它元素的边缘时，会自动吸附其它元素。   
+  初始：$('.selector').draggable({ snap: 'span' });   
+  获取：var snap = $('.selector').draggable('option', 'snap');   
+  设置：$('.selector').draggable('option', 'snap', 'span');   
+  
+snapMode : String : 'both'  
+  确定拖拽的元素吸附的模式。可选值：'inner', 'outer', 'both'  
+  初始：$('.selector').draggable({ snapMode: 'outer' });   
+  获取：var snapMode = $('.selector').draggable('option', 'snapMode');   
+  设置：$('.selector').draggable('option', 'snapMode', 'outer');   
+  
+snapTolerance : Integer : 20   
+  确定拖拽的元素移动至其它元素多少像素的距离时，发生吸附的动作。   
+  初始：$('.selector').draggable({ snapTolerance: 40 });   
+  获取：var snapTolerance = $('.selector').draggable('option', 'snapTolerance');   
+  设置：$('.selector').draggable('option', 'snapTolerance', 40);   
+  
+stack : Object : false  
+  Controls the z-Index of the defined group (key 'group' in the hash, accepts jQuery selector) automatically, always brings to front the dragged item. Very useful in things like window managers. Optionally, a 'min' key can be set, so the zIndex cannot go below that value.   
+  初始：$('.selector').draggable({ stack: { group: 'products', min: 50 } });   
+  获取：var stack = $('.selector').draggable('option', 'stack');   
+  设置：$('.selector').draggable('option', 'stack', { group: 'products', min: 50 });   
+  
+zIndex : Integer : false  
+  控制当拖拽元素时，改变元素的z-index值。   
+  初始：$('.selector').draggable({ zIndex: 2700 });   
+  获取：var zIndex = $('.selector').draggable('option', 'zIndex');   
+  设置：$('.selector').draggable('option', 'zIndex', 2700);   
+  
+  
+·事件   
+start   
+  当鼠标开始拖拽时，触发此事件。   
+  初始：$('.selector').draggable({ start: function(event, ui){...} });   
+  绑定：$('.selector').bind('dragstart', function(event, ui){...});   
+  
+drag   
+  当鼠标拖拽移动时，触发此事件。   
+  初始：$('.selector').draggable({ drag: function(event, ui){...} });   
+  绑定：$('.selector').bind('drag', function(event, ui){...});   
+  
+stop   
+  当鼠标松开时，触发此事件。   
+  初始：$('.selector').draggable({ stop: function(event, ui){...} });   
+  绑定：$('.selector').bind('dragstop', function(event, ui){...});   
+  
+  
+·方法   
+destory   
+  从元素中移除拖拽功能。   
+  用法：.draggable( 'destroy' )   
+  
+disable   
+  禁用元素的拖拽功能。   
+  用法：.draggable( 'disable' )   
+  
+enable   
+  启用元素的拖拽功能。   
+  用法：.draggable( 'enable' )   
+  
+option   
+  获取或设置元素的参数。   
+  用法：.draggable( 'option' , optionName , [value] )
+</div>
+</body>
+</html>

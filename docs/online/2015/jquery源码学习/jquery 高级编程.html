@@ -1,0 +1,177 @@
+﻿<html>
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+<title>jquery高级编程</title>
+</head>
+<body>
+<div style="margin:0 auto ;width:800px;height:auto;border:1px solid #eee;padding:0 20px;line-height:30px;font-size:18px;font-family:'楷体_GB2312'">
+<h2>检测对象工具</h2>
+<pre>
+$.type(null)//返回null
+$.type([])//返回array
+$.isEmptyObject("")//true
+$.isEmptyObject({})//true
+$.isPlainObject()
+$.extend可以将多个对象合并到一个对象中。
+$.extend(a,b,c)可以将bc合并到a对象中.
+$.extend(true,a,b)深度合并
+$.isFunction()检验是否是函数
+$.noop() 存根函数 stub function 应用在：传递空函数，安装无操作事件。
+</pre>
+<h2>数组</h2>
+<pre>
+$.makeArray() 将伪数组转换为数组
+$.merge(a,b) 返回一个合并ab的数组
+$.inArray() 检验数组是否存在某个值，返回数组的索引 返回-1表示没找到
+$.unique()  移除数组中的重复项
+$.each(a,fn) 遍历a中数值，在fn中执行
+$.map(a,fn)
+</pre>
+<h2>队列</h2>
+<pre>
+$.queue()
+$.dequeue()
+</pre>
+<h2>字符串处理</h2>
+<pre>
+$.trim()
+</pre>
+<h2>ajax</h2>
+<pre>
+xml数据；$.parseXML()
+json数据;$.parseJSON()
+</pre>
+<h2>暂存数据</h2>
+<pre>
+可以附加在hmtl元素中。$.data()；
+$.grep()数组中筛选
+</pre>
+<h2>dom技术</h2>
+<pre>
+$.contains(a,b) a,b是dom对象，检验b是否是a的字节点。
+$.isWindow();区分iframe 和浏览器窗口。
+$.isXMLDoc()检测节点是否是XML节点
+$.now();获得当前时间
+$.browser()
+$.support()
+$.globalEval()创建一个全局的函数。
+.ready 可以添加多个回调函数
+</pre>
+<h2>slector</h2>
+<pre>
+:animated 正在执行的动画元素
+:header h1~h6标签
+:input	&lt;select&gt;&lt;textarea&gt; &lt;button&gt;元素
+:button 	&lt;button&gt;元素
+:checkbox 类型为checkbox的元素
+:checked 匹配所有已被选中的元素
+:disabled 选择所有不可用的元素。
+:enabled 选择所有可用的元素。
+:selected 选择以选中的元素。
+:file 类型为file的元素
+:image 类型为image的元素
+:password 类型为password的元素
+:radio 类型为radio的元素
+:reset 类型为reset的元素
+:submit 类型为submit的元素
+:text 类型为text的元素
+:hidden		隐藏元素
+:visible	可见元素
+:contains("string") 包含string的元素
+:has(elment)  子代中是否含有elment元素
+:empty 容器是否为空
+:parent 含有子节点的元素 
+:first-child 每个父元素的第一个子元素
+:last-child 每个父元素的最后一个子元素
+:nth-child() 每个父元素的第n个子元素
+:only-child() 只有唯一一个子元素的元素
+$.expr[":"].selector=function(){} 自定义选择器
+</pre>
+<h2>遍历dom</h2>
+<pre>
+.find()搜索所有后代元素
+.children()搜索子代元素
+first(),last(),eq()，end(),filter()
+get() index()返回dom元素
+</pre>
+<h2>事件对象的兼容性</h2>
+<pre>
+firefox				ie
+stopPropagation()	cancelBubble()
+layerX,layerY		offsetX,offsetY
+target				srcElement
+perventDefault		returnValue()
+charCode			keyCode
+relatedTarget		fromElement toElement 
+bubbles				N/A
+addEventListener	attachEvent
+</pre>
+<h2>jquery 事件</h2>
+<pre>
+live()
+die()
+delegate()
+undelegate()
+one()
+proxy()
+trigger()
+.triggerHandler()
+click()
+load()
+on()
+bind()
+off()
+</pre>
+<h2>html5</h2>
+<pre>
+input URL
+input E-mail
+input telephone
+input search
+input slider
+input number
+input date
+input date and time
+input color
+placeholder (https://github.com/mathiasbynens/jquery-placeholder)或者(modernizr)
+</pre>
+<h2>ajax</h2>
+<pre>
+ie
+new ActiveXObject("Microsoft.XMLHTTP")
+new ActiveXObject("MSXML2.XMLHTTP")
+IE7
+new XMLHttpRequest()
+.open 与服务器建立连接
+send 向服务器发送请求
+onreadystatechange中响应事件
+setRequestHeader设置请求头部
+返回的数据有html xml json
+$.ajax(url,[settings])
+$.ajax([settings])
+url 请求资源的服务器
+type 请求的方式post还是get
+data 数据
+dataType html script JSON JSONP text
+success 请求成功时 dosomething
+error	请求失败时 dosomething
+complete 请求完成时 dosomething
+timeout	请求超时时间
+$.get(url,parameters,callback,type)
+$.post(url,parameters,callback,type)
+$(selector).load(url,[data],[success])
+</pre>
+</div>
+</body>
+<script src="jquery源码学习/jquery-1.0.1.js"></script>
+<script type="text/javascript">
+/* extend 工具
+var a = {"1":"wo"};
+var b = {"2":"ni"};
+var c = {"3":"ta"};
+var d = {"hash":"tamen"};
+$.extend(a,c,b,d)
+alert(b["3"])*/
+
+</script>
+</html>

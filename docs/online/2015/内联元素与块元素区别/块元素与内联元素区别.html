@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内联元素与块元素</title>
+</head>
+<style>
+	body>div{width:80%;min-width:480px;max-width:1440px;margin:0 auto;border-radius: 5px; border: 1px solid #eee;}
+	body>h1{
+		color:#999;
+	}
+	body>div>dl{margin:20px;}
+	body>div>dl>dt{color:#0080C0;}
+	body>div>dl>dd{padding:5px;font-size: 14px;}
+</style>
+<body>
+	<h1>内联元素和块元素</h1>
+	<hr>
+	<div>
+		<h2>标准</h2>
+		<dl>
+			<dt><b>display</b></dt>
+			<dd>1、display默认inline；</dd>
+			<dd>2、left和top相对父类是postion或者是relative</dd>
+			<dd>3、默认情况下left和top是相对于body。</dd>
+			<dd>4、会改变内联元素</dd>
+			<dd>5、如果没有设置left的和top值的话，这个position属性就相当于relative,唯一不同的是它仍然脱离文档</dd>
+			<dd>6、bottom和right优先级比top和left小。所以设置了left，那么right就会失效</dd>
+			<dd>7、bottom和right设置为0，那么元素距离能见度最下边际距离是滚动的高度</dd>
+			<dd>8、同z-index同级元素后者层次高于前者</dd>
+			<dd>9、同级元素z-index越高，层次越高</dd>
+			<dd>10、默认z-index为0</dd>
+			<dd>11、同级父类未设置z-index情况下，子类设置了z-index，那么这个z-index的值传递到父类</dd>
+			<dt><b>空白</b></dt>
+			<dd>1、内联元素之间会有空白,空白的宽度取决于它们的父辈的font-size。默认是font-size：16px；空白就是8px；空白和font-size成比例,以下都是以8px为例</dd>
+			<dd>2、解决办法：</dd>
+			<dd>设置父类元素的Word-spacing：-8px；或者letter-spacing：-8px；</dd>
+			<dd>设置父类元素的font-size：0px；子类font-size；16px；</dd>
+			<dd>设置本身前面内联元素的margin-right:-8px;</dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>兼容性</h2>
+		<dl>
+			<dt>空白</dt>
+			<dd>默认情况下内联元素之间的空白在chrome下是8px其他浏览器是4px；</dd>
+			<dd>主要原因是默认字体不一样导致的。chorme是simsun字体。ff是arial字体。</dd>
+			<dd>解决办法统一加上字体</dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>关联</h2>
+		<dl>
+			<dt> top, right, bottom, left and z-index </dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+</body>
+</html>

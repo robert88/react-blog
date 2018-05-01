@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>jquery1.2.6版本的新特性和主要改变</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>jquery1.2.6版本的新特性和主要改变</h2>
+<ul>
+<li><h4>整合Dimensions Plugin插件</h4></li>
+<li><h4>对.attr()方法进行了改动</h4></li>
+<li><h4>消除.attr方法的15种错误，并进行了简化和优化</h4></li>
+<li><h4>.toggle方法可以支持多于两个方法</h4></li>
+<li><h4>.可以对.toggle()和.one()方法进行解除绑定</h4>
+	<ul>
+		<li>function test(){$(this).addClass("test")}</li>
+		<li>$("div").one("click",test)</li>
+		<li>$("div").unbind("click",test)</li>
+		<li>$("div").toggle(test,test)</li>
+		<li>$("div").unbind("click",test)</li>
+	</ul>
+</li>
+<li><h4>.index（）可以检索一个jquery对象的集合的索</h4>
+	<ul>
+		<li>$("div).index($("div.test"))==3</li>
+	</ul>
+</li>
+<li><h4>jquery.makeArray()可以把任何对象转换为数组</h4>
+	<ul>
+		<li>jquery.makeArray(true)</li>
+		<li>//=>[true]</li>
+	</ul>
+</li>
+<li><h4>beforeSend可以取消当前AJAX调用</h4></li>
+<li><h4>公开速度对象</h4>
+	<ul>
+		<li>jquery.fx.speeds.slow = 100</li>
+		<li>$("#input")slideDown("slow")</li>
+	</ul>
+</li>
+</ul>
+<h2>性能的提升</h2>
+<ul>
+<li>事件处理提升103%</li>
+<li>css选择符速度提升13%</li>
+<li>.offset()速度提升21%</li>
+<li>.css()速度提升25%</li>
+</ul>
+</div>
+</body>
+</html>

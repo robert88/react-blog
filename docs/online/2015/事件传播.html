@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>事件传播</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>事件冒泡</h2>
+<ul>
+<li> 当一个元素上的事件被触发的时候，比如说鼠标点击了一个按钮，同样的事件将会在那个元素的所有祖先元素中被触发。这一过程被称为事件冒泡</li>
+</ul>
+<h2>目标元素</h2>
+<ul>
+<li>任何一个事件的目标元素都是最开始的那个元素，并且它在我们的元素对象中以属性的形式出现。</li>
+
+</ul>
+<h2>启用事件传播<small> (window.event.cancelBubble)</small></h2>
+<ul>
+<li>window.event.cancelBubble 来设置是否启用事件传播.但是这只能在IE是使用</li>
+<li>.Jquery中的event.stopPropagation()解决了浏览器的兼容性</li>
+<li>通过返回false来取消默认的行为并阻止事件起泡</li>
+</ul>
+<h2>GWT<small> (google web toolkit)</small></h2>
+<ul>
+<li>通过GWT函数将java编译成javascript代码</li>
+</ul>
+<h2>Ext js</h2>
+<ul>
+<li>界面扩展库来使用</li>
+<li>部分收费</li>
+</ul>
+<h2>moo tools</h2>
+<ul>
+<li>扩展和兼容性</li>
+</ul>
+<h2>jquery</h2>
+<ul>
+<li>强大的选择器</li>
+<li>出色的DOM操作</li>
+<li>可靠的事件处理</li>
+<li>出色的兼容性</li>
+<li>链式操作</li>
+</ul>
+</div>
+</body>
+</html>

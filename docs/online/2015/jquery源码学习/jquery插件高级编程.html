@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+<meta http-equiv="content-Type" content="text/html; charset=utf-8">
+<title>jquery高级编程</title>
+</head>
+<body>
+<div style="margin:0 auto ;width:800px;height:auto;border:1px solid #eee;padding:0 20px;line-height:30px;font-size:18px;font-family:'楷体_GB2312'">
+<h2>插件</h2>
+<pre>
+jQuery.fn
+jQuery.extend
+$.widget(namespace.newStuff)
+在插件内this指向jQuery实例
+(function($){$.fn.newStuff = function(){dosomething}})(jQuery)
+这样$一直指向jQuery
+(function($,window,document,undefined){$.fn.newStuff = function(){dosomething}})(jQuery,window,document)
+fluent interface
+(function($,window,document,undefined){
+$.fn.newStuff = function(){return this.css(dosomething)}}
+)(jQuery,window,document)
+调用点暴露 public endpoint
+闭包 closure
+暴露公共配置：传递对象
+metadata插件
+同一对象避免创建多个插件
+启用 禁用 销毁widget
+widget 状态
+创建命名空间和原型
+暴露默认设置
+通过对象存储的数据访问插件
+自动的方法查表
+(function($,window,document,undefined){
+$.widget("best.widget",{
+options:{默认设置},
+_create:function(){创建}，
+_destroy:function(){销毁}，
+_setOption:function(key ,value){
+
+},
+pluginMethod:function(){
+插件功能
+}
+})
+)(jQuery,window,document)
+</pre>
+<h2>异步编程</h2>
+<pre>
+promise 模式
+promise代表某个操作的返回值
+三个状态：unfulfilled，fullfilled，failed
+一旦状态为fullfilled ，failed时promise的值就不会改变
+$.Deferred 模式
+$.when Deferred.done Deferred.fail
+$.when 接受Deferred对象 把参数视为一个resolved的promise对象
+没有参数直接触发done
+接受不是Deferred对象 返回Deferred 的promise对象
+Deferred.done 一个函数或者多个函数的数组 当promise对象成功resolved时触发
+Deferred.fail  一个函数或者多个函数的数组 当promise对象成功rejected时触发
+Deferred.then 是 done fail 合并体
+Deferred.always 始终会执行的一个函数
+Deferred.pipe 链接和过滤
+接受三个参数 doneFilter 、failFilter、progressFilter
+手动完成和拒绝
+Deferred.resolved
+Deferred.reject
+Deferred.rejectWith()
+Deferred.resolveWith()
+跟踪进度
+Deferred.progress
+Deferred.progressWith()
+Deferred.notify
+Deferred.notifyWith()
+检查Deferred对象的状态
+Deferred.state
+三个状态：pending,resolved,rejected
+</pre>
+<h2>QUnit测试</h2>
+</div>
+</body>
+<script src="jquery源码学习/jquery-1.0.1.js"></script>
+<script type="text/javascript">
+/* extend 工具
+var a = {"1":"wo"};
+var b = {"2":"ni"};
+var c = {"3":"ta"};
+var d = {"hash":"tamen"};
+$.extend(a,c,b,d)
+alert(b["3"])*/
+
+</script>
+</html>

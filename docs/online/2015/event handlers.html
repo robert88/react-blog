@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dom Event Handlers/Dom 事件处理函数</title>
+<style type="text/css">
+<!--
+table { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; border: 2px solid #000; }
+td { padding: 5px; }
+-->
+</style>
+<!-===========菲尼克斯整理制作===========-->
+<script type="text/javascript">
+	window.onload=function(){
+		zebraTable();	
+	}
+	function zebraTable(){
+		var tbody=document.getElementsByTagName('tbody');
+		for(var i=0;i<tbody.length;i++){
+			var tr=tbody[i].getElementsByTagName('tr');
+			var spanTd=tbody[i].getElementsByTagName('td');
+			for(var j=1;j<tr.length;j+=2){
+				tr[j].style.background='#f2f2f2';
+			}
+			for(var k=0;k<spanTd.length;k++){
+				if(spanTd[k].getAttribute('colspan')==3){
+					spanTd[k].style.background='black';
+					spanTd[k].style.color='white';
+				}
+			}
+			for(var x=0;x<tr.length;x++){
+				tr[x].onmouseover=In;
+				tr[x].onmouseout=Out;
+			}
+		}
+	}
+	function In(){
+		this.bgColor=this.style.backgroundColor;
+		this.style.background='red';
+		this.style.color='white';
+	}
+	function Out(){
+		this.style.background=this.bgColor;
+		this.style.color='black';
+	}
+</script>
+</head>
+
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<caption>Dom Event Handlers/Dom 事件处理函数</caption>
+  <thead>
+  	<tr>
+      <th>事件</th>
+      <th>浏览器支持</th>
+      <th>解说</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3">一般事件</td>
+    </tr>
+	<tr>
+      <td>onclick</td>
+      <td>IE3、N2</td>
+      <td>鼠标点击时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondblclick</td>
+      <td>IE4、N4</td>
+      <td>鼠标双击时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmousedown</td>
+      <td>IE4、N4</td>
+      <td>按下鼠标时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmouseup</td>
+      <td>IE4、N4</td>
+      <td>鼠标按下后松开鼠标时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmouseover</td>
+      <td>IE3、N2</td>
+      <td>当鼠标移动到某对象范围的上方时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmousemove</td>
+      <td>IE4、N4</td>
+      <td>鼠标移动时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmouseout</td>
+      <td>IE4、N3</td>
+      <td>当鼠标离开某对象范围时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onkeypress</td>
+      <td>IE4、N4</td>
+      <td>当键盘上的某个键被按下并且释放时触发此事件.</td>
+    </tr>
+    <tr>
+      <td>onkeydown</td>
+      <td>IE4、N4</td>
+      <td>当键盘上某个按键被按下时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onkeyup</td>
+      <td>IE4、N4</td>
+      <td>当键盘上某个按键被按放开时触发此事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">页面相关事件</td>
+    </tr>
+    <tr>
+        <td>onabort</td>
+        <td>IE4、N3</td>
+        <td>图片在下载时被用户中断</td>
+    </tr>
+    <tr>
+      <td>onbeforeunload</td>
+      <td>IE4、N</td>
+      <td>当前页面的内容将要被改变时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onerror</td>
+      <td>IE4、N3</td>
+      <td>出现错误时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onload</td>
+      <td>IE3、N2</td>
+      <td>页面内容完成时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onmove</td>
+      <td>IE、N4</td>
+      <td>浏览器的窗口被移动时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onresize</td>
+      <td>IE4、N4</td>
+      <td>当浏览器的窗口大小被改变时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onscroll</td>
+      <td>IE4、N</td>
+      <td>浏览器的滚动条位置发生变化时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onstop</td>
+      <td>IE5、N</td>
+      <td>浏览器的停止按钮被按下时触发此事件或者正在下载的文件被中断</td>
+    </tr>
+    <tr>
+      <td>onunload</td>
+      <td>IE3、N2</td>
+      <td>当前页面将被改变时触发此事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">表单相关事件</td>
+    </tr>
+    <tr>
+      <td>onblur</td>
+      <td>IE3、N2</td>
+      <td>当前元素失去焦点时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onchange</td>
+      <td>IE3、N2</td>
+      <td>当前元素失去焦点并且元素的内容发生改变而触发此事件</td>
+    </tr>
+    <tr>
+      <td>onfocus</td>
+      <td>IE3 、N2</td>
+      <td>当某个元素获得焦点时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onreset</td>
+      <td>IE4 、N3</td>
+      <td>当表单中RESET的属性被激发时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onsubmit</td>
+      <td>IE3 、N2</td>
+      <td>一个表单被递交时触发此事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">滚动字幕事件</td>
+    </tr>
+    <tr>
+      <td>onbounce</td>
+      <td>IE4、N</td>
+      <td>在Marquee内的内容移动至Marquee显示范围之外时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onfinish</td>
+      <td>IE4、N</td>
+      <td>当Marquee元素完成需要显示的内容后触发此事件</td>
+    </tr>
+    <tr>
+      <td>onstart</td>
+      <td>IE4、 N</td>
+      <td>当Marquee元素开始显示内容时触发此事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">编辑事件</td>
+    </tr>
+    <tr>
+      <td>onbeforecopy</td>
+      <td>IE5、N</td>
+      <td>当页面当前的被选择内容将要复制到浏览者系统的剪贴板前触发此事件</td>
+    </tr>
+    <tr>
+      <td>onbeforecut</td>
+      <td>IE5、 N</td>
+      <td>当页面中的一部分或者全部的内容将被移离当前页面[剪贴]并移动到浏览者的系统剪贴板时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onbeforeeditfocus</td>
+      <td>IE5、N</td>
+      <td>当前元素将要进入编辑状态</td>
+    </tr>
+    <tr>
+      <td>onbeforepaste</td>
+      <td>IE5、 N</td>
+      <td>内容将要从浏览者的系统剪贴板传送[粘贴]到页面中时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onbeforeupdate</td>
+      <td>IE5、 N</td>
+      <td>当浏览者粘贴系统剪贴板中的内容时通知目标对象</td>
+    </tr>
+    <tr>
+      <td>oncontextmenu</td>
+      <td>IE5、N</td>
+      <td>当浏览者按下鼠标右键出现菜单时或者通过键盘的按键触发页面菜单时触发的事件</td>
+    </tr>
+    <tr>
+      <td>oncopy</td>
+      <td>IE5、N</td>
+      <td>当页面当前的被选择内容被复制后触发此事件</td>
+    </tr>
+    <tr>
+      <td>oncut</td>
+      <td>IE5、N</td>
+      <td>当页面当前的被选择内容被剪切时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondrag</td>
+      <td>IE5、N</td>
+      <td>当某个对象被拖动时触发此事件 [活动事件]</td>
+    </tr>
+    <tr>
+      <td>ondragdrop</td>
+      <td>IE、N4</td>
+      <td>一个外部对象被鼠标拖进当前窗口或者帧</td>
+    </tr>
+    <tr>
+      <td>ondragend</td>
+      <td>IE5、N</td>
+      <td>当鼠标拖动结束时触发此事件，即鼠标的按钮被释放了</td>
+    </tr>
+    <tr>
+      <td>ondragenter</td>
+      <td>IE5、N</td>
+      <td>当对象被鼠标拖动的对象进入其容器范围内时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondragleave</td>
+      <td>IE5、N</td>
+      <td>当对象被鼠标拖动的对象离开其容器范围内时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondragover</td>
+      <td>IE5、N</td>
+      <td>当某被拖动的对象在另一对象容器范围内拖动时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondragstart</td>
+      <td>IE4、N</td>
+      <td>当某对象将被拖动时触发此事件</td>
+    </tr>
+    <tr>
+      <td>ondrop</td>
+      <td>IE5、N</td>
+      <td>在一个拖动过程中，释放鼠标键时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onlosecapture</td>
+      <td>IE5、N</td>
+      <td>当元素失去鼠标移动所形成的选择焦点时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onpaste</td>
+      <td>IE5、N</td>
+      <td>当内容被粘贴时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onselect</td>
+      <td>IE4、N</td>
+      <td>当文本内容被选择时的事件</td>
+    </tr>
+    <tr>
+      <td>onselectstart</td>
+      <td>IE4、N</td>
+      <td>当文本内容选择将开始发生时触发的事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">数据绑定</td>
+    </tr>
+    <tr>
+      <td>onafterupdate</td>
+      <td>IE4、N</td>
+      <td>当数据完成由数据源到对象的传送时触发此事件</td>
+    </tr>
+    <tr>
+      <td>oncellchange</td>
+      <td>IE5、N</td>
+      <td>当数据来源发生变化时</td>
+    </tr>
+    <tr>
+      <td>ondataavailable</td>
+      <td>IE4、N</td>
+      <td>当数据接收完成时触发事件</td>
+    </tr>
+    <tr>
+      <td>ondatasetchanged</td>
+      <td>IE4、N</td>
+      <td>数据在数据源发生变化时触发的事件</td>
+    </tr>
+    <tr>
+      <td>ondatasetcomplete</td>
+      <td>IE4、N</td>
+      <td>当来子数据源的全部有效数据读取完毕时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onerrorupdate</td>
+      <td>IE4、N</td>
+      <td>当使用onBeforeUpdate事件触发取消了数据传送时，代替onAfterUpdate事件</td>
+    </tr>
+    <tr>
+      <td>onrowenter</td>
+      <td>IE5、N</td>
+      <td>当前数据源的数据发生变化并且有新的有效数据时触发的事件</td>
+    </tr>
+    <tr>
+      <td>onrowexit</td>
+      <td>IE5、N</td>
+      <td>当前数据源的数据将要发生变化时触发的事件</td>
+    </tr>
+    <tr>
+      <td>onrowsdelete</td>
+      <td>IE5、N</td>
+      <td>当前数据记录将被删除时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onrowsinserted</td>
+      <td>IE5、N</td>
+      <td>当前数据源将要插入新数据记录时触发此事件</td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr>
+      <td colspan="3">外部事件</td>
+    </tr>
+    <tr>
+      <td>onafterprint</td>
+      <td>IE5、N</td>
+      <td>当文档被打印后触发此事件</td>
+    </tr>
+    <tr>
+      <td>onbeforeprint</td>
+      <td>IE5、N</td>
+      <td>当文档即将打印时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onfilterchange</td>
+      <td>IE4、N</td>
+      <td>当某个对象的滤镜效果发生变化时触发的事件</td>
+    </tr>
+    <tr>
+      <td>onhelp</td>
+      <td>IE4、N</td>
+      <td>当浏览者按下F1或者浏览器的帮助选择时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onpropertychange</td>
+      <td>IE5、N</td>
+      <td>当对象的属性之一发生变化时触发此事件</td>
+    </tr>
+    <tr>
+      <td>onreadystatechange</td>
+      <td>IE4、N</td>
+      <td>当对象的初始化属性值发生变化时触发此事件</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

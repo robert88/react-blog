@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://www.bbd100.com/public/js/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+</style>
+<body>
+文字在p标签下的规律
+font-size在一定区间内按照等差数列增长
+12-17 2px
+18-24 3px
+25-31 4px
+32-39 5px
+40-46 6px
+47-51 7px
+<div>
+	<p id="lin" style="font-size:38px;">
+		dfdsjfksjfkjfksdjkfjsdkfjskdfjksjfkdsjfksjdflds1
+		jfksdjfkjdkfdjfkdfsdfdsfdsfsdfdfdsjfksjfkjfksdj2
+		kfjsdkfjskdfjksjfkdsjfksjdfldsjfksdjfkjdkfdjfkd3
+		fsdfdsfdsfsdfdfdsjfksjfkjfksdjkfjsdkfjskdfjksjf4
+		kdsjfksjdfldsjfksdjfkjdkfdjfkdfsdfdsfdsfsdfdfds5
+		jfksjfkjfksdjkfjsdkfjskdfjksjfkdsjf中文111ksjdf6
+		ldsjfksdjfkjdkfdjfkdfsdfdsfdsfsdfldsjfksdjfkjdk7
+		fdjfkdfsdfdsfdsfsdfldsjfksdjfkjdkfdjfkdfsdfdsfd8
+		sfsdfldsjfksdjfkjdkfdjfkdfsdfdsfdsfsdfldsjfksdj9
+		fkjdkfdjfkdfsdfdsfdsfsdfldsjfksdjfkjdkfdjfkdfsd0
+	</p>
+</div>
+</body>
+<script>
+	var i = 31
+	function run() {
+		if(i>33){
+			return;
+		}
+		i++
+		$("#lin").css("font-size",i+"px");
+		console.log("fs:",i,"lh-h:",$("#lin").height()/10-i);
+		setTimeout(run, 1000);
+	}
+	run();
+
+	
+</script>
+</html>

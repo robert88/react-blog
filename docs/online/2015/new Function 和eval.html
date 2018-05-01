@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>new Function 和 eval</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>eval 和 new Function 优劣</h2>
+<p style="padding:20px">
+<pre>
+废话不多说，直接上测试代码
+
+var aa = "{name:'cola',item:[{age:11},{age:22},{age:23},{age:23}]}";
+        var now = new Date().getTime();
+        for (var i = 0; i < 100000; i++) {
+            var a = eval("(" + aa + ")");
+
+        }
+        var now1 = new Date().getTime();
+        document.write("eval 时间为：" + (now1 - now) + "&lt;br/>");
+
+
+        var now2 = new Date().getTime();
+        for (var i = 0; i < 100000; i++) {
+            var fn = new Function("return" + aa);
+            fn();
+        }
+        var now3 = new Date().getTime();
+        document.write("new Function时间为：" + (now3 - now2) + "&lt;br/>");
+        //经过测试结果 FF效果如下 
+        //eval 时间为：979 
+        //new Function时间为：1372 
+
+        //经过测试结果 IE8效果如下 
+        //eval 时间为：913 
+        //new Function时间为：1037 
+
+        //经过测试结果 Chrome效果如下 
+        //eval 时间为：211 
+        //new Function时间为：251 
+
+        //经过测试结果 Opera 
+        //eval 时间为：384 
+        //new Function时间为：1024
+
+测试结果为不同浏览器测试的参考数据,觉得奇怪的是为什么每个浏览器测试的时候都是eval要快点,我们是不是要采用他呢？
+
+亲，先不要急， 接下往下看，带着这些疑问，好奇心的我终于展开了另外一个测试，这时候我做一个<span style="color:red;font-size:18px;font-weight:bold">动态函数</span>来分别让eval 和 new Function 来执行再看看效果
+
+<span style="color:red;">var testEval = function (obj) {//----这个就是叫动态函数</span>
+            return eval('0, ' + obj + '');
+          //return eval('( ' + obj + ')');
+        };
+
+        var testFun = function (obj) {
+            var fn = new Function("return " + obj);
+            fn();
+        };
+
+        var now = new Date().getTime();
+        for (var i = 0; i < 1000; i++) {
+            var fn = testEval("function test(){ document.write('我有一头小毛驴，从来也不骑.........'); }");
+            fn();
+        }
+        var now1 = new Date().getTime();
+        document.write("&lt;br/>");
+        document.write("eval 时间为：" + (now1 - now) + "&lt;br/>");
+
+        var now2 = new Date().getTime();
+        for (var i = 0; i < 1000; i++) {
+            testFun("document.write('我有一头小毛驴，从来也不骑.........');");
+        }
+        var now3 = new Date().getTime();
+        document.write("new Function时间为：" + (now3 - now2) + "&lt;br/>");
+  //经过测试结果 FF效果如下 
+        //eval 时间为：495 
+        //new Function时间为：50 
+
+        //经过测试结果 IE8效果如下 
+        //eval 时间为：34 
+        //new Function时间为：20 
+
+        //经过测试结果 Chrome效果如下 
+        //eval 时间为：7 
+        //new Function时间为：4 
+
+        //经过测试结果 Opera 
+        //eval 时间为：7 
+        //new Function时间为：18 
+
+        如上结果测试 如果构建一个动态执行让eval去执行 在FF上是超级的慢， 其它浏览器差别不大， 我们这里不必过于太多追究 
+        <span style="color:red;"> return eval('0, ' + obj + ''); 可能大家觉得这里这个 0 是什么意思，加0主要是兼容所有的浏览器，不加的话，IE9以下版本就会报错 </span>
+        但是真正的0的意思 怎么去剖析 我还真不知道，只是知道加 了这个就可以解决恶心的IE不能兼容的问题 
+        经过上面二个例子说明 <span style="color:red;font-size:18px;font-weight:bold">如果是为了JSON串的转换eval 明显要快， 如果是动态涵数解析 那么 new Function要快</span>， 这里说出了二个优劣势， 还有的就是eval兼容性不很好，如果解析出错，可能会导致其它的JS脚本不会执行， 
+        而 后者则不会，他只会针对于 这个Function  我这人不喜欢太麻烦的事情， 果断放弃eval 用 new Function 来代替。 如果有理解的不太对的地方，请大家指正，欢迎拍砖。
+</pre>
+</p>
+
+</div>
+</body>
+</html>

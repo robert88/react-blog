@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>js选择器</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+
+<p style="padding:10px;">
+	<strong>类选择器</strong>.class
+	<strong>标签选择器</strong>div
+	<strong>通配选择器</strong>*
+	<strong>后代选择器</strong>div p
+	<strong>子元素选择器</strong>div>p
+	<strong>相邻兄弟选择器</strong>div+p<br>
+
+	<ol>
+	<strong>属性选择器</strong>
+	<li>简易属性匹配 $('element[attr]')</li>
+	<li>精确属性匹配 $('element[attr=""]')</li>
+	<li>部分值匹配 $('element[attr~=""]')</li>
+	<li>特殊匹配 $('element[attr|="en"]')匹配以en开头的属性元素</li>
+	</ol>
+</p>
+<h2  style="color:red">jquery 选择器</h2>
+<h4>jquery :last :even :first :odd :eq(index) gt(index) lt(index) :empty :parent :hidden :visible :header :contains(text) :not(selector) :has(selector)</h4>
+<img src="images/17-10-2013 17-19-48.png" height="658" width="963">
+<h4>eq(index) filter(fn) hasClass(class) is(expr) map(callback) not(expr) slice(start ,[end])</h4>
+<img src="images/17-10-2013 17-31-45.png" height="916" width="963">
+<h4>add(expr) children([expr]) contents() find(expr) next([expr]) nextAll([expr]) parent([expr]) parents([expr])
+prev([expr]) prevAll([expr]) siblings([expr])</h4>
+<img src="images/17-10-2013 17-34-54.png" height="1235" width="946">
+<h2  style="color:red">jquery DOM操作</h2>
+<h4>jquery DOM操作1</h4>
+<h4>appendTo(content)</h4>
+<img src="images/17-10-2013 17-40-16.png" height="234" width="959">
+<h4>prepend(content)</h4>
+<img src="images/17-10-2013 17-40-39.png" height="auto" width="auto">
+<h4>prependTo(content)</h4>
+<img src="images/17-10-2013 17-41-14.png" height="auto" width="auto">
+<h4>after(content)</h4>
+<img src="images/17-10-2013 17-45-08.png" height="auto" width="auto">
+<h4>wrap(elem)</h4>
+<img src="images/17-10-2013 17-46-10.png" height="auto" width="auto">
+<h4>wrapAll(elem)</h4>
+<img src="images/17-10-2013 17-47-58.png" height="auto" width="auto">
+<h4>wrapInner(content)</h4>
+<img src="images/17-10-2013 17-49-19.png" height="auto" width="auto">
+<h4>replaceWidth(content)</h4>
+<img src="images/17-10-2013 17-49-54.png" height="auto" width="auto">
+<h4>empty() remove([expr])</h4>
+<img src="images/17-10-2013 17-50-34.png" height="auto" width="auto">
+<h4>clone([true])</h4>
+<img src="images/17-10-2013 17-51-06.png" height="auto" width="auto">
+<h2  style="color:red">jquery 事件</h2>
+<h4>ready(fn)</h4>
+<img src="images/17-10-2013 17-52-36.png" height="auto" width="auto">
+<h4>bind(type,[data],fn)</h4>
+<img src="images/17-10-2013 17-53-32.png" height="auto" width="auto">
+<h4>unbind([type],[data])</h4>
+<img src="images/17-10-2013 17-56-02.png" height="auto" width="auto">
+<h4>one(type,[data],fn)</h4>
+<img src="images/17-10-2013 18-03-28.png" height="auto" width="auto">
+<h4>trigger(type,[data])</h4>
+<img src="images/17-10-2013 18-05-14.png" height="auto" width="auto">
+<h4>triggerHandler(type,[data])</h4>
+<img src="images/18-10-2013 9-11-30.png" height="auto" width="auto">
+<h4>hover(over ,out)</h4>
+<img src="images/18-10-2013 9-22-12.png" height="auto" width="auto">
+<h4>toggle(fn,fn)</h4>
+<img src="images/18-10-2013 9-23-05.png" height="auto" width="auto">
+<h4>error(fn) load(fn) unload(fn) resize(fn) scroll(fn) </h4>
+
+<img src="images/18-10-2013 9-25-17.png" height="auto" width="auto">
+<h4>change(fn) selct(fn) submit(fn)</h4>
+<img src="images/18-10-2013 9-25-47.png" height="auto" width="auto">
+<h4> keypress(fn) keyup(fn)  </h4>
+<img src="images/18-10-2013 9-26-19.png" height="auto" width="auto">
+<h4>click(fn) dbclick(fn mousedown(fn) mousemove(fn) mouseout(fn) mouserover(fn) </h4>
+<img src="images/18-10-2013 9-26-44.png" height="auto" width="auto">
+<h4> blur(fn) focus(fn)</h4>
+<img src="images/18-10-2013 9-29-08.png" height="auto" width="auto">
+
+<h2 style="color:red">jquery 动画</h2>
+<h4>hide(speed,[callback])</h4>
+<img src="images/18-10-2013 9-30-55.png" height="auto" width="auto">
+<h4>show(speed,[callback])</h4>
+<img src="images/18-10-2013 9-34-30.png" height="auto" width="auto">
+<h4>toggle(speed,[callback])</h4>
+<img src="images/18-10-2013 9-35-04.png" height="auto" width="auto">
+<h4>slideUp(speed,[callback])</h4>
+<img src="images/18-10-2013 9-35-50.png" height="auto" width="auto">
+<h4>slideDown(speed,[callback])</h4>
+<img src="images/18-10-2013 9-36-25.png" height="auto" width="auto">
+<h4>slideToggle(speed,[callback])</h4>
+<img src="images/18-10-2013 9-36-58.png" height="auto" width="auto">
+<h4>fadeIn(speed,[callback])</h4>
+<img src="images/18-10-2013 9-37-39.png" height="auto" width="auto">
+<h4>fadeOut(speed,[callback])</h4>
+<img src="images/18-10-2013 9-38-15.png" height="auto" width="auto">
+<h4>fadeTo(speed,opacity,[callback])</h4>
+<img src="images/18-10-2013 9-38-46.png" height="auto" width="auto">
+<h4>animate(params[params[,duration[,easing[,callback]]]])</h4>
+<img src="images/18-10-2013 9-39-51.png" height="auto" width="auto">
+<h4>animate(params,options)</h4>
+<img src="images/18-10-2013 9-42-48.png" height="auto" width="auto">
+<h2 style="color:red">jquery ajax</h2>
+<h4>abort() getAllResponseHeaders() open("method","URL"[,asyncFlag[,"userName"[,"password"]]]) 
+getResponseHeader("headerLabel") send(content) setRequestHeader("label","value")</h4>
+<img src="images/18-10-2013 9-48-36.png" height="auto" width="auto">
+<h4>onreadychange readyState responseText responseXML status statusText</h4>
+<img src="images/18-10-2013 9-49-19.png" height="auto" width="auto">
+<h4>load(url,[data],[callback])</h4>
+<img src="images/18-10-2013 9-50-39.png" height="auto" width="auto">
+<h4>jquery.get(url,[data],[callback],[type])</h4>
+<img src="images/18-10-2013 9-52-01.png" height="auto" width="auto">
+<h4>jquery.post(url,[data],[callback],[type])</h4>
+<img src="images/18-10-2013 9-52-50.png" height="auto" width="auto">
+<img src="images/18-10-2013 9-53-32.png" height="auto" width="auto">
+<h4>jquery.ajax(option)</h4>
+<img src="images/18-10-2013 9-54-18.png" height="auto" width="auto">
+<h4>jquery.getScript(url,[callback])</h4>
+<img src="images/18-10-2013 9-59-34.png" height="auto" width="auto">
+<h4>jquery.getJSON(url,[callback])</h4>
+<img src="images/18-10-2013 10-00-06.png" height="auto" width="auto">
+<img src="images/18-10-2013 10-04-29.png" height="auto" width="auto">
+<h2 style="color:red">jquery 核心函数</h2>
+<h4>jquery(experssion ,[context])</h4>
+<img src="images/18-10-2013 10-06-30.png" height="auto" width="auto">
+<h4>get([index])</h4>
+<img src="images/18-10-2013 10-08-48.png" height="auto" width="auto">
+<h4>index(subject)</h4>
+<img src="images/18-10-2013 10-09-18.png" height="auto" width="auto">
+<h4>each(callback)</h4>
+<img src="images/18-10-2013 10-17-47.png" height="auto" width="auto">
+<h4>data(name,value)</h4>
+<img src="images/18-10-2013 10-18-25.png" height="auto" width="auto">
+<h4>data(name)</h4>
+<img src="images/18-10-2013 10-19-07.png" height="auto" width="auto">
+<h4>removeData(name)</h4>
+<img src="images/18-10-2013 10-20-14.png" height="auto" width="auto">
+<h4>jquery.extent(target,obj1,[objN])</h4>
+<img src="images/18-10-2013 10-21-51.png" height="auto" width="auto">
+<h4>jquery.grep(array,callback,[invert])</h4>
+<img src="images/18-10-2013 10-22-28.png" height="auto" width="auto">
+<h4>jquery.makeArray(obj)</h4>
+<img src="images/18-10-2013 10-27-52.png" height="auto" width="auto">
+jquery.map(array,callback)
+<img src="images/18-10-2013 10-28-24.png" height="auto" width="auto">
+<h4>jquery.unique(array)</h4>
+<img src="images/18-10-2013 10-29-07.png" height="auto" width="auto">
+</p>
+</div>
+</body>
+</html>

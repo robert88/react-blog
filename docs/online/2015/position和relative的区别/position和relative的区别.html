@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>position</title>
+</head>
+<style>
+	body>div{width:80%;min-width:480px;max-width:1440px;margin:0 auto;border-radius: 5px; border: 1px solid #eee;}
+	body>h1{
+		color:#999;
+	}
+	body>div>dl{margin:20px;}
+	body>div>dl>dt{color:#0080C0;}
+	body>div>dl>dd{padding:5px;font-size: 14px;}
+</style>
+<body>
+	<h1>position</h1>
+	<hr>
+	<div>
+		<h2>标准</h2>
+		<dl>
+			<dt><b>absolute</b></dt>
+			<dd>1、脱离文档流，一种布局方式</dd>
+			<dd>2、left和top相对父类是postion或者是relative</dd>
+			<dd>3、默认情况下left和top是相对于body。</dd>
+			<dd>会改变inline元素为inline-block</dd>
+			<dd>5、如果没有设置left的和top值的话，这个position属性就相当于relative,唯一不同的是它仍然脱离文档</dd>
+			<dd>6、bottom和right优先级比top和left小。所以设置了left，那么right就会失效</dd>
+			<dd>7、bottom和right设置为0，那么元素距离能见度最下边际距离是滚动的高度</dd>
+			<dd>8、同z-index同级元素后者层次高于前者</dd>
+			<dd>9、同级元素z-index越高，层次越高</dd>
+			<dd>10、默认z-index为0</dd>
+			<dd>11、同级父类未设置z-index情况下，子类设置了z-index，那么这个z-index的值传递到父类</dd>
+			<dd>12、js在不设置left和top也是可以获取position的值为absolute</dd>
+			<dt><b>relative</b></dt>
+			<dd>1、不会脱离文档流，一种布局方式</dd>
+			<dd>2、left和top相对父类是postion或者是relative或者兄弟定位,而且设置了left和top不会影响结构</dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>兼容性</h2>
+		<dl>
+			<dt>内容</dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+	<div>
+		<h2>关联</h2>
+		<dl>
+			<dt> top, right, bottom, left and z-index </dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+	</div>
+</body>
+</html>

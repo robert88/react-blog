@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>table布局和li布局的好处</title>
+	<script src="http://static.blog.csdn.net/scripts/jquery.js"></script>
+</head>
+<style>
+	table{border:1px solid green;margin: 0;padding: 0}
+	tr{border:1px solid blue;}
+	td{border:1px solid red;display: inline-block;}
+
+	div{border:1px solid green;}
+	p{border:1px solid blue;}
+	a{border: 1px solid red;display: inline-block;}
+
+	ol{border:1px solid green;}
+	li{border:1px solid blue;}
+	strong{border: 1px solid red;display: inline-block;}
+
+	ul{border:1px solid green;}
+	li{border:1px solid blue;}
+	span{border: 1px solid red;display: inline-block;}
+	
+
+</style>
+<body>
+<table id="table"></table>
+<div id="div"></div>
+
+<ul id="ul"></ul>
+<ol id="ol">
+</ol>
+	<script>        
+	var getTrData=function(){
+            var opts = {
+                    mergeStart:null,
+                    mergeLen:null,
+                    col:0,
+                    data:null
+                }
+                var args = arguments;
+                var len = args.length;
+                var tr=[];
+                var tds=[];
+
+                //第一个参数是对象且数据长度小于列数时需要合并
+                if($.type(args[0])==="object"){
+
+                    $.extend(opts, args[0]);
+                    //强制转换为数组
+                    var start = opts.mergeStart
+                    start = $.type(start)=="array"?start:[start];
+                    var end = opts.mergeLen;
+                    end = $.type(end)=="array"?end:[end];
+
+                   
+                    var col = opts.col;
+                    var data = opts.data;
+                    var dataLen = data.length;
+                    var colspan;
+                    //不需要合并
+
+                    if(dataLen>=col){
+                        for(var i=0;i<dataLen;i++){
+                            tds.push("<td>"+data[i]+"</td>");
+                        }
+                    }else{
+
+                        //可合并长度
+                        var canMargeLen = col - dataLen + 1;
+                        //累计合并长度
+                        var mergeAddLen = 0;
+                        //剩余可合并长度
+                        var hasMargeLen = canMargeLen - mergeAddLen;
+                        //即时合并长度
+                        var tempMergeLen;
+                        
+                        for(var j=0,i=0; j<dataLen; j++){
+
+                            colspan = "";
+
+                            //还可以合并
+                            if(hasMargeLen>0){
+
+                                //定义了合并点
+                                if(i<start.length&&($.type(start[0])=="number")){
+                                    if(start[i]===j){
+                                        //定义了合并结束长度
+                                        if(end&&end[i]){
+                                            //合并长度由end决定
+                                            tempMergeLen = (end[i]<hasMargeLen)?end[i]:hasMargeLen;
+                                        }else{
+                                            tempMergeLen = hasMargeLen;
+                                        }
+                                        mergeAddLen += tempMergeLen;
+                                        hasMargeLen = canMargeLen - mergeAddLen;
+                                        colspan ="colspan='"+tempMergeLen+"'";
+                                        i++;
+                                    //结束数据，还可以合并
+                                    }else if(j==(dataLen-1)){
+                                        colspan ="colspan='"+hasMargeLen+"'";
+                                    }                                     
+                                }else{
+                                    colspan ="colspan='"+hasMargeLen+"'";
+                                    mergeAddLen += hasMargeLen;
+                                    hasMargeLen = canMargeLen - mergeAddLen;
+                                }
+                            
+                            }
+
+                            tds.push("<td "+ colspan+">"+data[j]+"</td>");
+                        }
+                    }
+                }else{
+                    for(var i=0;i<len;i++){
+                        tds.push("<td>"+args[i]+"</td>");
+                    }
+                }
+                //得到行数据
+                tr.push("<tr>",tds.join(""),"</tr>");
+                return tr.join("");
+        }
+
+		$("#table").html(getTrData("1","1","1","1","1","1")
+			+getTrData("1","1","1","1","1","1")
+			+getTrData("1","1","1","1","1","1")
+			);
+		function getSpanData(){
+			var spans=[];
+			for(var i=0;i<arguments.length;i++){
+				spans.push("<span>"+arguments[i]+"</span>");
+			}
+			return "<li>"+spans.join("")+"</li>";
+		}
+		function getOlData(){
+			var spans=[];
+			for(var i=0;i<arguments.length;i++){
+				spans.push("<strong>"+arguments[i]+"</strong>");
+			}
+			return "<li>"+spans.join("")+"</li>";
+		}
+		function getpData(){
+			var spans=[];
+			for(var i=0;i<arguments.length;i++){
+				spans.push("<a>"+arguments[i]+"</a>");
+			}
+			return "<p>"+spans.join("")+"</p>";
+		}
+		$("#ul").html(getSpanData("1","1","1","1","1","1")
+			+getSpanData("1","1","1","1","1","1")
+			+getSpanData("1","1","1","1","1","1")
+			);
+		$("#div").html(getpData("1","1","1","1","1","1")
+			+getpData("1","1","1","1","1","1")
+			+getpData("1","1","1","1","1","1")
+			);
+		$("#ol").html(getOlData("1","1","1","1","1","1")
+			+getOlData("1","1","1","1","1","1")
+			+getOlData("1","1","1","1","1","1")
+			);
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>jquery sortable 参数说明</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>$('.selector').sortable方法</h2>
+<h3>所有的事件回调函数都有两个参数：event和ui</h3>
+
+<p style="padding:20px;">		
+ui.helper: 表示sortable元素的JQuery对象，通常是当前元素的克隆对象   
+</p>
+<p style="padding:20px;">		
+ui.position: 表示相对当前对象，鼠标的坐标值对象{top,left}   
+</p>
+<p style="padding:20px;">		
+ui.offset:表示相对于当前页面，鼠标的坐标值对象{top,left}   
+</p>
+<p style="padding:20px;">		
+ui.item: 表示当前拖拽的元素   
+</p>
+
+<p style="padding:20px">
+ui.placeholder:占位符（如果有定义的话）   
+</p>
+<p style="padding:20px">
+ui.sender: 当前拖拽元素的所属sortable对象（仅当元素是从另一个sortable对象传递过来时有用）
+</p>
+<p style="padding:20px">
+appendTo: String : 'parent'   
+resolve overlap/zIndex issues
+</p>
+<p style="padding:20px">
+cancel:Selector : ':input,button'    
+阻止排序动作在匹配的元素上发生。 
+</p>
+<p style="padding:20px">axis:"x","y".如果有设置，则元素仅能横向或纵向拖动
+          
+		  </p>
+<p style="padding:20px">cancel:"input","button",阻止排序动作在匹配的元素上发生。    </p>
+<p style="padding:20px">connectWith: Selector : false </p>
+<p style="padding:20px">containment: Element, String, Selector : false  约束排序动作只能在一个指定的范围内发生。可选值：DOM对象, 'parent', 'document', 'window', 或jQuery对象</p>
+<p style="padding:20px">cursor:String : 'auto' 
+定义在开始排序动作时，如果的样式。</p>
+<p style="padding:20px">cursorAt: Object : false    
+当开始移动时，鼠标定位在的某个位置上（最多两个方向）。可选值：{ top, left, right, bottom }.   </p>
+<p style="padding:20px">delay: Integer : 0   
+以毫秒为单位，设置延迟多久才激活排序动作。此参数可防止误点击。  </p>
+<p style="padding:20px">distance: Integer : 1   
+决定至少要在元素上面拖动多少像素后，才正式触发排序动作。</p>
+<p style="padding:20px">dropOnEmpty: Boolean : true    
+是否允許拖拽到一個空的sortable对象中。 </p>
+<p style="padding:20px">forceHelperSize: Boolean : false    
+If true, forces the helper to have a size.</p>
+<p style="padding:20px">forcePlaceholderSize: Boolean : false 
+If true, forces the placeholder to have a size.     </p>
+
+<p style="padding:20px">grid: Array : false    
+将排序对象的item元素视为一个格子处理，每次移动都按一个格子大小移动，数组值：[x,y]     </p>
+<p style="padding:20px">handle: Selector, Element : false    
+限制排序的动作只能在item元素中的某个元素开始。 </p>
+<p style="padding:20px">helper: String, Function : 'original'    
+设置是否在拖拽元素时，显示一个辅助的元素。可选值：'original', 'clone'   </p>
+<p style="padding:20px">items: Selector : '> *'    
+指定在排序对象中，哪些元素是可以进行拖拽排序的。    </p>
+<p style="padding:20px">opacity: Float : false    
+定义当排序时，辅助元素(helper)显示的透明度。      </p>
+<p style="padding:20px">placeholderType: StringDefault: false    
+设置当排序动作发生时，空白占位符的CSS样式。  </p>
+<p style="padding:20px">revert: Boolean : false 
+如果设置成true，则被拖拽的元素在返回新位置时，会有一个动画效果。        </p>
+<p style="padding:20px">forcePlaceholderSize: Boolean : false 
+If true, forces the placeholder to have a size.     </p>
+
+<p style="padding:20px">scroll: Boolean : true 
+如果设置成true，则元素被拖动到页面边缘时，会自动滚动。  </p>
+<p style="padding:20px">scrollSensitivity: Integer : 20    
+设置当元素移动至边缘多少像素时，便开始滚动页面。    </p>
+<p style="padding:20px">scrollSpeed: Integer : 20   
+设置页面滚动的速度。     </p>
+
+<p style="padding:20px">tolerance: String : 'intersect' 
+设置当拖动元素越过其它元素多少时便对元素进行重新排序。可选值：'intersect', 'pointer' 
+intersect：至少重叠50%   
+pointer：鼠标指针重叠元素       </p>
+<p style="padding:20px">zIndex: Integer : 1000   
+设置在排序动作发生时，元素的z-index值。   </p>
+<h2>事件</h2>
+<p style="padding:20px">start:   
+当排序动作开始时触发此事件。 </p>
+<p style="padding:20px">sort:   
+当元素发生排序时触发此事件。 </p>
+
+<p style="padding:20px">change:   
+当元素发生排序且坐标已发生改变时触发此事件。    </p>
+<p style="padding:20px">beforeStop:   
+当排序动作结束之前触发此事件。此时占位符元素和辅助元素仍有效。       </p>
+<p style="padding:20px">stop:   
+当排序动作结束时触发此事件。    </p>
+<p style="padding:20px">update:   
+当排序动作结束时且元素坐标已经发生改变时触发此事件。     </p>
+
+<p style="padding:20px">receive:   
+当一个已连接的sortable对象接收到另一个sortable对象的元素后触发此事件。      </p>
+<p style="padding:20px">over:   
+当一个元素拖拽移入另一个sortable对象后触发此事件。    </p>
+<p style="padding:20px">out:   
+当一个元素拖拽移出sortable对象移出并进入另一个sortable对象后触发此事件。      </p>
+<p style="padding:20px">activate:   
+当一个有使用连接的sortable对象开始排序动作时，所有允许的sortable触发此事件。    </p>
+<p style="padding:20px">deactivate:   
+当一个有使用连接的sortable对象结束排序动作时，所有允许的sortable触发此事件。 </p>
+
+<p style="padding:20px">forcePlaceholderSize: Boolean : false 
+If true, forces the placeholder to have a size.     </p>
+
+   <script>
+   (function(){
+		var str="";
+		var firstLetter="";
+		var firstName=/^(\d+)|[a-zA-Z]+(?=:)/;
+		var pObjs=document.getElementsByTagName("p");
+		for(var i=0;i<pObjs.length;i++){
+			str=pObjs[i].innerHTML;
+			firstLetter=firstName.exec(str);
+			console.log(i+"what is"+firstLetter)
+			if(firstLetter!==null){
+				pObjs[i].innerHTML=str.replace(firstName,"<span style='color:red;font-size:16px;font-weight:bold;'>"+firstLetter[0]+"</span>");
+			}
+		}
+   })();
+   </script>
+<h2>例子</h2>
+<code>
+<pre>
+$(function(){
+    $('#send').click(function(){
+         $.ajax({
+             type: "GET",
+             url: "test.json",
+             data: {username:$("#username").val(), content:$("#content").val()},
+             dataType: "json",
+             success: function(data){
+                         $('#resText').empty();   //清空resText里面的所有内容
+                         var html = ''; 
+                         $.each(data, function(commentIndex, comment){
+                               html += '&ltdiv class="comment"&gt&lth6&gt' + comment['username']
+                                         + ':&lt/h6&gt&ltp class="para"' + comment['content']
+                                         + '&lt/p&gt&lt/div&gt';
+                         });
+                         $('#resText').html(html);
+                      }
+         });
+    });
+});
+</pre>
+</code>
+
+</div>
+</body>
+</html>

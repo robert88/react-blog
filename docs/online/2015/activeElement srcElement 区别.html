@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>activeElement srcElement</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>document.activeElement 和document.srcElement</h2>
+<p style="padding:20px;">		
+activeElement: 光标源所在的对象，document的一个属性
+</p>
+<p style="padding:20px;">		
+srcElement: 鼠标触发事件的对象,event的一个属性
+</p>
+<p style="padding:20px;">		
+1、如光标在页面的某个输入框里，判断当前光标的位置可用
+</p>
+<p style="padding:20px;">		
+document.activeElement 即可获得光标对象
+</p>
+
+<p style="padding:20px">
+2、如鼠标点击，要判断触发的对象，可采用
+</p>
+<p style="padding:20px">
+event.srcElement 则获得该对象
+</p>
+<p style="padding:20px">
+在FF下采用.
+</p>
+<p style="padding:20px">
+event.target获得.
+</p>
+   <script>
+   (function(){
+		var str="";
+		var firstLetter="";
+		var firstName=/^(\d+)|[a-zA-Z]+(?=:)/;
+		var pObjs=document.getElementsByTagName("p");
+		for(var i=0;i<pObjs.length;i++){
+			str=pObjs[i].innerHTML;
+			firstLetter=firstName.exec(str);
+			console.log(i+"what is"+firstLetter)
+			if(firstLetter!==null){
+				pObjs[i].innerHTML=str.replace(firstName,"<span style='color:red;font-size:16px;font-weight:bold;'>"+firstLetter[0]+"</span>");
+			}
+		}
+   })();
+   </script>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+base.mobile 手机号
+base.identification.idnumber 身份证
+base.email 邮箱
+base.realname 真实姓名
+nickname 亲昵
+absPicture 图片路径

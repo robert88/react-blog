@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>javascript内存管理</title>
+</head>
+<body>
+<div style="width:1024px;padding:20px;border:1px dotted #eee">
+<h2>标记清除</h2>
+<p style="padding:20px">当变量进入一个执行环境时，将这个变量标记为“进入环境”，当变量离开环境时，则将其标记为“离开环境”。垃圾收集器在 运行的时候会给存储在内存中的所有变量都加上标记，然后它会去掉当前环境中的变量以及被环境中的变量引用的变量的标记，而在此之后再被加上标记的变量将被 视为准备删除的变量，原因是环境中的变量已经无法访问这些变量了。最后，垃圾收集器完成内存清除的工作，销毁那些带标记的值并回收他们占据的内存空间</p>
+<ul>
+element.attachEvent(“onclick”, function) element.detachEvent(“onclick”, function)
+<li>内置对象做了大量的扩充</li>
+<li>代码比较独立，可直接使用</li>
+<li>面向对象不够强大，结构松散</li>
+</ul>
+<h2>dojo</h2>
+<ul>
+<li>离线存储的api</li>
+<li>生成图标的组件</li>
+<li>面向对象不够强大，结构松散</li>
+</ul>
+</div>
+</body>
+</html>

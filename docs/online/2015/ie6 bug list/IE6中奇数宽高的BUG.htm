@@ -1,0 +1,27 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head><title>test</title>
+<style>
+#out {
+width: 609px;/*这里宽度为奇数，bug就出现了！！改成偶数就OK了*/
+height: 300px;
+position: relative;
+background:#FF0000;
+color:#FFF;
+}
+#inn {
+width: 200px;
+height: 250px;
+position: absolute;
+top: 0px;
+right: 0px;
+background:#000000;
+}
+</style>
+</head>
+<body>
+<div id="out">
+<div id="inn">此处为内部绝对定位的 DIV</div>
+</div>
+</body>
+</html>

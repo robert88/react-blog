@@ -1,0 +1,6 @@
+${}
+在struts不是很标准
+应该采用<s:property value=""/>
+
+PWC6239: According to TLD, tag s:property must be empty, but is not
+这个原因的是因为<s>没有正确结束

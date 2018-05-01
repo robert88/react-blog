@@ -1,0 +1,58 @@
+	@Action(value = "invest", results={@Result(name="view",  location="view.jsp")}) --doc.java
+
+struts2 action跳转分为：
+action转发action；
+action转发视图：
+客户端的重定向。
+ 
+1，action转发action；
+ 
+Xml代码 复制代码
+<SPAN style="FONT-SIZE: medium"><action name="one" class="wherever.test.struts2.OneAction">  
+        <result name="view" type="chain">two</result>  
+        <result name="success">/one.jsp</result>  
+    </action>  
+       
+    <action name="two" class="wherever.test.struts2.TwoAction">  
+        <result name="success">/two.jsp</result>  
+    </action></SPAN>  
+ 返回类型是“chain”，特点不会丢失request。
+因为是在springside里开发，用了convention插件，所以是在程序里写注解：
+Java代码 复制代码
+<SPAN style="FONT-SIZE: medium">@Results( {   
+ @Result(name = "view", location = "two!view", type = "chain") })   
+public class OneAction extends ActionSupport    
+  
+</SPAN>  
+Java代码 复制代码
+<SPAN style="FONT-SIZE: medium">@Results( {   
+ @Result(name = "success", location = "two.jsp", type = "dispatcher") })   
+public class TwoAction extends ActionSupport   
+@Action(value = "two!view")   
+    public String view() throws Exception</SPAN>  
+  注意我在TwoAction的view方法上写了一个@Action注解，如果不写的话，OneAction在跳转的时候会找不到“two!view”这个action。
+ 
+2，action转发视图；
+ 如果没有用convention插件的话，这是一个很简单的事情，当然convention也很简单：
+Java代码 复制代码
+<SPAN style="FONT-SIZE: medium">@Result(name = "view", location = "topic_view.jsp") })</SPAN>  
+ 搞定。
+其实这里使用了默认类型，相当于下面这样：
+Java代码 复制代码
+<SPAN style="FONT-SIZE: medium">@Result(name = "view", location = "topic_view.jsp",type="dispatcher") })</SPAN>  
+3.客户端跳转 
+”dispatcher“是aciton跳转视图用的。是服务端的跳转，你当然也可以使用客户端跳转“redirect”。
+应该能看出来action的重定向也是使用“redirect”类型。
+如果你没有用convention，你有一种action重定向方式：
+ 
+Xml代码 复制代码
+<SPAN style="FONT-SIZE: medium"><action name="one" class="wherever.test.struts2.OneAction">  
+    <result name="view" type="redirectAction">  
+                 <param name="one">${one}</param>  
+                 <param name="actionName">two.action</param>  
+    </result>  
+    </action>  
+       
+    <action name="two" class="wherever.test.struts2.TwoAction">  
+     <result name="success">/two.jsp</result>  
+    </action></SPAN>  

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-Type" content="type/html;charset=utf-8">
+<title>jquery 优化</title>
+</head>
+<body>
+<div style="width:900px;height:auto;margin:0 auto;padding:0 20px;line-heigth:30px;font-size:18px;font-family:'黑体'">
+<h2>最小化DOM更新</h2>
+<pre>
+<strong>1.重绘</strong>
+改变样式，不改变几何布局。
+如：隐藏一个元素、改变元素背景色。
+<strong>2.重布局</strong>
+页面结构进行更新。
+如：添加，删除元素、改变元素大小、或者添加position等能改变dom结构的属性。
+</pre>
+<h2>DOM Hyperspace</h2>
+<pre>
+$().detach()将dom变成对象
+</pre>
+<h2>高效的循环</h2>
+<pre>
+$.each() //慢
+Array.forEach() //一般
+for()	//快
+</pre>
+<h2>对象缓存</h2>
+<pre>
+使用$前缀
+</pre>
+<h2>高效的选择器</h2>
+<pre>
+ID选择器效率最高
+tag 第二
+class 第三 在ie6、7不支持原生的getElementByClassName
+使用#parent .class 要比.class要快
+</pre>
+<h2>模式</h2>
+<pre>
+1、命名空间
+2、立即执行函数
+3、函数返回对象
+</pre>
+<h2>garber irish模式</h2>
+<pre>
+css类
+data属性
+通过字符串的形式来触发对象的方法。
+将初始化的数据存储在data里面
+</pre>
+<h2>模板的创建</h2>
+<pre>
+1、使用<script></script>
+2、使用字符串
+结构、样式、行为分离。
+jsRender模板
+jsviews模板
+text/x-jquery-tmpl 采用${}定义变量 
+{{if}} {{else}} {{/if}} 
+{{each class}} {{/each}}包含了$index计数器
+{{tmpl}}
+{{html}}可以解析&gta字符
+或者使用$.template()创建模板
+$.tmpl()应用方法
+jquery.tmpl.min.js
+</pre>
+</div>
+</body>
+</html>

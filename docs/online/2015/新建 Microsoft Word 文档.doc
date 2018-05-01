@@ -1,0 +1,320 @@
+
+
+
+
+
+
+
+
+Robert盾響��
+　　　宸倖頁壓1.0井云-1.0.2井云
+　　　jQuery.extend = jQuery.fn.exten	d = function(obj,prop) {
+　　　	if ( !prop ) { prop = obj; obj = this; }
+　　　	for ( var i in prop ) obj[i] = prop[i];
+　　　	return obj;
+　　　};
+　　　
+　　　
+　　　
+　　　
+　　　宸倖頁1.0.3井云
+　　　jQuery.extend = jQuery.fn.extend = function(obj,prop) {
+　　　	// Watch for the case where null or undefined gets passed in by accident
+　　　	if ( arguments.length > 1 && (prop === null || prop == undefined) )
+　　　		return obj;
+　　　
+　　　	// If no property object was provided, then we're extending jQuery
+　　　	if ( !prop ) { prop = obj; obj = this; }
+　　　
+　　　	// Extend the base object
+　　　	for ( var i in prop ) obj[i] = prop[i];
+　　　
+　　　	// Return the modified object
+　　　	return obj;
+　　　};
+　　　
+　　　
+　　　
+　　　
+　　　宸倖頁1.0.4 - 1.1.2井云
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0],
+　　　		a = 1;
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( arguments.length == 1 ) {
+　　　		target = this;
+　　　		a = 0;
+　　　	}
+　　　	var prop;
+　　　	while (prop = arguments[a++])
+　　　		// Extend the base object
+　　　		for ( var i in prop ) target[i] = prop[i];
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　
+　　　
+　　　
+　　　
+　　　
+　　　
+　　　
+　　　宸倖頁1.1.3a - 1.1.3井云
+　　　
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0], a = 1;
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( arguments.length == 1 ) {
+　　　		target = this;
+　　　		a = 0;
+　　　	}
+　　　	var prop;
+　　　	while ( (prop = arguments[a++]) != null )
+　　　		// Extend the base object
+　　　		for ( var i in prop ) target[i] = prop[i];
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　宸倖頁1.1.4 - 1.2.1井云
+　　　
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0] || {}, a = 1, al = arguments.length, deep = false;
+　　　
+　　　	// Handle a deep copy situation
+　　　	if ( target.constructor == Boolean ) {
+　　　		deep = target;
+　　　		target = arguments[1] || {};
+　　　	}
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( al == 1 ) {
+　　　		target = this;
+　　　		a = 0;
+　　　	}
+　　　
+　　　	var prop;
+　　　
+　　　	for ( ; a < al; a++ )
+　　　		// Only deal with non-null/undefined values
+　　　		if ( (prop = arguments[a]) != null )
+　　　			// Extend the base object
+　　　			for ( var i in prop ) {
+　　　				// Prevent never-ending loop
+　　　				if ( target == prop[i] )
+　　　					continue;
+　　　
+　　　				// Recurse if we're merging object values
+　　　				if ( deep && typeof prop[i] == 'object' && target[i] )
+　　　					jQuery.extend( target[i], prop[i] );
+　　　
+　　　				// Don't bring in undefined values
+　　　				else if ( prop[i] != undefined )
+　　　					target[i] = prop[i];
+　　　			}
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　宸倖頁1.2.2b-1.2.3井云
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
+　　　
+　　　	// Handle a deep copy situation
+　　　	if ( target.constructor == Boolean ) {
+　　　		deep = target;
+　　　		target = arguments[1] || {};
+　　　		// skip the boolean and the target
+　　　		i = 2;
+　　　	}
+　　　
+　　　	// Handle case when target is a string or something (possible in deep copy)
+　　　	if ( typeof target != "object" && typeof target != "function" )
+　　　		target = {};
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( length == 1 ) {
+　　　		target = this;
+　　　		i = 0;
+　　　	}
+　　　
+　　　	for ( ; i < length; i++ )
+　　　		// Only deal with non-null/undefined values
+　　　		if ( (options = arguments[ i ]) != null )
+　　　			// Extend the base object
+　　　			for ( var name in options ) {
+　　　				// Prevent never-ending loop
+　　　				if ( target === options[ name ] )
+　　　					continue;
+　　　
+　　　				// Recurse if we're merging object values
+　　　				if ( deep && options[ name ] && typeof options[ name ] == "object" && target[ name ] && !options[ name ].nodeType )
+　　　					target[ name ] = jQuery.extend( target[ name ], options[ name ] );
+　　　
+　　　				// Don't bring in undefined values
+　　　				else if ( options[ name ] != undefined )
+　　　					target[ name ] = options[ name ];
+　　　
+　　　			}
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　宸倖頁1.2.4a - 1.2.4井云
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
+　　　
+　　　	// Handle a deep copy situation
+　　　	if ( target.constructor == Boolean ) {
+　　　		deep = target;
+　　　		target = arguments[1] || {};
+　　　		// skip the boolean and the target
+　　　		i = 2;
+　　　	}
+　　　
+　　　	// Handle case when target is a string or something (possible in deep copy)
+　　　	if ( typeof target != "object" && typeof target != "function" )
+　　　		target = {};
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( length == 1 ) {
+　　　		target = this;
+　　　		i = 0;
+　　　	}
+　　　
+　　　	for ( ; i < length; i++ )
+　　　		// Only deal with non-null/undefined values
+　　　		if ( (options = arguments[ i ]) != null )
+　　　			// Extend the base object
+　　　			for ( var name in options ) {
+　　　				// Prevent never-ending loop
+　　　				if ( target === options[ name ] )
+　　　					continue;
+　　　
+　　　				// Recurse if we're merging object values
+　　　				if ( deep && options[ name ] && typeof options[ name ] == "object" && target[ name ] && !options[ name ].nodeType )
+　　　					target[ name ] = jQuery.extend( deep, target[ name ], options[ name ] );
+　　　
+　　　				// Don't bring in undefined values
+　　　				else if ( options[ name ] != undefined )
+　　　					target[ name ] = options[ name ];
+　　　
+　　　			}
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　宸倖頁1.2.5 - 1.2.6井云
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
+　　　
+　　　	// Handle a deep copy situation
+　　　	if ( target.constructor == Boolean ) {
+　　　		deep = target;
+　　　		target = arguments[1] || {};
+　　　		// skip the boolean and the target
+　　　		i = 2;
+　　　	}
+　　　
+　　　	// Handle case when target is a string or something (possible in deep copy)
+　　　	if ( typeof target != "object" && typeof target != "function" )
+　　　		target = {};
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( length == i ) {
+　　　		target = this;
+　　　		--i;
+　　　	}
+　　　
+　　　	for ( ; i < length; i++ )
+　　　		// Only deal with non-null/undefined values
+　　　		if ( (options = arguments[ i ]) != null )
+　　　			// Extend the base object
+　　　			for ( var name in options ) {
+　　　				var src = target[ name ], copy = options[ name ];
+　　　
+　　　				// Prevent never-ending loop
+　　　				if ( target === copy )
+　　　					continue;
+　　　
+　　　				// Recurse if we're merging object values
+　　　				if ( deep && copy && typeof copy == "object" && !copy.nodeType )
+　　　					target[ name ] = jQuery.extend( deep, 
+　　　						// Never move original objects, clone them
+　　　						src || ( copy.length != null ? [ ] : { } )
+　　　					, copy );
+　　　
+　　　				// Don't bring in undefined values
+　　　				else if ( copy !== undefined )
+　　　					target[ name ] = copy;
+　　　
+　　　			}
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
+　　　
+　　　宸倖頁1.3.2 井云
+　　　jQuery.extend = jQuery.fn.extend = function() {
+　　　	// copy reference to target object
+　　　	var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
+　　　
+　　　	// Handle a deep copy situation
+　　　	if ( target.constructor == Boolean ) {
+　　　		deep = target;
+　　　		target = arguments[1] || {};
+　　　		// skip the boolean and the target
+　　　		i = 2;
+　　　	}
+　　　
+　　　	// Handle case when target is a string or something (possible in deep copy)
+　　　	if ( typeof target != "object" && typeof target != "function" )
+　　　		target = {};
+　　　
+　　　	// extend jQuery itself if only one argument is passed
+　　　	if ( length == i ) {
+　　　		target = this;
+　　　		--i;
+　　　	}
+　　　
+　　　	for ( ; i < length; i++ )
+　　　		// Only deal with non-null/undefined values
+　　　		if ( (options = arguments[ i ]) != null )
+　　　			// Extend the base object
+　　　			for ( var name in options ) {
+　　　				var src = target[ name ], copy = options[ name ];
+　　　
+　　　				// Prevent never-ending loop
+　　　				if ( target === copy )
+　　　					continue;
+　　　
+　　　				// Recurse if we're merging object values
+　　　				if ( deep && copy && typeof copy == "object" && !copy.nodeType )
+　　　					target[ name ] = jQuery.extend( deep, 
+　　　						// Never move original objects, clone them
+　　　						src || ( copy.length != null ? [ ] : { } )
+　　　					, copy );
+　　　
+　　　				// Don't bring in undefined values
+　　　				else if ( copy !== undefined )
+　　　					target[ name ] = copy;
+　　　
+　　　			}
+　　　
+　　　	// Return the modified object
+　　　	return target;
+　　　};
