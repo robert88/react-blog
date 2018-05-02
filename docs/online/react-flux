@@ -12,3 +12,6 @@ Action - Dispatcher - store - view
 它提供了一种始终都是整体刷新的思路来构建界面
 
 Store和view是事件来触发，在Flux架构中，View即React的组件，而Store则存储的是应用程序的状态。React实现的View只需要监听Store的变化，而无需知道变化的细节
+需要关心当View接收用户交互，需要将新的状态存入到Store中，应该如何去实现。这就需要引入Flux的另外两个概念Dispatcher和Action。
+
+Dispatcher就是负责分发不同的Action。在一个Flux应用中，只有一个中心的Dispatcher，所有的Action都通过它来分发
