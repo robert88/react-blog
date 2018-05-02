@@ -1,8 +1,12 @@
+https://www.cnblogs.com/gpzhen/p/7215954.html
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import
 export 输出模块
 这个用法是export {模块1，模块2}
 
 import test ,{test2,test3} from "./test";
-
+导入test.js
+import test ,{test2,test3} from "./test/";
+导入test/index.js
 
 而 import/export 的写法就多种多样：import fs from 'fs'
 import {default as fs} from 'fs'
@@ -32,3 +36,8 @@ Import url 直接报错了
 require(url)不会报错
 
 所以require都会用在动态加载的时候
+
+虽说Node遵循CommonJS的规范
+ CommonJS就是为JS的表现来制定规范
+ 
+ 
