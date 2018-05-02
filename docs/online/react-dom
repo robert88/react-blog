@@ -1,1 +1,8 @@
 
+
+使用之前需要我们必须要先引入三个库——react.js/react-dom.js/browser.min.js
+ReactDOM.render()
+
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
