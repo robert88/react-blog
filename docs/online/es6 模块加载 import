@@ -4,7 +4,7 @@ export 输出模块
 这个用法是export {模块1，模块2}
 
 import test ,{test2,test3} from "./test";
-导入test.js
+导入test.js,test代表整个对象，test2、test3是成员
 import test ,{test2,test3} from "./test/";
 导入test/index.js
 
