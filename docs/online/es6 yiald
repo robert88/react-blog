@@ -1,0 +1,5 @@
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield
+当我们写一个函数 在function后面或者函数名字前面加上一个* 调用这个函数返回的就是Generator 而这个函数称为Generator函数
+function *main(){ } main() // -> [object Generator]
+function *learn(){ yield 1 yield 2 return 3 } 
+let learnGe = learn() // ->
