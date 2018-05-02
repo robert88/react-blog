@@ -1,0 +1,23 @@
+export 输出模块
+这个用法是export {模块1，模块2}
+
+import test ,{test2,test3} from "./test";
+
+
+而 import/export 的写法就多种多样：import fs from 'fs'
+import {default as fs} from 'fs'
+import * as fs from 'fs'
+import {readFile} from 'fs'
+import {readFile as read} from 'fs'
+import fs, {readFile} from 'fs'
+
+export default fs
+export const fs
+export function readFile
+export {readFile, read}
+export * from 'fs'
+
+作者：寸志
+链接：https://www.zhihu.com/question/56820346/answer/150724784
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

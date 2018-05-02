@@ -1,4 +1,0 @@
-export 输出模块
-这个用法是export {模块1，模块2}
-
-import test ,{test2,test3} from "./test";
