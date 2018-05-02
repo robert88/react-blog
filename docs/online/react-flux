@@ -1,0 +1,14 @@
+http://www.infoq.com/cn/articles/react-flux/
+https://blog.csdn.net/uxiAD7442KMy1X86DtM3/article/details/79040042
+React是一个完全面向View的解决方案
+Flux的解决方案是让数据流变成单向，引入Store、Action、Action Creators和Dispatcher等概念来管理信息流
+
+Action - Dispatcher - store - view
+
+在MVC中，数据如何处理通常由Controller来完成，在Controller中实现大部分的业务逻辑来处理数据。而现在则被清晰的定义在Store或者Action Creators中。
+在Flux中，View完全是Store的展现形式，Store的更新则完全由Action触发。
+得益于React的View每次更新都是整体刷新的思路，我们可以完全不必关心Store的变化细节，只需要监听Store的onChange事件，
+每次变化都触发View的re-render
+它提供了一种始终都是整体刷新的思路来构建界面
+
+Store和view是事件来触发，在Flux架构中，View即React的组件，而Store则存储的是应用程序的状态。React实现的View只需要监听Store的变化，而无需知道变化的细节
