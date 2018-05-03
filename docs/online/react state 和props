@@ -1,0 +1,3 @@
+https://blog.csdn.net/u010218288/article/details/76256023
+props:props是一个组件的设置参数，可以在父控件中选择性设置。
+父组件对子控件的props进行赋值，并且props的值不可改变。一个子控件自身不能改变自己的 props。
