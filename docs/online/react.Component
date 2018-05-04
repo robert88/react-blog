@@ -1,0 +1,60 @@
+https://www.cnblogs.com/Unknw/p/6431375.html
+没有使用ES6语法，那么定义组件，只能使用React.createClass这个helper来创建组件
+var Greeting = React.createClass({
+  
+  propTypes: {
+    name: React.PropTypes.string //属性校验
+  },
+
+  getDefaultProps: function() {
+    return {
+      name: 'Mary' //默认属性值
+    };
+  },
+  
+  getInitialState: function() {
+    return {count: this.props.initialCount}; //初始化state
+  },
+  
+  handleClick: function() {
+    //用户点击事件的处理函数
+  },
+
+  render: function() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+});
+module.exports = Greeting;
+因为ES6对类和继承有语法级别的支持，所以用ES6创建组件的方式更加优雅，下面是示例：
+class Greeting extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {count: props.initialCount};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  
+  //static defaultProps = {
+  //  name: 'Mary'  //定义defaultprops的另一种方式
+  //}
+  
+  //static propTypes = {
+    //name: React.PropTypes.string
+  //}
+  
+  handleClick() {
+    //点击事件的处理函数
+  }
+  
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+Greeting.propTypes = {
+  name: React.PropTypes.string
+};
+
+Greeting.defaultProps = {
+  name: 'Mary'
+};
+export default Greating;
