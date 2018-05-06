@@ -1,0 +1,110 @@
+-->ReactDOM.render(
+  <App store={store} />,
+  document.getElementById('app')
+);
+
+这个接口会在webpack:///../node_modules/react/cjs/react.development.js调用
+-->createElementWithValidation(type, props, children)
+type指向App类，props指向store
+store包含以下信息
+asyncReducers:{}
+asyncSagas:{}
+dispatch:ƒ (action)
+getState:ƒ getState()
+reducers:{router: ƒ, app: ƒ, home: ƒ, article: ƒ, categoryList: ƒ}
+replaceReducer:ƒ replaceReducer(nextReducer)
+runSaga:ƒ (saga)
+subscribe:ƒ subscribe(listener)
+Symbol(observable):ƒ observable()
+
+
+把react导进来有以下成员
+Children:{map: ƒ, forEach: ƒ, count: ƒ, toArray: ƒ, only: ƒ}
+Component:ƒ Component(props, context, updater)
+Fragment:Symbol(react.fragment)
+PureComponent:ƒ PureComponent(props, context, updater)
+StrictMode:Symbol(react.strict_mode)
+cloneElement:ƒ cloneElementWithValidation(element, props, children)
+createContext:ƒ createContext(defaultValue, calculateChangedBits)
+createElement:ƒ createElementWithValidation(type, props, children)
+createFactory:ƒ createFactoryWithValidation(type)
+createRef:ƒ createRef()
+forwardRef:ƒ forwardRef(render)
+isValidElement:ƒ isValidElement(object)
+unstable_AsyncMode:Symbol(react.async_mode)
+version:"16.3.1"
+__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentOwner: {…}, ReactDebugCurrentFrame: {…}, ReactComponentTreeHook: {…}, assign: ƒ}
+
+
+-->isValidElementType
+有效的类型有：1、string,function
+2\REACT_FRAGMENT_TYPE
+3\REACT_ASYNC_MODE_TYPE
+4\REACT_STRICT_MODE_TYPE
+5\特定的对象object 必须满足不为null、
+type.$$typeof === REACT_PROVIDER_TYPE
+type.$$typeof === REACT_CONTEXT_TYPE
+type.$$typeof === REACT_FORWARD_REF_TYPE
+
+2-5后面来理解
+
+-->createElement
+可以看得出this的createElement!=createElement而是
+this.createElement===createElementWithValidation
+
+
+-->hasValidRef//关于成员ref不知道用途
+-->hasValidKey
+
+可能会用到__source、__self目前不知道用途
+hasOwnProperty方法让你知道一个属性是直接在一个对象的实例上还是从它的原型链继承而来。实例为true
+
+for in 是可以遍历继承的原型的属性
+
+RESERVED_PROPS包含
+key:true
+ref:true
+__self:true
+__source:true
+
+将store赋值给props.store
+如果有children就赋值给props.children 后面的都是childrens
+
+Object.freeze() 方法可以冻结一个对象，冻结指的是
+不能向这个对象添加新的属性，
+不能修改其已有属性的值，
+不能删除已有属性，
+以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。
+该方法返回被冻结的对象。
+
+冻结的对象赋值无效，不会报错
+
+APP类如有有defaultProps
+那么也会copy到props
+
+前面谈到的key和ref和$$typeof displayname name  有点瓜葛，目前不知道
+
+-->ReactElement
+
+ReactCurrentOwner不知道干嘛用的，从下面的赋值来看应该是react属性值
+最终得到props
+store:{reducers: {…}, dispatch: ƒ, subscribe: ƒ, getState: ƒ, replaceReducer: ƒ, …}
+ref:null
+self:null
+source:null
+定义了一个element这个就是react对于的虚拟dom
+ var element = {
+    // This tag allows us to uniquely identify this as a React Element
+    $$typeof: REACT_ELEMENT_TYPE,
+
+    // Built-in properties that belong on the element
+    type: type,
+    key: key,
+    ref: ref,
+    props: props,
+
+    // Record the component responsible for creating this element.
+    _owner: owner
+  };
+  element._store是个对象
+  成员有validated、_self、_source
