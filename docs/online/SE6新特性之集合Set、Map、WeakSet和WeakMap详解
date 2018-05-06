@@ -1,0 +1,30 @@
+https://blog.csdn.net/qq_28506819/article/details/71037206
+大大提升了性能?
+遍历Set和Map的顺序就是元素插入的顺序。
+Set和Map没有hash码
+var c = [1,2,2,3,4];  
+var setc = new Set(c); //new Set(iterable) ：从任何可遍历数据中提取元素，构造出一个新的集合。  
+console.log(setc.size); //4，元素去重  
+可以看得出set可以去重
+add、size、delete、clear、has
+console.log(setc.delete(4));//true,官方说delete会返回集合自身，但是在最新版火狐中如果元素存在，则返回true，反之返回false，链式调用会报出错
+
+Map
+set，size、get，delete，clear、map.keys()、map.values()、map.entries()
+
+弱引用集合WeakSet和WeakMap
+Map和Set都为内部的每个键或值保持了强引用，也就是说，如果一个对象被移除了，回收机制无法取回它占用的内存 ，除非在Map或者Set中删除它。
+
+WeakSet并不对其中对象保持强引用。
+当WeakSet中的一个对象被回收时，
+它会简单地被从WeakSet中移除。
+WeakMap也类似地不为它的键保持强引用。
+如果一个键仍被使用，相应的值也就仍被使用 。
+下面是弱引用集合的一些限制：
+WeakMap只支持new、has、get、set 和delete。 
+WeakSet只支持new、has、add和delete 。
+WeakSet的值和WeakMap的键必须是对象。
+都不可迭代，除非专门查询或给出你感兴趣的键，否则不能获得一个弱集合中的项 。
+以上就是ES6集合的操作以及注意事项。
+
+没有明白WeakSet和WeakMap
