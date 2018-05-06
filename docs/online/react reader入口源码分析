@@ -107,4 +107,120 @@ source:null
     _owner: owner
   };
   element._store是个对象
+  
   成员有validated、_self、_source
+validated是用于开发环境里面的测试
+冻结element和elemet.protos
+
+  // self and source are DEV only properties.开发环境才会用到这两个属性
+  
+  得到了虚拟dom之后return回-->createElementWithValidation
+  -->validateChildKeys 如果有children就校验
+  显然app类不是REACT_FRAGMENT_TYPE 这个应该是dom片段
+  --》validatePropTypes校验element的合法性
+  
+  function 是可以通过displayname和name来获取函数名称，displayname多用于成员名
+  
+  app类会用到propTypes目前定义element
+ 
+  如果写成这样PropTypes会有个提示，我觉得没必要
+  getDefaultProps如果有这个也会提示
+  getDefaultProps is only used on classic React.createClass
+  只用在这个方法里面
+  
+  以上是jsx语法得到一个react element
+  
+  完了之后回到render
+  --》legacyRenderSubtreeIntoContainer
+  
+  isValidContainer判断是否是个dom对象
+  
+  node.nodeType === ELEMENT_NODE|| 
+  node.nodeType === DOCUMENT_NODE || 
+  node.nodeType === DOCUMENT_FRAGMENT_NODE ||
+ &&优先级要高于||
+  node.nodeType === COMMENT_NODE && node.nodeValue === ' react-mount-point-unstable '//没看懂
+  --》topLevelUpdateWarnings
+  
+  _reactRootContainer不知道干嘛用的
+  和这些有关联nodeType、findHostInstanceWithNoPortals、._internalRoot.current
+  _reactRootContainer
+  --》getReactRootElementInContainer
+  这个如果是document就获取documentElement，如果不是就获取第一个children
+  如果container是body的话可能会有提示，react不建议渲染到body上面
+  这个_reactRootContainer这个参数来表示是否安装了react组件
+  -》legacyCreateRootFromDOMContainer
+  
+  参数中有个forceHydrate，指定为false
+  这个是来控制shouldHydrateDueToLegacyHeuristic是否调用
+  
+  --〉getReactRootElementInContainer
+  
+  关联"data-reactroot，ROOT_ATTRIBUTE_NAME
+  
+  回到legacyCreateRootFromDOMContainer
+  如果有子类就会删除掉，如果有data-reactroot就会提示
+  
+  这里提到一个词hydrate
+  网上解释
+  因为ssr时服务器输出的是字符串，而浏览器端需要根据这些字符串完成react的初始化工作，比如创建组件实例，这样才能响应用户操作。
+  这个过程就叫hydrate，有时候也会说re-hydrate，可以把hydrate理解成给干瘪的字符串”注水”
+  
+  webpack:///../node_modules/react-dom/cjs/react-dom.development.js
+  ReactRoot构造器
+  
+  --》DOMRenderer.createContainer
+  --》createFiberRoot
+  --》createHostRootFiber
+  参数isAsync
+  决定? AsyncMode | StrictMode : NoContext;模式
+  --》createFiber
+  
+  构造器FiberNode
+  POJO是Plain OrdinaryJava Object是java的对象
+  
+  在JavaScript的世界里,有两个词经常被提到,shim和polyfill.它们指的都是什么,又有什么区别?
+一个shim是一个库,它将一个新的API引入到一个旧的环境中,而且仅靠旧环境中已有的手段实现
+一个polyfill就是一个用在浏览器API上的shim.我们通常的做法是先检查当前浏览器是否支持某个API,如果不支持的话就加载对应的polyfill.然后新旧浏览器就都可以使用这个API了.术语polyfill来自于一个家装产品Polyfilla:
+  
+  回到--》createHostRootFiber，得到一个未初始化的fiber
+alternate:null
+child:null
+effectTag:0
+expirationTime:0
+firstEffect:null
+index:0
+key:null
+lastEffect:null
+memoizedProps:null
+memoizedState:null
+mode:0
+nextEffect:null
+pendingProps:null
+ref:null
+return:null
+sibling:null
+stateNode:null
+tag:3
+type:null
+updateQueue:null
+_debugID:1
+_debugIsCurrentlyTiming:false
+_debugOwner:null
+_debugSource:null
+
+再将这个合并到root里面
+var root = {
+    current: uninitializedFiber,//未初始化fiber
+    containerInfo: containerInfo,
+    pendingChildren: null,
+    pendingCommitExpirationTime: NoWork,
+    finishedWork: null,
+    context: null,
+    pendingContext: null,
+    hydrate: hydrate,
+    remainingExpirationTime: NoWork,
+    firstBatch: null,
+    nextScheduledRoot: null
+  };
+  uninitializedFiber.stateNode = root;
