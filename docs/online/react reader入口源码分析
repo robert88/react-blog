@@ -224,3 +224,27 @@ var root = {
     nextScheduledRoot: null
   };
   uninitializedFiber.stateNode = root;
+这个结构就是最终--》DOMRenderer.createContainer这个函数要得到的结构
+
+最终得到ReactRoot这个实例
+_internalRoot就是上面的那个结构
+
+container._reactRootContainer 通过legacyCreateRootFromDOMContainer得到ReactRoot这个实例
+
+--》  DOMRenderer.unbatchedUpdates
+涉及到isBatchingUpdates && !isUnbatchingUpdates这两个关口不知道干嘛用的执行回调
+
+回到回调函数
+parentComponent父类组件
+     if (parentComponent != null) {
+        root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback);
+      } else {
+        root.render(children, callback);
+      }
+      
+      这个函数是对应的ReactRoot.prototype.render
+      
+        var work = new ReactWork();得到一个这样的实例
+        _callbacks:null
+       _didCommit:false
+      _onCommit:ƒ ()
