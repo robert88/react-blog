@@ -1,0 +1,194 @@
+接上一节
+dom容器绑定了container._reactRootContainer 这个是_internalRoot结构 new ReactRoot
+
+调用ReactRoot.prototype.render,参数是之前的element的
+ReactWork实例：
+_callbacks:null
+_didCommit:false
+_onCommit:ƒ ()
+__proto__:then:ƒ (onCommit)，_onCommit:ƒ ()
+
+--》warnOnInvalidCallback判断callback是null或者是function
+如果callback是函数，就会调用ReactWork实例.then
+-->DOMRenderer.updateContainer
+参数element, container, parentComponent, callback
+parentComponent和callback是为空
+container.current是fiberNode实例
+--》recalculateCurrentTime计算当前时间
+mostRecentCurrentTime得到这个值不知道干嘛用
+console.time和performance.now()
+1.console.time和console.timeEnd
+
+console.time和console.timeEnd是用来测试一段js代码执行时间的。比如：
+
+console.time('begin');
+//js代码
+...
+console.timeEnd('begin');
+
+本地测试结果如下，但是多尝试几次之后，发现其实每次执行的结果略微会有点误差，而且总体次数越多时间越快。
+ 原因：很多程序、进程、线程都由操作系统控制，会影响执行时间。
+
+2.performance.now()
+performance.now()更加专业，专门测试执行时间，直接
+t0 = performance.now();
+//执行代码
+console.log(performance.now()- t0);
+
+3.node测试代码执行时间
+process.hrtime();
+
+--》msToExpirationTime
+以10ms误差范围之内加上偏移量2不知道这样做的实际目的
+--》computeExpirationForFiber
+字面量理解计算fiber到期时间
+expirationContext，NoWork，isWorking，isCommitting，Sync，nextRenderExpirationTime这些不知道干嘛
+fiber.mode & AsyncMode不知道干嘛，关联isBatchingInteractiveUpdates，recalculateCurrentTime，computeInteractiveExpiration，computeAsyncExpiration
+最终 expirationTime = Sync;
+isBatchingInteractiveUpdates这个决定，lowestPendingInteractiveExpirationTime
+本身的注释这是一个交互式更新。 跟踪最低的挂起交互式到期时间。 这使我们能够同步冲洗，需要时所有交互式更新。
+--》updateContainerAtExpirationTime
+参数(element, container, parentComponent, currentTime, expirationTime, callback
+currentTime是刚才计算得来
+expirationTime=Sync，其他四个是之前的参数
+
+ReactFiberInstrumentation_1.debugTool//干嘛的
+然后满足alternate==null 调用onMountContainer、element==null调用onUnmountContainer、然后不满足前面onUpdateContainer被调用
+
+--》getContextForSubtree
+参数parentComponent
+如果parentComponent为null就返回emptyObject
+get得到fiber
+findCurrentUnmaskedContext得到parentContext
+ 最终根据isContextProvider(fiber)分别返回processChildContext(fiber, parentContext)和parentContext
+ 
+ 回到上一级
+ container.context就被赋值emptyObject
+  container.pendingContext赋值了parentContext
+  
+--》scheduleRootUpdate(current, element, currentTime, expirationTime, callback)
+
+涉及ReactDebugCurrentFiber
+didWarnAboutNestedUpdates
+得到一个var update = {
+      expirationTime: expirationTime,
+      partialState: { element: element },
+      callback: callback,
+      isReplace: false,
+      isForced: false,
+      capturedValue: null,
+      next: null
+    };
+    这样一个更新信息
+    
+    --》insertUpdateIntoFiber
+    这里涉及到很多fiber百度了一些
+    http://www.infoq.com/cn/articles/what-the-new-engine-of-react
+    这个是渲染优化
+    然后根据新旧 Virtual DOM 快速计算其差异，找出需要重绘或重排的元素，告诉浏览器。
+    尤其是遇到页面结构复杂，数据更新频繁的应用的时候，React 的表现不尽如人意。
+    可以确定的是复杂度为常数的 diff 算法还是很优秀的，主要问题出现在，React 的调度策略 -- 
+    Stack reconcile。这个策略像函数调用栈一样，会深度优先遍历所有的 Virtual DOM 节点，进行Diff
+    React 这样的调度策略对动画的支持也不好。如果 React 更新一次状态，占用浏览器主线程的时间超过 16.6 ms[1]，
+    就会被人眼发现前后两帧不连续，给用户呈现出动画卡顿的效果
+    线程靠系统调度，并且是抢占式多任务处理，Fiber 则是自调用，协作式多任务处理。
+    有动画或者视频达到 60 fps，人眼看起来才是流畅的，即平均 16.6 ms 就要完成整个页面的重渲染，否则就会让用户觉得卡顿。这里所指的动画，不是在页面播放一个视频或者动画，而是用 React 写动画。
+    
+    fiber是个调度系统，
+    --》ensureUpdateQueues
+    alternate:FiberNode {tag: 3, key: null, type: null, stateNode: {…}, return: null, …}
+    child:FiberNode {tag: 2, key: null, type: ƒ, stateNode: App, return: FiberNode, …}
+    effectTag:32
+    expirationTime:0
+    firstEffect:FiberNode {tag: 2, key: null, type: ƒ, stateNode: WithStyles, return: FiberNode, …}
+    index:0
+    key:null
+    lastEffect:FiberNode {tag: 2, key: null, type: ƒ, stateNode: App, return: FiberNode, …}
+    memoizedProps:null
+    memoizedState:{element: {…}}
+    mode:0
+    nextEffect:null
+    pendingProps:null
+    ref:null
+    return:null
+    sibling:null
+    stateNode:{current: FiberNode, containerInfo: div#app, pendingChildren: null, pendingCommitExpirationTime: 0, finishedWork: null, …}
+    tag:3
+    type:null
+    updateQueue:{baseState: {…}, expirationTime: 0, first: null, last: null, isInitialized: true, …}
+    _debugID:1
+    _debugIsCurrentlyTiming:false
+    _debugOwner:null
+    _debugSource:null
+
+fiber.updateQueue和 alternateFiber.updateQueue;不知道有啥区别
+
+然后他们有个last属性
+来控制是否将update-》insertUpdateIntoQueue q1，q2
+-->scheduleWork
+-->scheduleWorkImpl(fiber, expirationTime, isErrorRecovery)
+-->recordScheduleUpdate
+这个enableUserTimingAPI是干嘛用的呢
+isCommitting是干嘛用的
+涉及到hasScheduledUpdateInCurrentCommit
+当前的阶段判断
+    if (currentPhase !== null && currentPhase !== 'componentWillMount' && currentPhase !== 'componentWillReceiveProps') {
+      hasScheduledUpdateInCurrentPhase = true;
+    }
+    fiber.tag === ClassComponent
+    我记得这个tag是3，ClassComponent是2
+    NoWork是0表示时间长度
+    HostRoot是3，即tag是hostRoot
+    node['return'] === null这个判断有什么意义？
+    
+    node.stateNode
+    
+    containerInfo:div#app
+    context:{}
+    current:FiberNode {tag: 3, key: null, type: null, stateNode: {…}, return: null, …}
+    finishedWork:null
+    firstBatch:null
+    hydrate:false
+    nextScheduledRoot:null
+    pendingChildren:null
+    pendingCommitExpirationTime:0
+    pendingContext:null
+    remainingExpirationTime:0
+    
+    这个是root对象，如果nextRoot！=root,或者!isWorking || isCommitting 就会requestWork
+    
+    --》requestWork
+    --》addRootToSchedule
+    记录过期时间
+         root.remainingExpirationTime = expirationTime;
+         如果这个为null
+    firstScheduledRoot = lastScheduledRoot = root;
+    那么最后一个和最开始一个都是root
+    由此可见这个函数的作用就是给  firstScheduledRoot = lastScheduledRoot添加root
+    
+    isRendering这个是记录当前是否在渲染
+    isBatchingUpdates这个记录当前是否在更新
+    isUnbatchingUpdates这个和前面那个有啥区别
+    expirationTime === Sync如果这个是同步操作的话就调用
+performSyncWork否则就调用scheduleCallbackWithExpiration
+    --》performSyncWork--》
+  performWork(minExpirationTime, isAsync, dl)
+  minExpirationTime是Sync，isAsync：false，dl：null
+  dl是deadline
+  --》findHighestPriorityRoot
+  
+  highestPriorityWork=
+  highestPriorityRoot
+  nextFlushedExpirationTime
+  highestPriorityWork
+  nextFlushedRoot
+  enableUserTimingAPI
+      deadline = null;
+    deadlineDidExpire = false;
+    callbackID
+  -->finishRendering
+    nestedUpdateCount
+    completedBatches
+    hasUnhandledError
+    nestedUpdateCount如果大于NESTED_UPDATE_LIMIT1000个就会报错
+    
