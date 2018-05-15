@@ -1,0 +1,16 @@
+promise大家都知道他是干嘛的
+我们先下载源码文件
+本教程已q为教程来解析一下如何使用promise
+PromiseObj.then(resolveFn,rejectFn)
+resolve表示正确逻辑回调函数，reject表示错误逻辑回调函数
+Promise.all([]).then(resolveFn).catch(rejectFn)
+表示多个异步
+
+Promise.all()
+Promise.prototype.catch()
+Promise.prototype.finally()
+Promise.prototype.then()
+Promise.race()
+Promise.reject()
+Promise.resolve()
+new Promise(resolve,reject)
