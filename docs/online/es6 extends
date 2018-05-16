@@ -1,0 +1,5 @@
+https://segmentfault.com/a/1190000010407445
+
+2.解析extends和super()
+extends 是继承原型
+super()相当于call，继承构造函数初始化的属性
