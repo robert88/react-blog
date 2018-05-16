@@ -26,5 +26,72 @@ console.log('解释dom树耗时: ' + domReadyTime);
 console.log('load事件耗时: ' + loadEventTime);
 console.log('从开始至load总耗时: ' + loadTime);
 
+感觉上面的不是很准确，以下是修正
+var timing = performance.timing;
+var readyStart = timing.fetchStart - timing.navigationStart;
+var redirectTime = timing.redirectEnd  - timing.redirectStart;
+var appcacheTime = timing.domainLookupStart  - timing.fetchStart;
+var unloadEventTime = timing.unloadEventEnd - timing.unloadEventStart;
+var lookupDomainTime = timing.domainLookupEnd - timing.domainLookupStart;
+var connectTime = timing.connectEnd - timing.domainLookupEnd;
+var requestTime = timing.responseEnd - timing.connectEnd;
+var initDomTreeTime = timing.domInteractive - timing.responseEnd;
+var initContentLoad = timing.domInteractive - timing.navigationStart;
+var domReadyTime = timing.domComplete - timing.domInteractive; //过早获取时,domComplete有时会是0
+var whitePaper = timing.domComplete- timing.navigationStart;
+var loadEventTime = timing.loadEventEnd - timing.loadEventStart;
+var loadTime = timing.loadEventEnd - timing.navigationStart;//过早获取时,loadEventEnd有时会是0
+console.log('准备新页面时间耗时: ' + readyStart);
+console.log('redirect 重定向耗时: ' + redirectTime);
+console.log('Appcache 耗时: ' + appcacheTime);
+console.log('unload 前文档耗时: ' + unloadEventTime);
+console.log('DNS 查询耗时: ' + lookupDomainTime);
+console.log('TCP连接耗时: ' + connectTime);
+console.log('request请求耗时: ' + requestTime);
+console.log('请求完毕至DOM加载: ' + initDomTreeTime);
+console.log('解释dom树耗时: ' + domReadyTime);
+console.log('load事件耗时: ' + loadEventTime);
+
+console.log('contentLoad事件时间: ' + initContentLoad);
+console.log('用户空白时间: ' + whitePaper);
+console.log('从开始至load总耗时: ' + loadTime);
+
 
 loadTime是用户等待页面可用的时间（用户可用时间）
+
+
+关于navigationStart
+
+似乎只有Chrome 非常严格遵守了此草案。 即不把刷新页面，以及一个标签页输入地址到指定页面，视为发生文档的卸载。
+
+bugs:
+
+     1. IE9,当发生重定向时，.navigationStart 会是0。IE10 PP2 已修复此问题.
+
+     2. IE9-IE10 PP2，的一个问题是刷新当前页面，或在某个标签页输入地址为非相同页面时，会被视为存在前一个文档，也就是说,其navigationStart会早于fetchStart。(除非在当前页再次输入地址按回车。再次进入该页面，则被视为无前一个文档被卸载)。而实际上这时候navigationStart，是unloadEventEnd的时间。
+
+     3. Firefox7-Firefox10，一个新标签页也会被视为一个有效的文档。所以这时候,会有值，且不是fetchStart的值。
+     
+     当刷新页面时，实测chrome和ff和ie11表现一致，navigationStart会早于fetchStart，所以目前上面的说法可能是过时了
+     
+unloadEventStart在chrome66和ff33下表现比fetchStart还要晚，即unloadEventStart>fetchStart>navigationStart
+ie11表现fetchStart>unloadEventStart==navigationStart
+
+unloadEventStart是针对同源页面才有值，不同源页面这个值也有，但是当前文档获取不到为0，这个时间对于用户来讲是一直存在，如果直接打开浏览器，那么这个值才是真正意义上的0
+但是浏览打开的时间也是影响用户等待时间
+
+从这个redirectStart
+
+我们可以看到重定向的耗费时间长度。这里重定向是指的http重定向即code为307
+
+domainLookupEnd，和domainLookupStart大部分时候是和fetchStart一致，但是e.huawei.com每次查询有有0-20ms的时间间隔，目前没搞明白这个差别的原因
+
+tcp的连接时间基本都很短不会受到服务器带宽的影响
+
+请求时间受到本地宽带的影响比较大，服务器宽带，对比一下1m宽带和宽带10m对比发现服务器宽带影响比较小
+
+请求完毕至DOM加载这个时间受到服务器带宽和本地带宽影响比较大。
+
+解释dom树耗时取决于当前html内容的多少
+
+用户等待空白时间应该是
