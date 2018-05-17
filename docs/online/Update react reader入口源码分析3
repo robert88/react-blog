@@ -1,0 +1,37 @@
+发现如果按之前的读源码的方式，可能就真的看不懂了
+
+现在改变路线，以大的function来读源码
+
+--》ReactDOM.render入口函数
+第一个参数是jsx语法，先跳过这个
+element, container, callback
+element是虚拟dom
+container是实际的容器dom
+callback不知道干嘛的，后面来看
+
+--》legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
+legacyRenderSubtreeIntoContainer(parentComponent, children, container, forceHydrate, callback) 
+
+可以看到入口render调用这个函数parentComponent是为null的，forceHydrate为false，
+hydrate主要是用于给服务端渲染出的html结构进行“注水”，由于新版本中ssr出的dom节点不再带有data-react，为了能尽可能复用ssr的html内容
+
+--》unbatchedUpdates
+根据是否是调节器和渲染器里面来决定是否渲染
+
+当前是在渲染器所以就会执行以下
+--》root.render(children, callback);
+root是这样来的
+ root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
+  
+  这样就可以看到虚拟dom里面是有个渲染器的，其实root是reactRoot实例，reactRoot里面有个渲染器
+  
+--》ReactRoot.prototype.render = function (children, callback) reactRoot渲染器
+每个渲染器里面都会初始化一个调度器
+ var work = new ReactWork()
+ 
+ 如果有callback，那么它在then里面会被调用。应该是渲染完成之后会调用then函数
+ 
+ --》DOMRenderer.updateContainer(children, root, null, work._onCommit);
+   updateContainer: function (element, container, parentComponent, callback)
+   
+   这里也是从container里面取出container.current时个fiberNode属性，这个应该也是legacyCreateRootFromDOMContainer这里初始化的
