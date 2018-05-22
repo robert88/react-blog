@@ -21,7 +21,7 @@ hydrate主要是用于给服务端渲染出的html结构进行“注水”，由
 当前是在渲染器所以就会执行以下
 --》root.render(children, callback);
 root是这样来的
- root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
+ root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);这个函数请看《legacyCreateRootFromDOMContainer》
   
   这样就可以看到虚拟dom里面是有个渲染器的，其实root是reactRoot实例，reactRoot里面有个渲染器
   
@@ -35,3 +35,5 @@ root是这样来的
    updateContainer: function (element, container, parentComponent, callback)
    
    这里也是从container里面取出container.current时个fiberNode属性，这个应该也是legacyCreateRootFromDOMContainer这里初始化的
+   
+   --》updateContainerAtExpirationTime(element, container, parentComponent, currentTime, expirationTime, callback);
