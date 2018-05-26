@@ -35,5 +35,52 @@ root是这样来的
    updateContainer: function (element, container, parentComponent, callback)
    
    这里也是从container里面取出container.current时个fiberNode属性，这个应该也是legacyCreateRootFromDOMContainer这里初始化的
+   currentTime:是通过new Date或者performance.now来计算的，并且单位是10ms，偏移量20ms
+   expirationTime
+   参考阅读http://www.php.cn/js-tutorial-386254.html
+   https://www.colabug.com/1991096.html
    
+ /************************************************/
+export const NoWork = 0; // 没有任务等待处理
+export const Sync = 1; // 同步模式，立即处理任务
+export const Never = 2147483647; // Max int32: Math.pow(2, 31) - 1
+const UNIT_SIZE = 10; // 过期时间单元（ms）
+const MAGIC_NUMBER_OFFSET = 2; // 到期时间偏移量
+
+// 以ExpirationTime特定单位（1单位=10ms）表示的到期执行时间
+// 1 unit of expiration time represents 10ms.
+export function msToExpirationTime (ms) {
+  // 总是增加一个偏移量，在ms<10时与nowork模式进行区别
+  return ((ms / UNIT_SIZE) | 0) + MAGIC_NUMBER_OFFSET;
+}
+// 以毫秒表示的到期执行时间
+export function expirationTimeToMs(expirationTime: ExpirationTime) {
+  return (expirationTime - MAGIC_NUMBER_OFFSET) * UNIT_SIZE;
+}
+// 向上取整（整数单位到期执行时间）
+// precision范围精度：弥补任务执行时间误差
+function ceiling(num, precision) {
+  return (((num / precision) | 0) + 1) * precision;
+}
+
+// 计算处理误差时间在内的到期时间
+export function computeExpirationBucket(currentTime, expirationInMs, bucketSizeMs,) {
+  return ceiling(
+    currentTime + expirationInMs / UNIT_SIZE,
+    bucketSizeMs / UNIT_SIZE
+  );
+}   
+</10时与nowork模式进行区别
+/************************************************/
+
+过期时间有7种情况
+最开始render进来的话是sync同步渲染
+    
    --》updateContainerAtExpirationTime(element, container, parentComponent, currentTime, expirationTime, callback);
+   
+   这个更新
+   getContextForSubtree参数parentComponent，当为null的时候就为空对象，然后就更新container.context = context;
+ 
+ -->scheduleRootUpdate
+ 将类虚拟dom和过期时间组合成update
+ -->insertUpdateIntoFiber/scheduleWork
