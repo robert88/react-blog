@@ -84,3 +84,20 @@ export function computeExpirationBucket(currentTime, expirationInMs, bucketSizeM
  -->scheduleRootUpdate
  将类虚拟dom和过期时间组合成update
  -->insertUpdateIntoFiber/scheduleWork
+将update数据结构赋值给current.updateQueue
+
+-->scheduleWorkImpl
+ scheduleWorkImpl(fiber, expirationTime, isErrorRecovery)
+ isErrorRecovery是false值
+recordScheduleUpdate改变hasScheduledUpdateInCurrentCommit或者hasScheduledUpdateInCurrentPhase
+
+ ->performSyncWork
+ 如果expirationTime==sync
+ --》performWork(minExpirationTime, isAsync, dl)
+     deadline = dl;
+ findHighestPriorityRoot
+ 改变nextFlushedRoot、nextFlushedExpirationTime
+
+ --》performWorkOnRoot(root, expirationTime, isAsync)
+
+ isRendering=true
