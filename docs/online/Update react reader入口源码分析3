@@ -84,7 +84,23 @@ export function computeExpirationBucket(currentTime, expirationInMs, bucketSizeM
  -->scheduleRootUpdate
  将类虚拟dom和过期时间组合成update
  -->insertUpdateIntoFiber/scheduleWork
+ensureUpdateQueues/createUpdateQueue
+更新q1,q2当前
+  var queue = {
+    baseState: baseState,
+    expirationTime: NoWork,
+    first: null,
+    last: null,
+    callbackList: null,
+    hasForceUpdate: false,
+    isInitialized: false,
+    capturedValues: null
+  };
+  {
+    queue.isProcessing = false;
+  }
 将update数据结构赋值给current.updateQueue
+
 
 -->scheduleWorkImpl
  scheduleWorkImpl(fiber, expirationTime, isErrorRecovery)
@@ -101,3 +117,71 @@ recordScheduleUpdate改变hasScheduledUpdateInCurrentCommit或者hasScheduledUpd
  --》performWorkOnRoot(root, expirationTime, isAsync)
 
  isRendering=true
+ 
+ --》renderRoot
+ startWorkLoopTimer
+ isWorking= true
+ /*****
+ resetStack
+ 改变
+     nextRoot = null;
+    nextRenderExpirationTime = NoWork;
+    nextUnitOfWork = null;
+    isRootReadyForCommit = false;
+    ***/
+nextRoot = root;
+nextRenderExpirationTime = expirationTime;
+nextUnitOfWork = createWorkInProgress(nextRoot.current, null, nextRenderExpirationTime);
+/**
+current.alternate;
+**/
+ root.pendingCommitExpirationTime
+ /**
+  startWorkLoopTimer
+    currentFiber = nextUnitOfWork;
+    commitCountInCurrentWorkLoop = 0;
+**/
+--> workLoop(isAsync)
+循环while (nextUnitOfWork !== null) {
+-->performUnitOfWork
+/**
+startWorkTimer
+enableUserTimingAPI
+supportsUserTiming
+currentFiber
+fiber._debugIsCurrentlyTiming = true;
+**/
+/**
+replayFailedUnitOfWorkWithInvokeGuardedCallback
+ stashedWorkInProgressProperties = assignFiberPropertiesInDEV(stashedWorkInProgressProperties, workInProgress);
+**/
+-->beginWork(current, workInProgress, nextRenderExpirationTime);
+如果时间过期或者优先级为no-work
+bailoutOnLowPriority(current, workInProgress);
+根据workInProgress.tag来区分不同的渲染
+ClassComponent这个类型对应updateClassComponent
+
+--》updateClassComponent(current, workInProgress, renderExpirationTime);
+/**
+pushLegacyContextProvider
+isContextProvider
+previousContext
+**/
+/**
+-->resumeMountClassInstance
+resetInputPointers
+getUnmaskedContext
+callComponentWillReceiveProps
+processUpdateQueue
+callGetDerivedStateFromCatch
+checkShouldComponentUpdate
+startPhaseTimer
+涉及到实例的调用
+UNSAFE_componentWillMount、componentWillMount
+**/
+ --》finishClassComponent(current, workInProgress, shouldUpdate, hasContext, didCaptureError, renderExpirationTime);
+ /*
+ markRef 
+ workInProgress.effectTag 
+ */
+ 
