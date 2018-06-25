@@ -7,3 +7,7 @@ https://www.cnblogs.com/wangning528/p/6388464.html
 https://www.cnblogs.com/maybe2030/p/4781555.html#_label0
 
 
+node package.json 参数
+
+　main：main字段配置一个文件名指向模块的入口程序。如果你包的名字叫foo，然后用户require("foo")，main配置的模块的exports对象会被返回
+
