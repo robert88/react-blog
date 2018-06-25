@@ -1,0 +1,1 @@
+duplex是继承了readable和writeable两个类 的一个接口
