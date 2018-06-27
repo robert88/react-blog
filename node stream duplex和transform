@@ -1,1 +1,34 @@
 duplex是继承了readable和writeable两个类 的一个接口
+
+其中包括四类流， Readable 流、Writable 流、Duplex 流和Transform 流的基类。
+https://www.cnblogs.com/KevinSong/p/3794236.html
+　  1. Node.js官方API文档
+
+　　　http://www.nodejs.org/api/stream.html
+
+　  2. 官方API文档中文版
+
+　　　http://nodeapi.ucdok.com/#/api/stream.html
+
+　  3. Node 中的流（Stream）
+
+　　   http://blog.segmentfault.com/xingrz/1190000000357044
+
+　  4. Node Streams: How do they work?
+
+　　　http://maxogden.com/node-streams.html
+   
+   可读流的实例
+http responses,on the client
+http requests, on the server
+fs read stream
+zlib streams
+crypto streams
+TCP sockets
+child process stdout and stderr
+process.stdin
+
+
+transform流处理数据主要在_transform这个私有方法中
+
+zlib.createGunzip是一个transform流，通过pipe我们可以很方便解压gzip
