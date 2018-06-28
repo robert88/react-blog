@@ -1,0 +1,42 @@
+https://www.cnblogs.com/Joans/p/4462993.html
+　与当前进程交互
+
+　　node提供了一些process的属性，如下：
+
+process.version：包含当前node实例的版本号；
+
+process.installPrefix：包含安装路径；
+
+process.platform：列举node运行的操作系统的环境，只会显示内核相关的信息，如：linux2， darwin，而不是“Redhat ES3” ，“Windows 7”，“OSX 10.7”等；
+
+process.uptime()：包含当前进程运行的时长（秒）；
+
+process.getgid(), process.setgid()：获取或者设置group id；
+
+process.getuid(), process.setuid()：获取或者设计user id；
+
+process.pid：获取进程id；
+
+process.title：设置进程名称；
+
+process.execPath：当前node进程的执行路径，如：/usr/local/bin/node；
+
+process.cwd()：当前工作目录；
+
+process.memoryUsage()：node进程内存的使用情况，rss代表ram的使用情况，vsize代表总内存的使用大小，包括ram和swap；
+
+process.heapTotal,process.heapUsed：分别代表v8引擎内存分配和正在使用的大小。
+
+ 
+ child_process模块给予node任意创建子进程的能力，node官方文档对于child_proces模块给出了四种方法，映射到操作系统其实都是创建子进程。但对于开发者而已，这几种方法的api有点不同
+
+child_process.exec(command[, options][, callback]) 启动 
+子进程来执行shell命令,可以通过回调参数来获取脚本shell执行结果
+child_process.execfile(file[, args][, options][, callback]) 
+与exec类型不同的是，它执行的不是shell命令而是一个可执行文件
+child_process.spawn(command[, args][, options])仅仅执行一个shell命令，不需要获取执行结果
+child_process.fork(modulePath[, args][, options])可以用node 
+执行的.js文件，也不需要获取执行结果。fork出来的子进程一定是node进程
+exec()与execfile()在创建的时候可以指定timeout属性设置超时时间，一旦超时会被杀死 
+如果使用execfile()执行可执行文件，那么头部一定是#!/usr/bin/env node
+
