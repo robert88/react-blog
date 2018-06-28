@@ -40,3 +40,5 @@ child_process.fork(modulePath[, args][, options])可以用node
 exec()与execfile()在创建的时候可以指定timeout属性设置超时时间，一旦超时会被杀死 
 如果使用execfile()执行可执行文件，那么头部一定是#!/usr/bin/env node
 
+
+child_process.exec在执行有些命令的时候是不会终止，需要加定时器，使用shell方式执行批处理时，中文路径乱码
