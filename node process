@@ -45,3 +45,21 @@ child_process.exec在执行有些命令的时候是不会终止，需要加定�
 cmd中的编码方式为ANSI，若中文不是此编码方式则会出现乱码。所以我们在编码的时候选择“ANSI”
 
 在简体中文Windows操作系统中，ANSI 编码代表 GBK 编码；在英文Windows操作系统中，ANSI 编码代表 ASCII编码；在繁体中文Windows操作系统中，ANSI编码代表Big5；在日文Windows操作系统中，ANSI 编码代表 Shift_JIS 编码。
+Buffer.isEncoding = function(encoding) {
+  switch ((encoding + '').toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+    case 'raw':
+      return true;
+    default:
+      return false;
+  }
+};
