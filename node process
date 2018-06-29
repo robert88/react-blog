@@ -64,3 +64,8 @@ Buffer.isEncoding = function(encoding) {
   }
 };
 https://www.cnblogs.com/accumulater/p/7110811.html
+
+目前nodejs不支持gbk的编码，需要第三方类库http://download.csdn.net/detail/xlyrh/9729570
+命令
+iconv -f UTF-8 -t GBK tempPack1.bat > tempPack2.bat
+
