@@ -63,3 +63,4 @@ Buffer.isEncoding = function(encoding) {
       return false;
   }
 };
+https://www.cnblogs.com/accumulater/p/7110811.html
