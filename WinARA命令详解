@@ -1,0 +1,78 @@
+WinARA主要是window下的一个压缩和解压缩工具。nodejs通过命令行可以轻松的使用到这个工具进行压缩和解压缩
+
+需要用到执行函数WinARA.exe，命令行cmd.exe、还有iconv.exe
+
+iconv.exe主要用于转码，cmd执行文件时编码方式是GBK,需要通过这个工具进行转码。
+
+接下来主要说一下WinARA
+一、压缩 (a f m u)
+1、打包info.txt到html.rar
+WinRAR a help info.txt
+WinRAR a help.rar info.txt
+WinRAR a -y help.rar info.txt 不需要用户确认
+
+2、默认将help文件夹所有文件打包到当前文件名,不包括子文件夹
+WinRAR a help //更新添加
+WinRAR a -- help  
+WinRAR u help //更新添加
+WinRAR f help //只更新不添加
+
+WinRAR a -r help//默认将help文件夹所有文件打包到当前文件名,包括子文件夹
+
+3、打包文件夹
+WinRAR a help doc 将当前子文件夹doc打包
+WinRAR a help  ../doc 将上一级文件夹doc打包
+WinRAR a help  ../doc/* 只压缩doc文件夹的文件，不压缩子文件
+WinRAR a help  ../doc/ 只压缩doc文件夹的文件，不压缩子文件
+
+4、按400kb分卷打包
+WinRAR a help -v400
+
+5、压缩之后删除文件
+WinRAR m help
+
+二、添加注释，方便查询
+WinRAR c -zinfo.txt help //-z表示读取info.txt内容到dumy.rar文件里，是覆盖方式
+WinRAR cw help info.txt// 存储压缩文件 arc 的注释到 ASCII 文件 comment.txt 
+WinRAR cw -scuc help info.txt//存储压缩文件 arc 的注释到Unicode文件 unicode.txt 
+
+-scuc是参数-sc
+U Unicode //Unicode 格式的文件必须以 FFFE 或 FEFF Unicode 字符开头, 否则 RAR 会忽略此参数并作为 ASCII 文本处理。
+A 本机单字节编码，ANSI 用于 Windows 
+O OEM (DOS) 编码 
+[G]参数生成的日志文件 
+[L] 列表文件
+[C] 注释文件 
+
+
+三、改变文件时间戳
+
+WinRAR ch -tl help.rar 获取压缩文件中最新的时间赋值给压缩包
+
+四、改变参数
+WinRAR cv -y help 使用默认参数，将之前的参数清除掉
+默认的参数有：压缩方式：标准，字典大小：4096kb，更新方式：添加并替换文件， 存储文件时间：高精度修改时间
+，文件处理：任意时间，压缩文件时间：当前系统时间
+
+五、删除和改文件名
+
+WinRAR d help info.txt//从help中删除info.txt
+WinRAR rn help readme.txt readme.bak info.txt info.bak //将压缩包readme.txt改为readme.bak ，info.txt改为info.bak
+
+六、解压
+WinRAR e help//只解压所有文件到当前目录，目录不解压
+WinRAR e help *.txt //只解压所有txt文件到当前目录，目录不解压
+WinRAR x help//压所有文件到当前目录，包括目录
+
+七、压缩文件中查询字符
+i - 不区分大小写查找( 默认);
+c - 区分大小写查找;
+h - 十六进制查找;
+WinRAR ii=search -r help 查找search不区分大小写
+WinRAR ih=f0e0aeaeab2d83e3a9 -r help //在 help压缩文件中查找十六进制字符串 f0 e0 ae ae ab 2d 83 e3 a9 。不区分大小写
+-r表示查找连同子类
+
+八、修复压缩文件
+WinRAR r help.rar c:\fixed\ 把修复的文件存放在c:\fixed\rebuilt.help.rar里面
+
+
