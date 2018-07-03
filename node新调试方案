@@ -13,3 +13,4 @@ ps: 如果我描述得你不懂。。你就看我给你发的视频。。v8 team
 
 
 chrome://inspect/
+chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=127.0.0.1:9229/dc9010dd-f8b8-4ac5-a510-c1a114ec7d29
