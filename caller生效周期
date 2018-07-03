@@ -1,0 +1,21 @@
+function a(){
+b();
+}
+function b(){
+console.log(b.caller)
+c(t);
+}
+function t(){
+console.log(b.caller)
+}
+function c(t){
+console.log(b.caller)
+setTimeout(function(){t()},1000)
+}
+a();
+
+[Function: a]
+[Function: a]
+null
+
+在一个线程里面b的caller一直是存在的
