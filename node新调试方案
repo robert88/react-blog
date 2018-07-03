@@ -10,3 +10,6 @@ node --inspect-brk ./server.js   //这个会在进入node后代码第一行，�
 然后打开浏览器的devtool，你会看到切换设备按钮旁边的node图标亮了，点！
 
 ps: 如果我描述得你不懂。。你就看我给你发的视频。。v8 team专人演示指导。。
+
+
+chrome://inspect/
