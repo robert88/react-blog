@@ -1,0 +1,12 @@
+https://youtu.be/dbCcVzt9C1c
+
+其实就是新版node+新版chrome，像调浏览器端代码一样调node代码
+
+node --inspect ./server.js
+or
+node --inspect-brk ./server.js   //这个会在进入node后代码第一行，以断点调试模式停住
+1514021365044.jpg
+
+然后打开浏览器的devtool，你会看到切换设备按钮旁边的node图标亮了，点！
+
+ps: 如果我描述得你不懂。。你就看我给你发的视频。。v8 team专人演示指导。。
