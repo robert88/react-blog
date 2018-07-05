@@ -1,0 +1,25 @@
+一、es5:React.createClass
+propTypes、getDefaultProps、getInitialState、handleClick、render
+
+二、es6:extends React.Component
+shouldComponentUpdate、render、propTypes、defaultProps、handleClick
+
+三、extends React.PureComponet
+只是对props和state进行浅比较
+
+四、Stateless Functional Component
+当组件本身只是用来展示，所有数据都是通过props传入的时候
+
+
+createClass vs Component
+对于React.createClass 和 extends React.Component本质上都是用来创建组件，他们之间并没有绝对的好坏之分，只不过一个是ES5的语法，一个是ES6的语法支持，只不过createClass支持定义PureRenderMixin,这种写法官方已经不再推荐，而是建议使用PureComponent。
+
+pureComponent vs Component
+通过上面对PureComponent和Component的介绍，你应该已经了解了二者的区别:PureComponent已经定义好了shouldUpdateComponent而Component需要显示定义。
+
+Component vs Stateless Functional component
+Component包含内部state，而Stateless Functional Component所有数据都来自props，没有内部state;
+
+Component 包含的一些生命周期函数，Stateless Functional Component都没有，因为Stateless Functional component没有shouldComponentUpdate,所以也无法控制组件的渲染，也即是说只要是收到新的props，Stateless Functional Component就会重新渲染。
+
+Stateless Functional Component 不支持Refs
