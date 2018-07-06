@@ -1,0 +1,27 @@
+uri 统一地址标识符，注意标识
+url 统一地址定位符 注意定位
+url.parse
+url.format
+url.resolve
+
+parse
+protocol
+slashes
+auth
+host
+hostname
+port
+hash
+search
+pathname
+path
+href
+query
+
+format是将对象还原成字符串
+和parse相反
+
+parse（url，true）
+query就会变成对象
+parse（"//imooc.com/course",true,true）
+这样可以正确解析host post path pathname
