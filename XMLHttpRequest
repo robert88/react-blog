@@ -13,7 +13,8 @@ text
 blob ie10+ Firefox、Chrome、Safari 以及 Opera）支持
 Filereader  ie10+ Firefox、Chrome、Safari 以及 Opera）支持
 formData ie10+ Firefox、Chrome、Safari 以及 Opera）支持
-audio ie9以上
+audio ie9+ Firefox、Chrome、Safari 以及 Opera）支持
+a标签的download属性： ie不支持，edeg、 Firefox、Chrome、Safari 以及 Opera支持，跨域Firefox不支持
 
 https://blog.csdn.net/ldb987/article/details/79100366
 
@@ -186,3 +187,46 @@ var AJAXSubmit = (function () {
   };
 
 })();
+
+下载bolg
+
+saveFile({
+      payload: {blob, fileName = 'abcdefg.xls'},
+    }, { call }) {
+        if (window.navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, fileName);
+        } else {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+ 
+            //此写法兼容可火狐浏览器
+            document.body.appendChild(link);
+ 
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", false, false);
+            link.dispatchEvent(evt);
+ 
+            document.body.removeChild(link);
+        }
+        
+        下载音频
+        
+            function parseAudioUrl(){
+        var oReq = new XMLHttpRequest();
+        oReq.responseType = "arraybuffer";
+        oReq.open("POST", "http://bi.huawei.com/nlp/docAnalyze/2tts");
+        oReq.onload = function(oEvent) {
+            var blob = new Blob([oReq.response], {type: "audio/mpeg"});
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onload = function(e) {
+                initAudio(reader.result)
+            }
+            downloadAudio(blob,"demo.mp3")
+        };
+        var form = new FormData();
+        form.append('text', '了提升资源的利用率，云架构下资源是共享的，而非独占，这与传统IT完全不同。云计算通过自动的弹性伸缩策略来实现资源共享与用户体验及业务可用性之间的平衡，这是云计算的核心优势之一。但这也带来了运维的新需求和新挑战，即运维人员往往并不知道业务系统具体运行在哪个硬件上，故障定位变得非常困难，解决这种不可知性要求运维系统要做到“更加全面的系统监控”，从而实现“可知性”');
+        oReq.send(form);
+    }
+
