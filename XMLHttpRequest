@@ -40,6 +40,7 @@ oReq.onload = function(e) {
 }
 oReq.open("GET", url);
 oReq.responseType = "arraybuffer";
+open must be placed before xhr.responseType in code 不然ie和火狐会出错
 
 post请求带参数需要：
       var form = new FormData();
