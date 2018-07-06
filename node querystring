@@ -1,0 +1,11 @@
+querystring的方法
+stringify({name:"ssf",course:"as"})
+name=ssf&course=as
+stringify({name:"ssf",course:"as"},",")
+name=ssf,course=as
+stringify({name:"ssf",course:"as"},",",":")
+name:ssf,course:as
+
+parse方法和stringify是相反的
+
+escape、unescape转义和反转义
