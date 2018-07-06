@@ -1,0 +1,23 @@
+升级到最新的mac系统
+xcode运行
+升级xcode
+xcode是集成开发环境
+xcode-selelct -p //检查xcode-selelct xc安装成功之后是一个路径
+xcode-select --install
+
+xcode-select 会自动安装python
+
+brew.sh官网
+复制 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew mac是类似cetos下的yum一样
+
+brew install node
+
+n是node版本的切换
+node install -g n
+
+n 0.10.22
+安装nodejs 的0.10.22
+n
+选择nodejs版本
