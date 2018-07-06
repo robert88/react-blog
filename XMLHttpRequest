@@ -10,6 +10,11 @@ jsonp
 text
 所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。
 
+blob ie10+ Firefox、Chrome、Safari 以及 Opera）支持
+Filereader  ie10+ Firefox、Chrome、Safari 以及 Opera）支持
+formData ie10+ Firefox、Chrome、Safari 以及 Opera）支持
+audio ie9以上
+
 https://blog.csdn.net/ldb987/article/details/79100366
 
 一、建立xmlHttpRequest对象
