@@ -1,0 +1,38 @@
+gcc 4.2+
+g++ 4.2+
+python2.6或者2.7
+gun make 3.8.1
+libexecinfo FreeBSD
+使用cetos操作系统
+查看系统版本
+cat /etc/redhat-release
+检查gcc的安装情况
+rpm -q gcc rpm -q gcc-c++
+安装gcc
+yum -y install gcc gcc-c++ kennel-devel
+BSD 
+
+enter_imooc
+python -V
+
+发行版的包工具
+debian ubuntu apt-get
+redhat/centos yum
+mac xcode
+
+freeBSD
+pkg_add -r liexecinfo
+
+需要通过源码编译的方式安装node
+
+cd /usr/src
+wget https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
+tar -xf node-v0.10.34.tar.gz
+ls
+cd node-v0.10.34
+
+设置配置
+.config
+make
+sudo make install
+node -v
