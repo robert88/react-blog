@@ -24,6 +24,7 @@ xmlhttp = new XMLHttpRequest()
 xmlHttp.onreadystatechange= callback;  
 三、与服务器建立连接
 xmlHttp.open("get",url,async)用于初始化HTTP请求参数，但并不发送（send）；初始化method：get、post、head、...;url，async：取值为true或者false。指定了请求模式是同步（false）还是异步（true）。
+async如果没有传递,即arguments.length<3
 xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded") //初始化http请求头
 四、向服务器端发送数据 
 如果是get方式，代码如下：
