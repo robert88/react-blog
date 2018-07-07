@@ -153,9 +153,25 @@ total
 
 http爬虫
 http.get
+http.request(options[,callback])
 
 cheerio = requie("cheerio")
 $ = cheerio.load("html")
+
+host\
+path
+hostname
+\headers\port\auth
+localAddress agent
+socketPath KeepAlive
+method keepAliveMsecs
+headers
+content-length必须写，服务器会校验这个长度
+request
+request.on("data") //buffer
+request.on("end")
+这个写到外面
+request.on("error")
 
 
 
