@@ -173,7 +173,8 @@ request.on("end")
 这个写到外面
 request.on("error")
 
-
+前端ajax请求会在头部多一个属性
+X-Requested-With前端在不跨越的情况下设置setRequestHeader
 
 
 
