@@ -1,0 +1,167 @@
+http
+
+协议
+通讯
+http客户端发送一个请求
+创建一个端口
+http服务器监听端口向客户端发送给返回状态和内容
+1、chrome搜索自身 dns缓存
+chrome://net-internals/#nds
+2、搜索操作系统自身的dns缓存
+3、读取host文件
+4、发起dns请求
+4.1宽带运营服务器本身的缓存
+4.2迭代dns解析请求
+最终浏览器拿到ip
+5、发起三次握手
+
+tcp连接请求
+经过路由-防火墙
+ack
+ask
+6、tcp/ip建立就发送http
+7、服务器接受到请求、url处理结果之后把完整的html代码返回浏览器
+8、浏览器拿到html、解析渲染，css、js发送相同的http请求
+
+请求和响应
+http头
+附加信息，内容类型
+服务器发送响应日期，http状态
+
+
+timing分析
+stalled表示资源释放的等待时间
+proxy negotiation
+request sent 请求时间
+waiting 请求时间到服务器响应的时间
+contnet download 下载时间
+
+headers分析
+remote address 域名解析之后的地址
+request header请求头
+request method
+get\post\put\delete\head\trace\options\
+response code 
+200
+400
+401
+403
+404
+500//发生未知错误
+503//不能处理当前这个错误
+
+什么是回调
+什么是同步/异步
+什么是i/0
+什么是单线程和多线程
+什么是事件
+什么是事件驱动
+什么是事件循环
+
+
+什么是作用域
+什么是上下文
+源码分析：
+http是如何初始化response和request
+
+http是在什么时候触发监听函数
+
+
+github node
+选择分支
+ctlr+enter
+https.js
+
+
+createServer->new Server
+
+require("_http_server")
+
+
+this.addListener("request",requestListener)
+
+找到emit("request"
+
+
+parseInComming
+
+res = new ServerResponse(req)
+
+util.inherits(ServerResponse,OutgoingMessage)
+
+require("_http_outgoing")
+
+util.inherits(OutgoingMessage,stream)
+
+在哪调用parseInComming
+
+parse.inComming = parseInComming
+
+common.parse
+
+require("_http_common")
+
+parser.inComing = new IncomingMessage(parser.socket)
+
+express都是对这些底层进行了扩展
+
+this.addListener("connection",connectionListener)
+
+require("net.js")
+
+set.emit("connection")
+self._handler.onconnection
+
+_listen2
+
+listen
+
+Server.prototype.listen
+
+总结
+事件驱动
+connetction-》request
+性能测试
+apache ab
+
+ab -n1000 -c10 http://localhost:2015/
+
+请求是1000，并发10
+
+server 
+document path
+document length
+concurrentcy level 10 并发10
+time taken for tests请求总的时间
+
+commplete request
+failed request
+total transfered 总的数据
+html transferred html的总的数据量
+requests per second 每秒的吞吐量
+time per request 总的平均时间
+time per request 个个部分的实际平均时间
+transfer rate 宽带速度
+
+connect
+processing
+waiting
+total
+
+总体分布统计
+
+
+http爬虫
+http.get
+
+cheerio = requie("cheerio")
+$ = cheerio.load("html")
+
+
+
+
+
+
+
+
+ 
