@@ -1,0 +1,11 @@
+event.emit
+require("events").EventEmitter
+life = new EventEmitter()
+life.on监听可以监听10次 10上会跑警告
+life.setMaxListeners(11)
+life.emit触发,返回值表示是否监听过，true表示监听过
+life.removeListener(eventname)
+life.removeAllListerner()//删除全部
+life.removeListener(eventname,handler),handler必须相同指向
+life.listeners(eventname).length//监听函数的个数
+EventEmiter.listnerCount(life,eventName)
