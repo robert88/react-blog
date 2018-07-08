@@ -232,3 +232,10 @@ saveFile({
         oReq.send(form);
     }
 
+参数的传递：
+问题：Chrome请求出现"Provisional headers are shown"：
+1、处理方式： 检查该请求触发的页面，查看是否有 表单提交 和 ajax请求同时触发的情况，
+例如：定义了一个按钮，type是submit，另外又给该按钮定义了一个ajax事件；
+
+2、处理方式：调用chrome的  chrome://net-internals/#events ，然后重新触发一下请求，然后查看出现 Provisional headers are shown 的请求的日志；
+查看是否存在 delegate_blocked_by 的关键字；这种一般是由于浏览器端的插件或客户端的软件对请求进行了拦截；我们出现的情况，是被 websense endpoint拦截；
