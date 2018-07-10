@@ -1,0 +1,26 @@
+sass是一款成熟的css扩展语言，可以使用编程模式使用用css
+
+基于ruby 下载地址：https://rubyinstaller.org/downloads/
+安装
+gem install sass
+sass -v
+编译
+sass input.sass:out.css
+监视inputDir文件夹的变化
+sass --watch inputDir:outDir
+
+使用方式：
+nested 嵌套(默认)
+compact 紧凑(变成一行)
+expanded 扩展(通用写法)
+compressed 压缩(全部一行)
+
+sass input.sass:out.css --style compact
+
+sassy sass写法 .scss
+1、区别
+注释scss是闭环且单行
+2、@import “需要引号”
+3、@mixin
+4、@include 
+5、分号和大括号
