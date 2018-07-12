@@ -1,0 +1,6 @@
+https://www.cnblogs.com/blqw/p/3782420.html
+
+audio音频解码方案
+
+html5的音频播放，playBackRate这个属性兼容性：
+ie下新的audio在play之前需要设置playBackRate，否则会有设置延时操作；
