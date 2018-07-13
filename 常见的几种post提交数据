@@ -1,0 +1,13 @@
+1、浏览器的原生 form 表单，如果不设置 enctype 属性以 application/x-www-form-urlencoded 方式提交数据
+POST http://www.example.com HTTP/1.1 
+Content-Type: application/x-www-form-urlencoded;charset=utf-8 
+
+表单上传文件时，必须让 form 的 enctyped 等于这个值multipart/form-data 
+POST http://www.example.com HTTP/1.1 
+Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA 
+消息主体里按照字段个数又分为多个结构类似的部分，每部分都是以 --boundary 开始，紧接着内容描述信息，然后是回车，最后是字段具体内容（文本或二进制）。
+如果传输的是文件，还要包含文件名和文件类型信息。消息主体最后以 --boundary-- 标示结束。
+
+2、ajax 
+application/json 这个 Content-Type 作为响应头
+x-www-form-urlencoded 
