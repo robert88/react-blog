@@ -1,0 +1,129 @@
+1、特性
+虚拟dom
+mvc专注于v
+组件化
+
+https://github.com/enaqx/awesome-react
+
+es2015-es6
+es2013 -es5
+
+npm.taobao.org
+
+imooc.com/aricle/17442
+
+npm init
+
+https://facebook.github.io/react/docs/package-management.html
+npm install --save react react-dom babelify babel-preset-react babel-preset-es2015
+
+npm install webpack -g
+npm install webpack-dev-server -g
+
+热部署
+webpack --watch
+实时更新
+webpack-dev-server
+
+webpack-dev-server --contentbase src --inline --hot
+
+https://facebook.github.io/react-devtools
+chorme插件
+react develop toos
+
+mac atom工具
+atom-tenjs
+atom-beautify、atom-in-browser
+emmet
+atom file-icons
+highlight-selected
+
+为啥快
+虚拟dom
+
+开源是算法
+http://github.com/matt-esch/virtual-dom
+简单例子
+http://requirebin.com/?gist=5492847b9a9025e64bab
+官方解释
+https://facebook.github.io/react/docs/glossary.html
+
+组件
+组件的return必须是html
+组件必须输出export
+入口必须要有dom
+
+组件嵌套
+<div>
+<component1 />
+<component2 />
+</div>
+
+jsx
+{变量名}不能用引号包裹
+{/**/}
+解析html，或者uncoded转码
+dangerouslySetInnerHTML = {{_html:html}}  //xss攻击
+
+react 生命周期
+1、component instantiated -> getDefaultProps ->getInitalState ->render -> componentWillMount -> componentDidMount
+2、->render -> componentWillUpdate -> componentDidUpdate
+
+3、propschange ->componentRecieveProps ->shouldComponentUpdate ->render -> componentWillUpdate -> componentDidUpdate
+4、setState -> ->shouldComponentUpdate ->render -> componentWillUpdate -> componentDidUpdate
+5、component delete -> componentWillUnmount
+
+
+state属性 dom自身的属性
+只属于当前的类不污染其他模块
+props属性 对象的属性，即表示组件的自身定义的属性
+可以认为是组件传递参数
+传递
+<component username="sdf">
+接收
+this.props.username
+
+事件和双向数据绑定
+绑定事件，调用当前类的方法
+<component onclick=this.func.bind(this)>
+绑定事件，调用父类函数的方法
+<component onchane={this.props.changeParentFunc}>
+<parentComponent changeParentFunc=this.func.bind(this)>
+
+可复用的组件
+//类型校验
+class.propTypes={
+ username:React.PropTypes.number.isRequired
+}
+//默认参数
+class.defaultProps={
+username:"robert"
+}
+可以传递父类全部参数
+<component {...this.props}>
+
+组件的refs
+如何在class里面操作dom
+一、
+Reatdom.findDOMNode(getElementById("ss")).style.color="red";
+
+<component rels="component1">
+//获取
+this.rels.component1.style.color
+不要对render之前调用
+
+独立组件之间共享mixins
+不同组件之间公用代码
+es6:react-mixin@2
+
+reactMixin(component.prototype,commonComponent);
+
+视频当中是使用变量去引用func那么不用reactMixin也可以用呀？区别在哪？
+
+react内联样式
+style={
+color:"#fff"，
+fontSize:"12px"}
+<component style=style>
+class ==classname代替
+wei'lei
