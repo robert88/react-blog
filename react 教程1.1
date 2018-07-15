@@ -129,3 +129,28 @@ class ==classname代替
 
 npm install
 这个命令会将package.json里面依赖重新安装一遍
+
+style-loader
+css-loader
+babel-plugin-react-html-attrs
+
+可以将html class不需要用className来代替
+
+css的模块化
+module:{
+loaders:[
+{
+ test:/\.js?$/,
+ exclude:"/moudle/",
+ loader:"babel-loader",
+ query:{
+  presets:["reat","es2015"],
+  plugins:["react-html-attrs"]
+ }
+},
+{
+test:/\.css?$/,
+loader:style!css-loader?module&importLoaders=1&localIndentName=[name]_[local]_[hash:base64:5]
+}
+]
+}
