@@ -154,3 +154,33 @@ loader:style!css-loader?module&importLoaders=1&localIndentName=[name]_[local]_[h
 }
 ]
 }
+
+使用css框架的化就是不需要这样写
+{
+test:/\.css?$/,
+loader:style!css-loader
+}
+
+使用
+var t = require("a.css");
+<component class= t.className>
+
+:global(.className)表示全局
+
+staxmanade.com/CssToReact
+
+
+reactRouter
+
+import {Router,Route,hashHistory}
+
+<Router history={hashHistory}>
+<Route component={Index} path="/">
+<Route component={List} path="/list">
+</Router>
+
+material-ui
+
+ant design
+
+npm instal antd
