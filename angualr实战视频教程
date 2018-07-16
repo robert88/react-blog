@@ -120,4 +120,4 @@ ngAnimate
 
 如何通过页面上html来找到controller和fillter
 
-
+angular.element(document.getElementsByClassName("navbar-menu-item-user")[0]).scope()
