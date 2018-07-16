@@ -1,0 +1,123 @@
+angular1.3 不兼容ie8、
+四大核心特性
+1、mvc
+2、模块化
+3、双向数据绑定
+4、指令系统
+
+为啥23种设计模型没有mvc？
+ng-controller
+angular.module来创建模块
+controller(controllerName,[controllerYilai],function($scrop){})
+
+一切都是从模块出来的
+
+directive创建模板标签
+<hello></hello>
+
+ng-model
+实现双向数据绑定
+
+protractor自动测试 webDriver
+
+bower、sublime、webstorm
+
+chrome插件
+anguarjs batarang
+
+npm install grunt
+
+grunt-contrib-uglify
+grunt-contrib-qunit
+grunt-contrib-concat
+grunt-contrib-watch
+grunt-contrib-jslint
+
+bower
+
+nodejs http-server
+
+官方项目
+angular-phonecat
+karma
+单元测试
+karma start
+
+mvc的概念
+mvc是什么
+前端mvc的困难
+mvc是手段、目的是模块化和复用
+前端越来越复杂
+
+controller的实现
+
+控制器和视图是实现双向交互
+控制器和模型是实现双向交互
+控制器和控制多个视图
+如果两个视图不应该在一个控制器来交互
+如何控制共同的控制呢
+使用service
+使用ng-controller
+使用嵌套可以复用公共控制器，不推荐这样用
+控制器不要去操作dom、不要做数据过滤、数据格式化、不要相互调用
+
+
+如何复用view
+derictive 全部借助$scrope
+
+ng-repeat迭代数组
+
+$scrope属性会冒泡调用
+
+事件
+
+ng-click={$emit()} 想外传播
+ng-click={$broadcast()} 向内传播
+
+$aplly\$watch
+$scope是个树结构
+$scope是个作用域
+$scope是pojo JavaScript对象
+$scope是可以继承父类的属性和方法
+$scope是传播事件
+$scope只有一个ng-app
+
+angular.element($0).scope()来调试
+
+angular的生命周期
+creation
+watcher registration
+model mutation
+mutation observation
+scope destruction
+
+路由、模块、依赖
+ngRoute
+ng-view
+
+$routeProvider
+
+
+angular项目组成模式
+config->route
+filter
+directive
+factory->service->provider->value
+controller
+
+
+没有实现amd异步加载模块
+需要结合
+requirejs
+
+双向数据绑定
+ng-bind \ng-class 、 ng-show ng-hide
+
+ng-bind可以将表达式隐藏
+
+ngAnimate
+
+
+如何通过页面上html来找到controller和fillter
+
+
