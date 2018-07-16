@@ -1,0 +1,8 @@
+ ng-bind-html
+顾名思义,ng-bind-html和ng-bind的区别就是,ng-bind把值作为字符串,和元素的内容进行绑定,但是ng-bind-html把值作为html,和元素的html进行绑定.相当于jq里面的.text()和.html().
+
+
+<element ng-include="filename" onload="expression" autoscroll="expression" ></element>
+ng-include 指令作为元素使用:
+
+<ng-include src="filename" onload="expression" autoscroll="expression" ></ng-include>
