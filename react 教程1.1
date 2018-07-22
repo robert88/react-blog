@@ -172,12 +172,26 @@ staxmanade.com/CssToReact
 
 reactRouter
 
-import {Router,Route,hashHistory}
+import {Router,Route,hashHistory,Link}
 
 <Router history={hashHistory}>
 <Route component={Index} path="/">
 <Route component={List} path="/list">
 </Router>
+
+
+<Router history={hashHistory}>
+<Route component={Index} path="/">
+ <Route component={List} path="/list">
+</Route>
+</Router>
+
+链接
+<Link to={"/"}>首页</Link>
+参数的传递
+<Route component={Index} path="/:id">
+接收
+this.props.params.id
 
 material-ui
 
