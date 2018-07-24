@@ -1,0 +1,65 @@
+scope的类型和作用域 63个指令
+
+1、restrict:"AEMC"
+
+<hello></hello>
+<div hello></div>
+<div class="hello"></div>
+
+<!-- directive:hello -->
+<div></div>
+
+2、template、templateUrl
+
+moudle.run(function($templateCache){
+$templateCache.put("hello.html","sdfsf")
+})
+
+moudle.directive("hello",function($templateCache){
+return {template:$templateCache.get("hello.html")}
+})
+
+3 \replace、 transclude
+ng-transclude
+
+compile/link
+加载angular.js 找到ng-app 确定应用的边界
+遍历dom 找到所有的指令
+根据指令代码中的template replace transclude转换dom结构
+如果存在complite函数则调用
+
+对于每条指令执行link函数
+link函数给dom绑定事件，绑定数据
+
+指令和控制器之间的交互
+$scope.loadData
+$scope.$apply("loadData")
+
+moudle.directive("superman",function(){
+return {
+ scope:{},//独立作用域
+ controller:function($scope){//暴露接口给外部
+ 
+ }
+}
+})
+
+
+@绑定 传递字符串
+=绑定 双向绑定
+&绑定 传递函数的
+
+js里面定义绑定，dom里面绑定
+
+a ngBind ngClick
+form 可以嵌套、自动校验、防止重复提交
+ng-valid ng-invalid ng-pristine ng-dirty
+
+require minlength maxlength
+ng-disable="myForm.$invalid"
+
+require来加载另外的指令
+
+miniui
+
+
