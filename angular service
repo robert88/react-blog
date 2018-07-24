@@ -1,0 +1,33 @@
+使用$http服务
+创建自己的service
+service的特性
+service factory provider本质都是provider
+使用$filter
+其他内置的service
+
+$http({
+method:"GET",
+url:"demo.json"
+}).success(function(data,status,headers,config){}).done()
+
+
+$scope.watch可以监听变量的变化
+
+$timeout定时器
+
+自己定义的service不要以$开头
+moudle.factory("serviceName",function(){
+
+return {handler:function(){}}
+
+})
+
+service都是单例的
+service是由$injector来实例化
+service是存在整个生命周期
+需要的地方依赖注入方式使用
+定义service在最写在内置service的后面
+内置的service用$命名
+
+
+provider模式是策略模式+工厂模式
