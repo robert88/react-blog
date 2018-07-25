@@ -31,3 +31,22 @@ service是存在整个生命周期
 
 
 provider模式是策略模式+工厂模式
+
+
+$filter内置了9个
+{{12123213213 | date}}
+{{12123213213 | date:"yyyy-MM-dd hh:mm:ss"}}
+
+
+currency date json limitTo lowercase number orderBy uppercase
+
+自定义filter
+
+moudle.filter("filter1",function(){
+return function(val){
+return val;
+}})
+
+
+常见的service
+$complite $filter  $interval $timeout $locale $location $log $parse $http
