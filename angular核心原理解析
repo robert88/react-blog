@@ -98,3 +98,7 @@ this.app=function(){}
 })
 
 参数不一样，都是调用injector的provider
+
+1.value不可以在config里注入，但是constant可以
+
+2.value可以修改，但是constant不可以修改，一般直接用constant配置一些需要经常使用的数据。
