@@ -74,3 +74,9 @@ AngularJS 表达式写在双大括号内：{{ expression }}。
 AngularJS 属性以 ng- 开头，但是您可以使用 data-ng- 来让网页对 HTML5 有效。
 
 ng-init 指令初始化 AngularJS 应用程序变量。
+
+
+bootstrap-compile
+ng-app 遍历dom结构publicLinkFn
+生成childScope
+compileLinkFN
