@@ -27,3 +27,5 @@ mvvm模式：Model-View-ViewModel
 
 mvvm和mvc上最主要的区别就是mvvm：关注Model的变化，让MVVM框架去自动更新DOM的状态，从而把开发者从操作DOM的繁琐步骤中解脱出来！，同时可以更好的利用
 vitril dom来提升程序性能。
+
+mvvm框架更适合做数据操作比较多的场景
