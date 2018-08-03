@@ -22,7 +22,7 @@ plugins和loader很容易搞混，说都是外部引用有什么区别呢？ 事
 而plugins并不是直接操作单个文件
 
 loader列表：
-https://blog.csdn.net/xuelang532777032/article/details/65445604
+
 babel-loader： 让下一代的js文件转换成现代浏览器能够支持的JS文件。babel有些复杂，所以大多数都会新建一个.babelrc进行配置
 css-loader,style-loader:两个建议配合使用，用来解析css文件，能够解释@import,url()
 less-loader:如果需要解析less就在后面加一个
@@ -40,3 +40,5 @@ OccurenceOrderPlugin:
 UglifyJsPlugin: 
 压缩代码
 
+https://blog.csdn.net/xuelang532777032/article/details/65445604
+http://www.css88.com/doc/webpack2/configuration/plugins/
