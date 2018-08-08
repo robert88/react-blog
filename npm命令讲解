@@ -1,0 +1,14 @@
+https://docs.npmjs.com/cli
+
+npm dedupe
+npm ddp
+ddp是dedupe的缩写
+作用就是梳理依赖
+
+a依赖b->c1.0.3
+a依赖d->c1.0.4
+
+npm dedupe a
+
+a依赖b、c、1.0.4、d
+即取最高版本的依赖关系
