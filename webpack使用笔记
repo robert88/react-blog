@@ -42,3 +42,61 @@ UglifyJsPlugin:
 
 https://blog.csdn.net/xuelang532777032/article/details/65445604
 http://www.css88.com/doc/webpack2/configuration/plugins/
+
+-------------------------------------------------------------
+
+主要功能介绍
+
+需求：1、将es6转es5
+
+babel：中文：https://www.babeljs.cn/ 英文：  http://babeljs.io
+编译器原理：https://blog.csdn.net/hj7jay/article/details/52117138
+常见问题
+https://www.imooc.com/article/11157
+
+安装
+npm install --save-dev babel-preset-env
+npm install --save-dev babel-cli
+npm install babel-register
+需要require("babel-register");
+nodejs对es6的支持并不好，像class, import这些关键字，react的jsx都无法使用。但是babel可以将这些都转化为es5。此处讲讲如何在node端使用babel。
+注意： 入口文件index.js中不能写es6和jsx!!!
+npm install --save-dev babel-polyfill
+新的es6 的api
+npm install --save-dev grunt-babel
+npm install --save-dev gulp-babel
+npm install requirejs-babel
+npm install --save-dev rollup-plugin-babel
+创建
+.babelrc 
+{
+  "presets": ["env"]
+  
+}
+
+{
+  "presets":["es2015","react","stage-1"],
+    //  需要安装插件，npm install transform-es2015-modules-amd --save-dev
+    "plugins": ["transform-es2015-modules-amd"],  // ES6转AMD的关键
+}
+
+package.json
+{
+   "scripts": {
+     "build": "babel src -d lib"
+   },
+  "devDependencies": {
+  "babel-cli": "^6.0.0"
+  }
+}
+
+{
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.24.1"
+  }
+http://www.ruanyifeng.com/blog/2016/01/babel.html
