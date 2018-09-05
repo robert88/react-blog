@@ -1,0 +1,87 @@
+I2C协议
+1982年飞利浦用于电视芯片 400kHZ
+1998年 高速/节能2.0
+2007年 1MHZ
+2012年 5Mhz
+优点：接口线少、简单、器件要求低、速率高
+access、smbus、pmbus等总线实现i2c
+pcb信号线过长造成电容性负载增加
+
+在使transtion尽量不要选择height、width、margin、padding尽量使用transform
+
+主线程：1、运行JavaScript 2、计算html元素的css样式；3、页面的布局；4、将元素绘制到位图中；5、将位图交给合线程
+合线程：1、Gpu将位图绘制到屏幕上；2、通知主线程更新；3、计算可见部分；4、计算滚动时可见的变化
+
+iframe在设置src之后会记录到history
+“.”正则中表示匹配任何字符，但是不匹配\n\r
+
+问题为啥load html时执行js，jq的show不起作用
+
+
+公众号id+微信id
+openID
+unionID:开发者账号id+微信id
+access_token为接口调用的凭据 2小时内有效
+
+账号分类：1、服务号；2、订阅号；3、小程序；4、企业微信
+群发消息：订阅者1天/1次，服务号4次/月
+
+兼容性100
+动画100
+css100
+js100
+浏览器100
+webix100
+jquery100
+vue100
+react100
+node100
+http100
+angular100
+cs6100
+硬件100
+java100
+mysql100
+c100
+c++100
+native100
+
+krpano全景插件
+
+mysql community是免费版
+
+glup
+task先定义default
+task（名,[依赖的tack],func）
+ glup-babel
+ 用法
+ require("glup-babel")
+ glup.src("*.js")获取所有es6或者js文件.pipe(es6转换器)
+ es6转换器{babel:{presets:"[es2015]"}}
+ gulp.dest(输出路径)
+ 
+ src的规则
+ *.js匹配全部js文件
+ !reset.css不包含reset.css
+
+
+箭头函数的优缺点
+适合在1、回调函数调用；2、自执行函数；3、适合去闭包将this回溯到上层函数
+不适合1、对象的方法；2、原型方法；3、构造器
+
+isc开发源代码许可证
+
+3d模型网数据分析
+总模型量：158016
+人物：33120
+动物：11488
+车辆：7840
+场景：42944
+武器：7168
+
+visibility：hidden渲染会有延时
+
+
+textarea的父类在chorme、ff下高度会多出11px
+ie10以下textarea会变成block
+input在ff下font-family不继承
