@@ -1,0 +1,4 @@
+path.posix跨平台系統
+path.win32針對window系統
+
+path.posix.join(a,b);
