@@ -2,3 +2,11 @@ path.posix跨平台系統
 path.win32針對window系統
 
 path.posix.join(a,b);
+
+path.resolve返回的是个绝对地址
+
+"./"在文件系统里面代表的是process.cmd();即当前执行路径;但是在require里面"./"表示当前文件夹路径
+require.resolve可以将"./"变回当前路径;那么具体的实现原理是这样；每一个模块都会module包裹并且每一个模块都有个id；记录了当前文件是全路径；
+然后通过这个id提取取当前路径和传递过来的路径做匹配；使用path.resolve合并成全路径
+
+__dirname表示当前文件所在路径
