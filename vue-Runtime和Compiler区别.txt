@@ -1,0 +1,17 @@
+https://blog.csdn.net/haochangdi123/article/details/80874981
+Runtime+Compiler区别
+runtime体积小具体少多少
+runtime 性能好
+compiler可以使用complate功能
+那个写法更优美？
+complate是否可以作为插件使用
+
+web-full-dev指是Runtime+Compiler
+
+
+runtime的核心是Vue
+Compiler的核心是compileToFunctions
+
+runtime最终得到的是
+es6版本：dist/vue.runtime.esm.js
+es5版本：'dist/vue.runtime.common.js'
