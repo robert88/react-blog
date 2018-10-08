@@ -15,3 +15,6 @@ Compiler的核心是compileToFunctions
 runtime最终得到的是
 es6版本：dist/vue.runtime.esm.js
 es5版本：'dist/vue.runtime.common.js'
+两者的差别就是最后输出模块的方式不一样
+module.exports = Vue$3;
+es6:export default Vue$3;
