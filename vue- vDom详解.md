@@ -27,3 +27,21 @@ MountedComponentVNode
 VNodeWithData
 VNodeData
 ScopedSlotsData
+
+源码/src/core/instance/render.js
+vm.$createElement  ->createElement
+
+new Vue({
+render:function(createElement){
+return createElement("div",{attr,style})
+}})
+第三方库
+snabbdom
+
+手写的render方法会调用$createElement
+template会调用_c
+
+都会调用createElement，最后一个参数不一样，alwaysNormalize
+
+文本vnode
+createTextVNode(children)-===new VNode(undefined, undefined, undefined, String(val))
