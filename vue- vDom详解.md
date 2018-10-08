@@ -15,4 +15,15 @@ vdom的变更最终会转换成DOM操作
 1、如何创建一个vDom
 2、vDom有多少属性、各个属性在哪使用
 3、vDom的diff算法
-4、
+4、vDom有哪些类型
+-----------------------------
+vDom有哪些类型
+通过源码/flow/vnode.js
+VNode
+VNodeChildren
+Component
+VNodeComponentOptions
+MountedComponentVNode
+VNodeWithData
+VNodeData
+ScopedSlotsData
