@@ -1,0 +1,22 @@
+新对象初始化时定义一个getter
+1 、
+var obj = {
+  log: ['example','test'],
+  get latest() {
+    if (this.log.length == 0) return undefined;
+    return this.log[this.log.length - 1];
+  }
+}
+console.log(obj.latest); // "test".
+
+2、
+Object.defineProperty({},{get(){return ""}})
+console.log(obj.latest); // "test".
+
+这个需要自己实现get,不是es5语法
+var obj = {}
+obj.getter = function(){return ""}
+obj.get = function(){
+obj.getter.call(obj)
+}
+obj.get()
