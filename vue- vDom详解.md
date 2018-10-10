@@ -80,7 +80,7 @@ Vue.component('child', {
     new Vue({
         el:"#div1"
     })
-
+```
 * 1.2、
  ```javascript
   new Vue({
@@ -95,6 +95,24 @@ Vue.component('child', {
 ```
 
 ### 二、如何实现
+
+```flow
+index=>start: Vue的构造器 (/src/core/instance/index.js)
+init=>operation: prototype._init (/src/core/instance/init.js)
+cond=>condition: Yes or No?
+e=>end
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
+
+在init里面做啥事？
+_uid 标识这个初始化唯一的id给这个实例
+_isVue 设置为true
+_renderProxy 设置vm
+_self 设置vm
+如果options里面有el就调用$mount,如果没有就需要手动调用$mount(el)
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
