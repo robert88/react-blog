@@ -14,6 +14,9 @@
 * 四、vDom的diff算法
 
 ### 一、如何使用vDom
+* 参考
+> - https://blog.csdn.net/qq_36351817/article/details/72902813
+
 * 1.1、
  ```javascript
  new Vue({
@@ -43,9 +46,7 @@
    })
 ```
 
-*参考
-> - https://blog.csdn.net/qq_36351817/article/details/72902813
-
+* 1.1、实现机制
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
