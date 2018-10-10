@@ -120,7 +120,7 @@ cond(no)->op
  
 如果options里面有el就调用$mount,如果没有就需要手动调用$mount(el)
 
----
+...
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
