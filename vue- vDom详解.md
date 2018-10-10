@@ -33,7 +33,8 @@
    })
 ```
 
-
+*参考
+> - https://blog.csdn.net/qq_36351817/article/details/72902813
 
 
 vnode和浏览器DOM中的Node一一对应
