@@ -100,27 +100,73 @@ Vue.component('child', {
 ```flow
 index=>start: Vue的构造器 (/src/core/instance/index.js)
 init=>operation: prototype._init (/src/core/instance/init.js)
-cond=>condition: Yes or No?
+cMount=>operation: prototype.$mount (/src/platforms/web/entry-runtime-with-compiler.js)
 e=>end
-
-index->init->cond
-cond(yes)->e
-cond(no)->op
+index->init->cMount->renderFlag->renderCon
 ```
+
+```graphLR
+    A[mount] -->| options.render=false | B(options.template)
+    B --> C{Decision}
+    C -->|true| D[Result one]
+    C -->|false| E[Result two]
+```
+
+```flow
+mount=>operation: prototype.$mount (/src/platforms/web/runtime/index.js)
+mountComponent=>operation: mountComponent (/src/core/instance/lifecycle.js)
+updateComponentWatcher=>operation: Watcher (/src/core/oberser/watcher.js)
+updateComponentWatcherGet=>operation: Watcher.get (/src/core/oberser/watcher.js)
+updateComponentWatcherGetter=>operation: Watcher.getter (/src/core/oberser/watcher.js)
+updateComponent=>operation: updateComponent (/src/core/instance/lifecycle.js)
+render=>operation: vm._render (/src/core/instance/render.js)
+update=>operation: vm._update (/src/core/instance/lifecycle.js)
+e=>end
+mount->mountComponent->updateComponentWatcher->updateComponentWatcherGet->updateComponentWatcherGetter->updateComponent
+```
+
+renderCon(yes)->e
+renderCon(no)->op
+
+```graphLR
+    A[] -->| options.render=false | B(options.template)
+    B --> C{Decision}
+    C -->|true| D[Result one]
+    C -->|false| E[Result two]
+```
+
 
  在init里面做啥事？
  
- _uid 标识这个初始化唯一的id给这个实例
+ vm._uid 标识这个初始化唯一的id给这个实例
  
- _isVue 设置为true
+ vm._isVue 设置为true
  
- _renderProxy 设置vm
+ vm._renderProxy 设置vm
  
- _self 设置vm
+ vm._self 设置vm
+ 
+ 触发beforeCreate和created钩子
  
 如果options里面有el就调用$mount,如果没有就需要手动调用$mount(el)
 
 ...
+
+ 在$mount里面做啥事？
+ 
+ 使用document.querySelectAll得到el
+ 
+ 在compiler+runtime版本里面compiler对$mount做了些补充
+ 主要是对render和template之前切换使用
+ 
+ ...
+ 
+  在mountComponent里面做啥事？
+  
+  vm.$el 存储el dom元素
+  
+ 触发beforeMount和created钩子
+
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
