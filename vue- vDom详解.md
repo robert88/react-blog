@@ -7,13 +7,13 @@
 > - https://blog.csdn.net/Forever201295/article/details/80048161
 
 
-## 研究方法
+### 研究方法
 * 一、如何使用
 * 二、如何实现
 * 三、vDom是如何渲染成真实的dom
 * 四、vDom的diff算法
 
-### 一、如何使用vDom
+#### 一、如何使用vDom
 * 参考
 > - https://blog.csdn.net/qq_36351817/article/details/72902813
 
@@ -94,7 +94,7 @@ Vue.component('child', {
    })
 ```
 
-### 二、如何实现
+#### 二、如何实现
 
 *画流程图 https://www.zybuluo.com/mdeditor
 ```flow
@@ -119,6 +119,8 @@ cond(no)->op
  _self 设置vm
  
 如果options里面有el就调用$mount,如果没有就需要手动调用$mount(el)
+
+---
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
