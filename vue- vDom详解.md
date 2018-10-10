@@ -8,12 +8,12 @@
 
 
 ## 研究方法
-* 1、如何使用vDom
-* 2、如何创建一个vDom、vDom有多少属性、各个属性在哪使用
-* 3、vDom是如何到真实的dom
-* 4、vDom的diff算法
+* 一、如何使用vDom
+* 二、如何创建一个vDom、vDom有多少属性、各个属性在哪使用
+* 三、vDom是如何到真实的dom
+* 四、vDom的diff算法
 
-### 1、如何使用vDom
+### 一、如何使用vDom
 * 1.1、
  ```javascript
  new Vue({
