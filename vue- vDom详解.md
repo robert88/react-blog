@@ -14,19 +14,29 @@
 * 4、vDom的diff算法
 
 ### 1、如何使用vDom
-
+* 1.1、
  ```javascript
-  new Vue({
-     render:function(createElement){
-       return createElement("div",{attr,style})
+ new Vue({
+  el:"#root",
+     render(createElement) {
+         return createElement("button", {
+             on: {
+                 click: function (argument) {
+                     // body...
+                     alert(1)
+                 }
+             }
+         })
      }
-  })
+ })
 ```
+* 1.2、
  ```javascript
   new Vue({
     template:component
   })
 ```
+* 1.3、
  ```javascript
    new Vue({
      el:"#id"
