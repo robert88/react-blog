@@ -8,9 +8,9 @@
 
 
 ## 研究方法
-* 一、如何使用vDom
-* 二、如何创建一个vDom、vDom有多少属性、各个属性在哪使用
-* 三、vDom是如何到真实的dom
+* 一、如何使用
+* 二、如何实现
+* 三、vDom是如何渲染成真实的dom
 * 四、vDom的diff算法
 
 ### 一、如何使用vDom
@@ -33,6 +33,54 @@
      }
  })
 ```
+ ```javascript
+ new Vue({
+     render(createElement) {
+         return createElement("button", {
+             on: {
+                 click: function (argument) {
+                     // body...
+                     alert(1)
+                 }
+             }
+         })
+     }
+ }).$mount('#root')
+```
+ ```javascript
+ new Vue({
+     render(createElement) {
+         return createElement("button", {
+             on: {
+                 click: function (argument) {
+                     // body...
+                     alert(1)
+                 }
+             }
+         })
+     }
+ }).$mount('#root')
+``` 
+```javascript
+Vue.component('child', {
+      render: function(createElement) {
+        return createElement(
+          'h'+ this.level, // tagName标签名称
+          {
+            // 事件监听器基于 "on"
+            // 所以不再支持如 v-on:keyup.enter 修饰器
+            on: {
+              click: this.clickHandler
+            }
+          }
+        )
+      }
+    })
+
+    new Vue({
+        el:"#div1"
+    })
+
 * 1.2、
  ```javascript
   new Vue({
@@ -46,7 +94,7 @@
    })
 ```
 
-** 1.1、实现机制
+### 二、如何实现
 
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
