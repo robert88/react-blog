@@ -6,7 +6,6 @@
 > - https://mp.weixin.qq.com/s?__biz=MzI3NTM1MjExMg==&mid=2247483789&idx=1&sn=e7297ec3443007015117637709f27521&scene=21#wechat_redirect
 > - https://blog.csdn.net/Forever201295/article/details/80048161
 
-***
 
 ## 研究方法
 * 1、如何使用vDom
@@ -14,7 +13,9 @@
 * 3、vDom是如何到真实的dom
 * 4、vDom的diff算法
 
-
+ ```html
+<div>M/div>
+```
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
 vdom的变更最终会转换成DOM操作
