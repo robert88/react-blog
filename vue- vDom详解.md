@@ -13,9 +13,29 @@
 * 3、vDom是如何到真实的dom
 * 4、vDom的diff算法
 
- ```html
-<div>M/div>
+### 1、如何使用vDom
+
+ ```javascript
+  new Vue({
+     render:function(createElement){
+       return createElement("div",{attr,style})
+     }
+  })
 ```
+ ```javascript
+  new Vue({
+    template:component
+  })
+```
+ ```javascript
+   new Vue({
+     el:"#id"
+   })
+```
+
+
+
+
 vnode和浏览器DOM中的Node一一对应
 vdom是纯粹的JS对象
 vdom的变更最终会转换成DOM操作
@@ -40,18 +60,7 @@ VNodeData
 ScopedSlotsData
 
 用法
-new Vue({
-render:function(createElement){
-return createElement("div",{attr,style})
-}})
 
-new Vue({
-template:component
-})
-
-new Vue({
-el:"#id"
-})
 -----------------------------------
 vdom实现第三方库
 snabbdom
