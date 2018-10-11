@@ -28,7 +28,7 @@
                      // body...
                      alert(1)
                  }
-             }
+             },"this is button"
          })
      }
  })
@@ -100,9 +100,9 @@ Vue.component('child', {
 ```flow
 index=>start: Vue的构造器 (/src/core/instance/index.js)
 init=>operation: prototype._init (/src/core/instance/init.js)
-cMount=>operation: prototype.$mount (/src/platforms/web/entry-runtime-with-compiler.js)
+cMount=>operation: prototype.mount (/src/platforms/web/entry-runtime-with-compiler.js)
 e=>end
-index->init->cMount->renderFlag->renderCon
+index->init->cMount
 ```
 
 ```graphLR
@@ -125,18 +125,33 @@ e=>end
 mount->mountComponent->updateComponentWatcher->updateComponentWatcherGet->updateComponentWatcherGetter->updateComponent
 ```
 
-renderCon(yes)->e
-renderCon(no)->op
-
+```seq
+_render->B: _render/options.render (/src/core/instance/render.js)
+```
+```seq
+B->_createElement: _createElement (/src/core/vdom/create-element.js)
+```
+```seq
+_createElement->E: Vnode (/src/core/vdom/vnode.js)
+```
+```seq
+_createElement->F: createComponent (/src/core/vdom/create-component.js)
+```
 ```graphLR
-    A[] -->| options.render=false | B(options.template)
-    B --> C{Decision}
-    C -->|true| D[Result one]
-    C -->|false| E[Result two]
+_createElement --> D{tag}
+D --> |html/svg标签/非标准标签| E[ new VNode ]
+D --> |component/component名称| F[createComponent]
+E --> |vnode结构|_render
+F --> |vnode结构|_render
+```
+
+```seq
+_update->BB: __patch__ (/src/core/instance/leftcycle.js)
+BB->
 ```
 
 
- 在init里面做啥事？
+##### 在init里面做啥事？
  
  vm._uid 标识这个初始化唯一的id给这个实例
  
@@ -152,7 +167,7 @@ renderCon(no)->op
 
 ...
 
- 在$mount里面做啥事？
+ ##### 在$mount里面做啥事？
  
  使用document.querySelectAll得到el
  
@@ -161,11 +176,63 @@ renderCon(no)->op
  
  ...
  
-  在mountComponent里面做啥事？
+ ##### 在mountComponent里面做啥事？
   
   vm.$el 存储el dom元素
   
- 触发beforeMount和created钩子
+ 触发beforeMount
+ 
+ 设置vm._watcher绑定这个mountComponent函数
+ 
+ 并且调用_render 和 _update
+ 
+ 如果存在vm.$vnode
+ vm._isMounted设置为true
+ 触发mounted钩子
+ 
+ ...
+
+ ##### _render里面做啥事？
+ 如果有options._parentVnode，
+ vm.$scopedSlots设置options._parentVnode.data.scopedSlots
+ vm.$vnode设置为options._parentVnode
+ vnode.parent设置为options._parentVnode
+ 调用外部的render得到一个vnode
+
+ #### _createElement里面做啥事
+我们实例里面传递了tag，和data 和 children
+形参中data没有的话，children可以提前
+
+如果定了data.is，那么tag就变为data.is
+通过options.render调用的创建vdom的方式是ALWAYS_NORMALIZE
+
+通过 new Vnode得到一个含有tag,data,children的vode结构
+
+ ##### _update里面做啥事？
+如果vm._isMounted那么就会触发一个beforeupdate
+
+将vm._vnode设置为render函数得到的vnode
+
+如果vm._vnode在次之前不存在
+通过 vm.__patch__ 并且覆盖vm.$el
+并清空
+vm.$options._parentElm
+vm.$options._refElm
+如果之前vm.$el存在
+清空之前$el.__vue__  并且为新的vm.$el.__vue__ = vm;重新赋值
+
+满足
+vm.$vnode
+vm.$parent
+vm.$vnode === vm.$parent._vnode
+更新
+vm.$parent.$el = vm.$el
+
+ ##### __patch__里面做啥事？
+
+在update里面会有两个方式调用__patch__
+oldVnode, vnode
+
 
 
 vnode和浏览器DOM中的Node一一对应
@@ -228,6 +295,9 @@ vm.$options.render = createEmptyVNode 在没有传递render函数的时候默认
 这个会调用options.render
 vnode = render.call(vm._renderProxy, vm.$createElement)
 
+
+
+
 这个由于会被代理
 render就会触发get
       
@@ -250,7 +320,7 @@ createElement
   
   
    createElement('button', {
-                 is：
+                 is："input"
             on: {
               click: this.clickHandler，
 
