@@ -1,0 +1,19 @@
+ 
+技术更新：https://blog.csdn.net/hhlljj0828/article/details/79497734
+  
+  兼容性检查
+   ```javascript
+var supportsPassive = false;
+if (inBrowser) {
+  try {
+    var opts = {};
+    Object.defineProperty(opts, 'passive', ({
+      get: function get () {
+        /* istanbul ignore next */
+        supportsPassive = true;
+      }
+    })); // https://github.com/facebook/flow/issues/285
+    window.addEventListener('test-passive', null, opts);
+  } catch (e) {}
+}
+  ```
