@@ -96,6 +96,8 @@ Vue.component('child', {
 
 #### 二、如何实现
 
+基于1.1使用方式
+
 *画流程图 https://www.zybuluo.com/mdeditor
 ```flow
 index=>start: Vue的构造器 (/src/core/instance/index.js)
@@ -211,7 +213,7 @@ F --> |vnode结构|_render
 
 ...
 
- #### _createElement里面做啥事
+ ##### _createElement里面做啥事
  
 我们实例里面传递了tag，和data 和 children
 形参中data没有的话，children可以提前
@@ -259,6 +261,15 @@ vm.$parent.$el = vm.$el
 如果oldVnode是dom且属性定义了data-server-rendered，就标志服务器渲染，如果没有定义，oldVnode是就会转换为tag是dom的tag的vnode的并且用elm设置为dom
 
 调用createElm创建新dom
+
+这个时候dom里面有老的dom和新的dom
+
+如果有vnode.parent将会干点事
+
+如果oldvnode之前dom调用removeVnodes
+是vnode就调用invokeDestroyHook
+
+
 
 ...
 
@@ -308,7 +319,10 @@ vnode.fnContext
 调用 updateDOMProps （/src/platforms/web/runtime/modules/dom-props.js）
 调用 updateStyle （/src/platforms/web/runtime/modules/style.js）
 调用 _enter （/src/platforms/web/runtime/modules/transition.js）
-调用 create
+调用 create （/src/core/vnode/modules/refs.js）
+调用 updateDirectives （/src/core/vnode/modules/directives.js）
+
+调用 vnode.data.hook定义的create和insert方法
 
 使用闭包全局emptyNode
 
@@ -378,13 +392,22 @@ vnode.data.transition
 
 调用 resolveTransition
 
- ##### enter里面做啥事？
+##### create里面做啥事？
  
 针对
 vnode.data.ref
 vnode.data.refInFor
 vm.$refs;
 
+##### updateDirectives里面做啥事？
+
+ 针对 
+ vnode.data.directives
+ 
+ ##### removeVnodes里面做啥事？
+ 
+ 如果是标签：removeAndInvokeRemoveHook、invokeDestroyHook
+ 如果是文本就直接removeNode
  
 ---------------------------------------------------------------------------------------------------------------
 vDom有哪些类型
