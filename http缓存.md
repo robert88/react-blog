@@ -91,7 +91,7 @@ FF：跟IE9行为类似
 200 ok from memory cache ----浏览器关闭之后，缓存就会清除
 
 
-当浏览器F12 里面设置了勾选了disable chache选项之后request的 Cache-Control: no-cache，if-modified-since和if-none-match就会清除；js文件就会再次200请求
+当浏览器F12 里面设置了勾选了disable chache选项之后request的 Cache-Control: no-cache，if-modified-since和if-none-match就会清除；js文件就会再次200请求，不会影响response的对浏览器的设置，即if-modified-since和if-none-match在去掉设置之后，还是起作用。
  
  当去掉了disable cache之后浏览器就会把之前的if-modified-since和if-none-match带上，如果不变的话就是304
  
@@ -126,7 +126,24 @@ index.js 304 Not Modified
 
  设置response头部Cache-Control:max-age=36000
 设置10个小时
-那么第一次打开html，f12设置disable cache
+那么第一次打开html，（f12设置disable cache）
+index.html 200
+index.js 200
+
+刷新浏览器
+index.html 200
+index.js 200 
+
+刷新浏览器 （去掉disable cache）
+index.html 304
+index.js 200 cache form memory
+
+
+场景三：
+
+ 设置response头部Cache-Control:max-age=0
+不缓存
+那么第一次打开html
 index.html 200
 index.js 200
 
@@ -134,9 +151,17 @@ index.js 200
 index.html 304
 index.js 200 cache form memory
 
+关闭浏览器
+index.html 200 cache from desk
+index.js 200 cache from desk
+
 刷新浏览器
 index.html 304
 index.js 200 cache form memory
 
+
+浏览器url打开index.js
+
+index.js 304 Not Modified
 
 
