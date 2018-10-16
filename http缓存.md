@@ -97,13 +97,46 @@ FF：跟IE9行为类似
  
 *画流程图 https://www.zybuluo.com/mdeditor
 
- ```
-a1=>start: 第一次index.html (引用index.js);200
-a2=>operation: f5刷新 (引用index.js)200 cache form desk
-a3=>operation: f5刷新 (引用index.js)200 cache form memory
-a4=>operation: f5刷新 (disable chache)(引用index.js)200
-a5=>operation: f5刷新 (去掉disable chache)(引用index.js)304
-a6=>operation: f5刷新;(引用index.js)200 cache form memory
-e=>end
-index->init->cMount
- ```
+场景一：
+ 
+ 设置response头部Cache-Control:max-age=36000
+设置10个小时
+那么第一次打开html
+index.html 200
+index.js 200
+
+刷新浏览器
+index.html 304
+index.js 200 cache form memory
+
+关闭浏览器
+index.html 200 cache from desk
+index.js 200 cache from desk
+
+刷新浏览器
+index.html 304
+index.js 200 cache form memory
+
+
+浏览器url打开index.js
+
+index.js 304 Not Modified
+
+场景二：
+
+ 设置response头部Cache-Control:max-age=36000
+设置10个小时
+那么第一次打开html，f12设置disable cache
+index.html 200
+index.js 200
+
+刷新浏览器
+index.html 304
+index.js 200 cache form memory
+
+刷新浏览器
+index.html 304
+index.js 200 cache form memory
+
+
+
