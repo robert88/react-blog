@@ -13,7 +13,7 @@ http缓存.md
 
 [Last-Modify、ETag、Expires和Cache-Control(转载)](https://www.cnblogs.com/coolmanlee/archive/2012/12/06/2805030.html)
 
-
+[request的cache-control和response cache-control不同点](https://www.cnblogs.com/maxomnis/p/5577445.html)
 响应头
 
 
@@ -36,9 +36,9 @@ Cache-Control
 Pragma（废弃）
 
 --------------------------------------------------------------
-Last-Modified 与 If-Modified-Since 对应的，前者是响应头，后者是请求头。
+Last-Modified 与 If-Modified-Since 对应的，前者是响应头，后者是请求头它的值是上一次的Last-Modified。
 
-Etag 与 If-None-Match 是对应的，前者是响应头，后者是请求头。
+Etag 与 If-None-Match 是对应的，前者是响应头，后者是请求头它的值是上一次的Etag。
  
  ETag有两种类型：强ETag(strong ETag)与弱ETag(weak ETag)。
 
@@ -63,4 +63,31 @@ only-if-cached 若有缓存，则只使用缓存，若缓存文件出问题了�
 
 Cache-Control是通用的头，响应头的作用是设置，请求头的作用是检测
 
+chrome：再访问相同的URL时候是发出if-modified-since。这说明即使接收到cache-control:no-contro，chrome也会进行缓存。
+
+IE9:再次访问相同URL时，跟第一次访问（无缓存情况下）一样，没有if-modified-since，也没有其他缓存相关的头域，而且缓存文件夹也没有缓存文件。也就是说，IE9接收到cache-control:no-contro，不会将response内容缓存起来。
+
+FF：跟IE9行为类似
+
+而另外，cache-control：no-store出现在response中才有意义，意思是告诉缓存系统不要缓存或者存储response内容（不要任何形式的存储，包括存储在缓存文件夹中，以免一些敏感信息外泄）。chrome,IE9,FF对这个头的实现是一样的。当接收到有这个头的response，三个浏览器的缓存目录都找不到相关的缓存文件。
+
    只有get请求会被缓存，post请求不会
+   
+---------------------------------------------------------
+
+200 ok  　　　　　　　　----  从原始服务器请求成功
+
+200 ok from cache   　  ----
+
+200 ok from disk cache  ----
+
+200 ok from memory cache ----
+
+304 not modified          ----  向服务器发送请求，验证新鲜度，足够新鲜，服务器会返回 304状态
+
+对于js和其他文件如果直接通过浏览器url打开，request的cache-control一直是max-age=0
+如果用html引用js那么浏览器请求就是 200 ok from disk cache
+
+200 ok from memory cache ----浏览器关闭之后，缓存就会清除
+
+ 
