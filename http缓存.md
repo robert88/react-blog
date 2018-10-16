@@ -1,0 +1,66 @@
+http缓存.md
+[浏览器HTTP缓存原理分析](https://www.cnblogs.com/tzyy/p/4908165.html)
+
+情景一：若没有过期，则不向服务器发送请求，直接使用缓存中的结果，此时我们在浏览器控制台中可以看到  200 OK(from cache) ，此时的情况就是完全使用缓存，浏览器和服务器没有任何交互的。
+
+情景二：若已过期，则向服务器发送请求，此时请求中会带上①中设置的文件修改时间，和Etag
+
+[浏览器缓存，状态码200与304](https://www.jianshu.com/p/75ff40c61665)
+
+浏览器根据什么来判断请求是有缓存的？
+
+[REST笔记(五):你应该知道的HTTP头------ETag](https://www.cnblogs.com/tyb1222/archive/2011/12/24/2300246.html)
+
+[Last-Modify、ETag、Expires和Cache-Control(转载)](https://www.cnblogs.com/coolmanlee/archive/2012/12/06/2805030.html)
+
+
+响应头
+
+
+Last-Modified
+
+ ETag
+ 
+Cache-Control
+
+Expires （废弃）
+
+请求头
+
+If-Modified-Since
+
+If-None-Match
+
+Cache-Control
+
+Pragma（废弃）
+
+--------------------------------------------------------------
+Last-Modified 与 If-Modified-Since 对应的，前者是响应头，后者是请求头。
+
+Etag 与 If-None-Match 是对应的，前者是响应头，后者是请求头。
+ 
+ ETag有两种类型：强ETag(strong ETag)与弱ETag(weak ETag)。
+
+强ETag表示形式："22FAA065-2664-4197-9C5E-C92EA03D0A16"。
+
+弱ETag表现形式：w/"22FAA065-2664-4197-9C5E-C92EA03D0A16"。
+ 
+ 计算ETag值开销最大的一般是计算采用哈希算法
+
+获取资源的表述值。可以只计算资源的哈希值，也可以将头信息和头信息的值也包含进去。如果包含头信息，那么注意
+
+不要包含计算机标识的头信息。同样也应该避免包含Expires、Cache-Control和Vary头信息。注意：在通过哈希算法
+
+计算ETag值时，先要组装资源的表述。若组装也比较耗时，可以采用生成GUID的方式。优化ETag值的获取。
+
+① Cache-Control  用来做缓存过期判断  
+常用指令：  
+no-cache  不直接使用缓存，始终向服务器发起请求  
+max-age  缓存过期时间，是一个时间数值，比如3600秒，设置为0的时候效果等同于no-cache  
+s-maxage  给缓存代理用的指令，对直接返回资源的server无效，当s-maxage生效时，会忽略max-age的值  
+only-if-cached 若有缓存，则只使用缓存，若缓存文件出问题了，请求也会出问题  
+
+Cache-Control是通用的头，响应头的作用是设置，请求头的作用是检测
+
+   只有get请求会被缓存，post请求不会
