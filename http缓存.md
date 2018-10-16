@@ -85,7 +85,7 @@ FF：跟IE9行为类似
 
 304 not modified          ----  向服务器发送请求，验证新鲜度，足够新鲜，服务器会返回 304状态
 
-对于js和其他文件如果直接通过浏览器url打开，request的cache-control一直是max-age=0
+对于js和其他文件如果直接通过浏览器url打开，request的cache-control一直是max-age=0  
 如果用html引用js那么浏览器请求就是 200 ok from disk cache
 
 200 ok from memory cache ----浏览器关闭之后，缓存就会清除
