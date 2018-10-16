@@ -84,6 +84,7 @@ FF：跟IE9行为类似
 200 ok from memory cache ----
 
 304 not modified          ----  向服务器发送请求，验证新鲜度，足够新鲜，服务器会返回 304状态
+304 Not Modified (from memory cache) 不会向服务器发送请求
 
 对于js和其他文件如果直接通过浏览器url打开，request的cache-control一直是max-age=0  
 如果用html引用js那么浏览器请求就是 200 ok from disk cache
@@ -149,19 +150,20 @@ index.js 200
 
 刷新浏览器
 index.html 304
-index.js 200 cache form memory
+index.js 304
 
 关闭浏览器
-index.html 200 cache from desk
-index.js 200 cache from desk
+index.html 304
+index.js 304
 
+设置response头部Cache-Control:max-age=60
 刷新浏览器
 index.html 304
-index.js 200 cache form memory
+index.js 304
 
-
-浏览器url打开index.js
-
-index.js 304 Not Modified
+等待61s
+刷新浏览器
+index.html 304
+index.js 304
 
 
