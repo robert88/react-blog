@@ -90,4 +90,20 @@ FF：跟IE9行为类似
 
 200 ok from memory cache ----浏览器关闭之后，缓存就会清除
 
+
+当浏览器F12 里面设置了勾选了disable chache选项之后request的 Cache-Control: no-cache，if-modified-since和if-none-match就会清除；js文件就会再次200请求
  
+ 当去掉了disable cache之后浏览器就会把之前的if-modified-since和if-none-match带上，如果不变的话就是304
+ 
+*画流程图 https://www.zybuluo.com/mdeditor
+
+ ```
+a1=>start: 第一次index.html (引用index.js);200
+a2=>operation: f5刷新 (引用index.js)200 cache form desk
+a3=>operation: f5刷新 (引用index.js)200 cache form memory
+a4=>operation: f5刷新 (disable chache)(引用index.js)200
+a5=>operation: f5刷新 (去掉disable chache)(引用index.js)304
+a6=>operation: f5刷新;(引用index.js)200 cache form memory
+e=>end
+index->init->cMount
+ ```
