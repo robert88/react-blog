@@ -152,14 +152,24 @@ index.js 200
 index.html 304
 index.js 304
 
+
+刷新浏览器
+index.html 304
+index.js 304
+
 关闭浏览器
 index.html 304
 index.js 304
 
-设置response头部Cache-Control:max-age=60
+
+设置response头部Cache-Control:max-age=600
 刷新浏览器
-index.html 304
-index.js 304
+index.html 304 Cache-Control:max-age=600
+index.js 304 Not Modified (from memory cache)Cache-Control: max-age=600
+
+刷新浏览器
+index.html 304 Cache-Control:max-age=600
+index.js 304 Not Modified (from memory cache) Cache-Control:max-age=0
 
 等待61s
 刷新浏览器
