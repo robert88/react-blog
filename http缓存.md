@@ -142,38 +142,39 @@ index.js 200 cache form memory
 
 场景三：
 
- 设置response头部Cache-Control:max-age=0
-不缓存
-那么第一次打开html
-index.html 200
-index.js 200
+ 设置response头部Cache-Control:max-age=0  
+不缓存  
+那么第一次打开html  
+index.html 200  
+index.js 200  
 
 刷新浏览器
-index.html 304
-index.js 304
+index.html 304  
+index.js 304  
 
 
 刷新浏览器
-index.html 304
-index.js 304
+index.html 304  
+index.js 304  
 
 关闭浏览器
-index.html 304
-index.js 304
+index.html 304  
+index.js 304  
 
 
-设置response头部Cache-Control:max-age=600
+设置response头部Cache-Control:max-age=600  
+刷新浏览器  
+index.html 304 Cache-Control:max-age=600  
+index.js 304 Not Modified (from memory cache)Cache-Control: max-age=600  
+
 刷新浏览器
-index.html 304 Cache-Control:max-age=600
-index.js 304 Not Modified (from memory cache)Cache-Control: max-age=600
+index.html 304 Cache-Control:max-age=600  
+index.js 304 Not Modified (from memory cache) Cache-Control:max-age=0  
 
-刷新浏览器
-index.html 304 Cache-Control:max-age=600
-index.js 304 Not Modified (from memory cache) Cache-Control:max-age=0
+等待61s  
+刷新浏览器  
+index.html 304  
+index.js 304  
 
-等待61s
-刷新浏览器
-index.html 304
-index.js 304
 
 
