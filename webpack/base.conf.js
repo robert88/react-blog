@@ -85,7 +85,8 @@ module.exports = function (options) {
       })
     ]),
     externals: {
-      'highlight': 'hljs'
+      'highlight': 'hljs',
+      react:'React'
     }
   };
 };

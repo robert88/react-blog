@@ -127,22 +127,44 @@ index.js 304 Not Modified
 
  设置response头部Cache-Control:max-age=36000
 设置10个小时
-那么第一次打开html，（f12设置disable cache）
+那么第一次打开html，
 index.html 200
 index.js 200
+
+刷新浏览器
+index.html 304
+index.js 200 cache form memory
+
+（f12设置disable cache）
 
 刷新浏览器
 index.html 200
 index.js 200 
 
-刷新浏览器 （去掉disable cache）
+（去掉disable cache）
+
+刷新浏览器 
 index.html 304
 index.js 200 cache form memory
 
+-----自己的电脑上
+
+设置response头部Cache-Control:36000
+那么第一次打开html  
+index.html 200  
+index.js 200  
+
+刷新浏览器
+index.html 304  
+index.js 304
+
+关闭浏览器
+index.html 304  
+index.js 304 
 
 场景三：
 
- 设置response头部Cache-Control:max-age=0  
+设置response头部Cache-Control:max-age=0  
 不缓存  
 那么第一次打开html  
 index.html 200  
@@ -165,16 +187,52 @@ index.js 304
 设置response头部Cache-Control:max-age=600  
 刷新浏览器  
 index.html 304 Cache-Control:max-age=600  
-index.js 304 Not Modified (from memory cache)Cache-Control: max-age=600  
+index.js 304 Not Modified (from memory cache)Cache-Control: max-age=600  （工作浏览器，应该浏览器的问题）
+index.js 304 Not Modified (Cache-Control: max-age=600  （家里浏览器）
 
 刷新浏览器
 index.html 304 Cache-Control:max-age=600  
-index.js 304 Not Modified (from memory cache) Cache-Control:max-age=0  
+index.js 304 Not Modified (from memory cache) Cache-Control:max-age=0  工作浏览器，应该浏览器的问题）
+index.js 200(from memory cache) Cache-Control:max-age=0  （家里浏览器）
 
-等待61s  
-刷新浏览器  
-index.html 304  
-index.js 304  
+直接打开index.js刷新
+index.js304
+
+场景四：
+
+ 设置response头部Cache-Control:no-store
+不缓存  
+那么第一次打开html  
+index.html 200  
+index.js 200  
+
+刷新浏览器
+index.html 200  
+index.js 200  
+
+关闭浏览器
+index.html 200  
+index.js 200 
+
+
+
+总结
+url上直接打开的文件永远过期，但有缓存
+
+中途改变max-age只有js可以缓存，即文件过期了之后才会重新设置max-age
+
+浏览器针对不同格式的文件有不容缓存机制
+
+Cache-control:max-age=0和no-store，在于max-age可以命中缓存
+
+
+如何查看缓存是否过期
+https://www.cnblogs.com/shixiaomiao1122/p/7591556.html
+
+chrome://view-http-cache
+版本chrome69找不到页面；
+
+
 
 
 
