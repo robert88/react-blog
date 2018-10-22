@@ -147,21 +147,6 @@ index.js 200
 index.html 304
 index.js 200 cache form memory
 
------自己的电脑上
-
-设置response头部Cache-Control:36000
-那么第一次打开html  
-index.html 200  
-index.js 200  
-
-刷新浏览器
-index.html 304  
-index.js 304
-
-关闭浏览器
-index.html 304  
-index.js 304 
-
 场景三：
 
 设置response头部Cache-Control:max-age=0  
@@ -198,6 +183,12 @@ index.js 200(from memory cache) Cache-Control:max-age=0  （家里浏览器）
 直接打开index.js刷新
 index.js304
 
+再次设置response头部Cache-Control:max-age=0  
+
+刷新浏览器
+index.html 304 Cache-Control
+index.js 200 (from memory cache) 
+
 场景四：
 
  设置response头部Cache-Control:no-store
@@ -223,8 +214,11 @@ url上直接打开的文件永远过期，但有缓存
 
 浏览器针对不同格式的文件有不容缓存机制
 
-Cache-control:max-age=0和no-store，在于max-age可以命中缓存
+Cache-control:max-age=0和no-store，在于max-age可以命中缓存，no-store永远是200，没有304
 
+当设置了cache-control:2000如果缓存没有过期，在设置cache-control:0是不起作用
+
+当url改变时，如加版本号，请求会变200
 
 如何查看缓存是否过期
 https://www.cnblogs.com/shixiaomiao1122/p/7591556.html
