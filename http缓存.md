@@ -227,6 +227,10 @@ chrome://view-http-cache
 版本chrome69找不到页面；
 
 
+如何在服务器端清除客户端的缓存？
+http://www.techweb.com.cn/network/system/2016-12-21/2458734.shtml
 
+http
+https://cloud.tencent.com/developer/section/1189898
 
 
