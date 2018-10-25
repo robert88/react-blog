@@ -20,3 +20,6 @@ handler = {
 }
 
 var proxy = new Proxy(obj,handler);   
+
+
+[深度揭秘ES6代理Proxy](https://blog.csdn.net/qq_28506819/article/details/71077788)
